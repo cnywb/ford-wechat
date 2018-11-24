@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>未回答问题列表</title>
+<link href="/fordwechat/static/css/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="content">
+	<form autocomplete="off" action="/admin/controll/23" method="post" id="pageForm">
+		<div class="outer">
+			<h3>已回答问题列表</h3>
+			<fieldset>
+			<p>
+			图文消息标题：{{fodder['news_item'][0]['title']}}
+				<input type="hidden" id="title" name="title" value="{{fodder['news_item'][0]['title']}}"/>
+				<input type="hidden" id="media_id" name="media_id" value="{{media_id}}"/>
+				<input type="submit" value="群发消息" />
+			</p>
+			</fieldset>
+			<div class="tb">
+				<div class="table">
+					<table border="1" style="border-collapse:collapse;" >
+				      	<tr>
+					      	<td><b>选择</b></td>
+					      	<td><b>分组编号</b></td>
+					      	<td><b>分组名称</b></td>
+				      	</tr>
+						{% for g in groups['groups'] %}
+						<tr>
+						 <td><input type='checkbox' id='gids' name='gids' value="{{g['id']}}:{{g['name']}}" {% if (str(g['id'])+ ':' +g['name']) in gids %}checked="checked"{% end %}/></td>
+						 <td>{{g['id']}}</td>
+						 <td>{{g['name']}}</td>
+						</tr>
+						{% end %}
+				    </table>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+<script type="text/javascript">
+  //page.markSide('11');
+  if('{{msg}}'!=''){
+	alert('{{msg}}')
+  }
+  </script>
+</html>

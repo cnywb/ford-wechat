@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	<context:component-scan base-package="io.dabing.redis" />
+	<!-- 加载接口配置文件 -->
+	<!-- 开发环境 -->
+	<!--<beans profile="development">-->
+		<!--<context:property-placeholder-->
+			<!--local-override="false"-->
+			<!--file-encoding="UTF-8"-->
+			<!--location="classpath:application-redis.properties"/>-->
+	<!--</beans>-->
+
+
+	<!-- 生产环境 -->
+	<!--<beans profile="production">-->
+		<!--<beans profile="development">-->
+			<!--<context:property-placeholder-->
+					<!--local-override="false"-->
+					<!--file-encoding="UTF-8"-->
+					<!--location="classpath:application-redis.properties"/>-->
+	<!--</beans>-->
+   
+    <!-- 配置redis连接池信息 -->
+	<bean id="poolConfig" class="io.dabing.redis.config.PoolConfig">
+		<property name="maxIdle" value="${spring.redis.pool.max-idle}" />
+		<property name="minIdle" value="${spring.redis.pool.min-idle}" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testOnReturn" value="true" />
+		<property name="testWhileIdle" value="true" />
+	</bean>
+	<!-- 配置server信息 -->
+	<bean id="server1" class="io.dabing.redis.shard.NodeInfoJedis">
+		<property name="ip" value="${spring.redis.host}" />
+		<property name="port" value="${spring.redis.port}" />
+		<property name="password" value="${spring.redis.password}" />
+		<property name="timeOut" value="${spring.redis.timeout}" />
+		<property name="dbIndex" value="${spring.redis.database}"/>
+	</bean>
+ 
+	<!-- 配置shard信息 -->
+	<bean id="shard1" class="io.dabing.redis.shard.ShardInfoJedis">
+		<property name="shardName" value="shard1" />
+		<property name="nodes">
+			<set>
+				<ref bean="server1" />
+			</set>
+		</property>
+	</bean>
+	<!-- 配置shard组合信息 -->
+	<bean id="shardConfig" class="io.dabing.redis.shard.ShardConfig">
+		<property name="shardConfigName" value="config1" />
+		<property name="shards">
+			<list>
+				<ref bean="shard1" />
+			</list>
+		</property>
+	</bean>
+	<bean id="configManagerSpring" class="io.dabing.redis.config.ConfigManagerSpring">
+		<property name="poolConfig" ref="poolConfig" />
+		<property name="shardConfig" ref="shardConfig" />
+	</bean>
+	<bean id="redisClient" class="io.dabing.redis.client.impl.spring.SpringRedisClientImpl" init-method="init">
+		<property name="configManagerSpring" ref="configManagerSpring" />
+	</bean>
+	<bean id="binaryRedisClient" class="io.dabing.redis.client.impl.spring.SpringBinaryRedisClientImpl" init-method="init">
+		<property name="configManagerSpring" ref="configManagerSpring" />
+	</bean>
+</beans>

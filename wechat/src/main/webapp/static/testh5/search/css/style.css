@@ -1,0 +1,157 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url("../images/bg.jpg") no-repeat;
+    filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+    -moz-background-size: 100% 100%;
+    background-size: 100% 100%;
+    font-size: 62.5%;
+}
+
+.clear {
+    clear: both;
+    float: none;
+}
+
+.row-search {
+    width: 604px;
+    margin: auto;
+}
+
+.row-list {
+    width: 562px;
+    margin: auto;
+}
+
+.search-title {
+    padding-top: 29px;
+    color: #5a6f7c;
+    font-size: 1.728rem;
+}
+
+.search-box {
+    width: 540px;
+    height: 50px;
+    border: 2px solid #dee1e3;
+    float: left;
+    background: #ffffff;
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+}
+
+.search-box > input {
+    height: 45px;
+    width: 480px;
+    border: none;
+    outline: none;
+    font-size: 1.615rem;
+    color: #969696;
+}
+
+.search-box > .search-close {
+    display: inline-block;
+    background: #c6cdd2;
+    padding: 8px;
+    float: right;
+    margin: 8px 7px;
+}
+
+.search-btn {
+    float: right;
+    padding: 13px;
+    background: #4a606d;
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.search-list {
+    margin-top: 25px;
+    height: 719px;
+    position: relative;
+}
+
+.search-list > .bg {
+    position: absolute;
+    top: 0;
+    background: #ffffff;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    opacity: 0.8;
+}
+
+.search-list > .cont {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 20;
+}
+
+.search-list > .cont > .list-title {
+    font-size: 2.16rem;
+    color: #ff9a00;
+    height: 65px;
+    line-height: 65px;
+    text-align: center;
+}
+
+.search-list > .cont > hr {
+    border: 1px solid #dfe1e2;
+    margin-top: 5px;
+}
+
+.search-list > .cont > .list-item {
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #ccc8cb;
+    border-radius: 5px;
+    margin-top: 5px;
+    background: #ffffff;
+    position: relative;
+}
+
+.search-list > .cont > .list-item:after {
+    content: url("../images/gift.png");
+    position: absolute;
+    top: 5px;
+    right: 16px;
+}
+
+.search-list > .cont > .list-item:nth-child(even) {
+    background: #eef0f1;
+}
+
+.search-list > .cont > .list-item > .name {
+    float: left;
+    font-size: 1.8rem;
+    margin-left: 16px;
+    width: 170px;
+}
+.search-list > .cont > .list-item > .phone {
+    float: left;
+    font-size: 1.296rem;
+}
+.search-list > .cont > .list-item > .phone>span {
+    color: #6f6f6f;
+}
+.search-list > .cont > .list-item > .gift {
+    float: right;
+    font-size: 1.8rem;
+    margin-right: 47px;
+}
+
+.search-list > .cont > .list-ctrl {
+    margin-top: 25px;
+    text-align: right;
+}
+.search-list > .cont > .list-ctrl>a{
+    font-size: 1.008rem;
+    color : #49606d;
+    outline: 0;
+    text-decoration: none;
+}

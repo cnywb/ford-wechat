@@ -1,0 +1,30 @@
+/*
+ * Copyright (c)  ${YEAR}
+ * All rights reserved.
+ * ${NAME}Repository.java ${YEAR}-${MONTH}-${DAY} ${TIME}
+ */
+package ${PACKAGE_NAME};
+
+import io.dabing.common.grid.GridPage;
+import io.dabing.core.repository.JpaRepository;
+import io.dabing.core.repository.domain.Page;
+
+
+
+/**
+ * 描述：TODO
+ *
+ * @author ${USER} create on ${YEAR}-${MONTH}-${DAY}
+ * @since 1.0
+ */
+public interface ${NAME}Repository extends JpaRepository<${NAME}, Long> {
+
+    /**
+     * 根据GridPage对象按分页查找服务
+     *
+     * @param page 分页对象，里有关键字keyWord,供模糊匹配
+     * @return 分页结果数据对象集合
+     */
+    Page<${NAME}> pagingBy(GridPage page);
+
+}

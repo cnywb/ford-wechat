@@ -1,0 +1,286 @@
+<div xmlns="http://www.w3.org/1999/html">
+    <form name="dataForm" novalidate ng-submit="submit(dataForm.$valid)" class="form-horizontal form">
+        <div class="modal-body form-horizontal form">
+            <div class="form-body portlet dbLight" style="margin-bottom: 0px;">
+                <div class="portlet-title">
+                    <div class="caption font-green-sharp">
+                        <i class="icon-{{dbForm.title.icon}} iconfont font-green-sharp" style="font-size: 16px; margin-top: 0px;"></i>
+                        <span class="caption-subject bold uppercase">工单审核</span>
+                    </div>
+                    <div class="tools" ng-if="true">
+                        <i class="iconfont icon-guanbi" ng-click="cancel()"></i>
+                    </div>
+                </div>
+
+                <div class="portlet-body">
+
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading font-bold">申请信息</div>
+                                <div class="panel-body">
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label">问题标题</label>
+                                            <div class="col-lg-9">
+                                                <input type="text" ng-model="data.title" disabled class="form-control" placeholder="问题标题">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label">申请来源</label>
+                                            <div class="col-lg-9">
+                                                <input type="text" ng-model="data.source" disabled class="form-control" placeholder="申请来源">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label">申请人VIN</label>
+                                            <div class="col-lg-9">
+                                                <input type="text" ng-model="data.userVin" disabled class="form-control" placeholder="申请人VIN">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label">申请原因</label>
+                                                <div class="col-lg-9">
+                                                    <input type="text"ng-model="data.reason" disabled class="form-control" placeholder="申请原因">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label">申请时间</label>
+                                                <div class="col-lg-9">
+                                                    <input type="text" ng-model="data.applyDate" disabled class="form-control" placeholder="申请时间">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label">微信标识</label>
+                                                <div class="col-lg-9">
+                                                    <input type="text" ng-model="data.openId" disabled class="form-control" placeholder="微信标识">
+                                                </div>
+                                            </div>
+
+                                    </div>
+
+                                    <div class="col-sm-4">
+
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label">申请人姓名</label>
+                                            <div class="col-lg-9">
+                                                <input type="text" ng-model="data.name" disabled class="form-control" placeholder="申请人姓名">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label">申请人手机</label>
+                                            <div class="col-lg-9">
+                                                <input type="text"ng-model="data.mobile" disabled class="form-control" placeholder="申请人手机">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label">申请人地址</label>
+                                            <div class="col-lg-9">
+                                                <input type="text" ng-model="data.address" disabled class="form-control" placeholder="申请人地址">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                            <div class="form-group">
+                                        <label class="col-lg-3 control-label">问题描述</label>
+                                        <div class="col-lg-9">
+                                            <textarea ng-model="data.memo" name="memo" rows="2" required disabled class="form-control" placeholder="问题描述" ng-maxlength="256"  style="resize: none;border-radius: 5px"></textarea>
+                                        </div>
+                                            </div>
+                                        </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading font-bold">原信息</div>
+                                <div class="panel-body">
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">原姓名</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" ng-model="data.oldName" disabled class="form-control" placeholder="原姓名">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">原手机</label>
+                                            <div class="col-lg-10">
+                                                <input type="text"ng-model="data.oldMobile" disabled class="form-control" placeholder="原手机">
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">原渠道代码</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" ng-model="data.oldChannelCode" disabled  class="form-control" placeholder="原渠道代码">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">原微信标识</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" ng-model="data.oldOpenId" disabled class="form-control" placeholder="原微信标识">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading font-bold">审核</div>
+                                <div class="panel-body">
+
+                                        <div class="form-group">
+                                            <label style=" float: left;padding-left: 2.5rem;" class="control-label"><span class="required"> * </span>审核类型</label>
+                                            <div class="col-lg-10" style="padding-left: 2rem">
+                                                <input style="margin-right: 0.5rem;" type="radio" name="mobile" checked ng-bind="{{applyDate.unBundling}}"  ng-click="orMobile(applyDate.unBundling)">解绑
+
+                                                <input style="margin-left: 0.5rem;margin-right: 0.5rem;" type="radio" name="mobile" ng-bind="{{applyDate.editMobile}}"  ng-click="orMobile(applyDate.editMobile)">更改手机
+                                            </div>
+                                        </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">审核状态</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" ng-model="data.assessStatus_" disabled class="form-control" placeholder="审核状态">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group" ng-show="vinShow">
+                                            <label class="col-lg-2 control-label">VIN码</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" ng-model="data.vin" class="form-control" placeholder="VIN码">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" ng-show="mobileShow">
+                                            <label class="col-lg-2 control-label">手机号</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" ng-model="data.mobile" class="form-control" placeholder="手机号">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-6">
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label"><!--<span class="required"> * </span>-->行驶证</label>
+                                            <div class="col-lg-10" style="overflow:auto;height: 100px;">
+
+                                                <div ng-repeat="img in imgData">
+                                                    <div style="float: left;padding-bottom: 0.3rem;">
+                                                        <img ng-click="changePic($event)" ng-src="{{img.imageUrl}}" style="height: 40px;width: 50px;">
+                                                        <div style="float:right;padding-left:1rem;padding-top: 10px;">
+                                                            点击图片查看大图
+                                                        </div>
+                                                        <input type="radio" name="radio" ng-bind="{{img.id}}"  ng-click="sub(img.id)">选择
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-6">
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">审核理由</label>
+                                            <div class="col-lg-10">
+                                                <textarea ng-model="data.assessMemo" name="memo" rows="4" required class="form-control" placeholder="请在这里输入您的审核理由" ng-maxlength="256"  style="resize: none;border-radius: 5px"></textarea>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="js-img-view" class="show-img">
+                    <img id="big-image" style="transform:rotate({{rotate}}deg);">
+                    <!--<a ng-click="closePic()"></a>-->
+                    <a style="position: absolute;height: {{rotateClose.height}}px;width: {{rotateClose.width}}px; right: {{rotateClose.right}}px;top:{{rotateClose.top}}px;"" type="button" ng-click="closePic()"></a>
+                    <input style="position: absolute; right: {{rotate1.right}}px;top:{{rotate1.top}}px;" type="button" ng-click="rotateClick()" value="旋转"/>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit" ng-show="!dbForm.showEditBtn || !dbForm.globalFieldEditor" ng-disabled="dbForm.submitting"><i class="iconfont icon-queding" style="color: white"></i>自动审核</button>
+                    <button class="btn btn-warning" type="button" ng-click="notPass()" ng-if="true"><i class="iconfont icon-guanbi" style="color: white"></i>审核不通过</button>
+                    <button class="btn btn-warning" type="button" ng-click="cancel()" ng-if="true"><i class="iconfont icon-guanbi" style="color: white"></i>关闭</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <style>
+        /* 图片放大的代码 */
+        .show-img{
+            position: fixed;
+            left: 50%;
+            top: 75%;
+           /* background: #fff;*/
+            z-index: 999999;
+ /*           width: 800px;
+            height: 500px;*/
+            margin-left: -450px;
+            margin-top: -333px;
+            display: none;
+
+        }
+        .show-img img{
+            width: 800px;
+            height: 500px;
+        }
+        .show-img a{
+    /*        position: absolute;
+            width: 40px;
+            height: 40px;
+            right: -40px;
+            top: 0px;*/
+            background: url(../resources/css/images/close.png) -10px -10px no-repeat;
+        }
+        /*.show-img a:hover{*/
+            /*position: absolute;*/
+            /*!*width: 40px;*!*/
+            /*!*height: 40px;*!*/
+            /*!*right: -40px;*!*/
+            /*top: 0px;*/
+            /*background: url(../../../resources/css/images/close.png) -10px -10px no-repeat;*/
+        /*}*/
+    </style>
+</div>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <import resource="common/applicationContext-scan.xml"/>
+
+    <import resource="cache/ehcache-context.xml"/>
+
+    <import resource="common/applicationContext-common.xml"/>
+
+    <import resource="common/applicationContext-properties.xml"/>
+
+    <import resource="repository/applicationContext-jpa.xml"/>
+
+    <import resource="repository/applicationContext-tx.xml"/>
+
+    <import resource="controller/dispatcher-servlet.xml"/>
+
+    <import resource="classpath*:/http/httpclient.xml"/>
+
+    <import resource="redis/applicationContext-redis.xml"/>
+
+    <import resource="webapp-config.xml"/>
+    <!--mail邮件配置-->
+    <import resource="mail/mail.xml"/>
+    <!--定时器-->
+    <import resource="quartz/jobs-scheduler.xml"/>
+    <!--批处理-->
+    <import resource="batch/job-batch-test.xml"/>
+    <!--批处理通用-->
+    <import resource="batch/job-common.xml"/>
+    <!--认证数据-csv-->
+    <import resource="batch/verify/job-auth-to-csv.xml"/>
+    <!--认证解绑数据发送dms-->
+    <import resource="batch/verify/job-auth-to-dms.xml"/>
+    <!--自动认证-->
+    <import resource="batch/verify/job-auto-auth.xml"/>
+    <!--每日认证报告-->
+    <import resource="batch/verify/job-day-auth-report.xml"/>
+    <!--dms-主机厂数据-->
+    <import resource="batch/dms/job-dms-factory-import.xml"/>
+    <!--菜单点击量从Redis转至DB-->
+    <import resource="batch/browse/job-batch-menu.xml"/>
+    <!--公告阅读量从Redis转至DB-->
+    <import resource="batch/browse/job-batch-msg.xml"/>
+
+    <!--每日认证激励代金券生成-->
+    <import resource="batch/coupon/job-generate-coupon.xml"/>
+    <!--每日认证激励统计报表-->
+    <import resource="batch/coupon/job-coupon-event-statistics.xml"/>
+    <!--认证激励代金券数据下发DMS-->
+    <import resource="batch/coupon/job-coupon-send-dms.xml"/>
+</beans>

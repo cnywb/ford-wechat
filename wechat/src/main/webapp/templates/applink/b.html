@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style"  />
+<meta content="telephone=no" name="format-detection" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" href="/fordwechat/static/applink/resources/css/gmu.css">
+<style type="text/css">
+	.viewport {
+		min-width: 300px;
+	  	max-width: 640px;
+	  	margin: 0 auto;
+	}
+	.f_warp{
+		padding: 0 12px;
+		margin-bottom: 20px;
+	}
+	.f_explan{
+		<!--border-top:1px solid #d1d1d0;-->
+		border-bottom: 1px solid #e8e8e8;
+		margin: 5px 0;
+		padding: 5px 0;
+	}
+	.f_explan p{
+		font-size: 1.3rem;
+		color: #00619a
+	}
+	.f_app{
+		width: 100%;
+		margin-top: 17px;
+	}
+	.f_app h3{
+		font-size: 1.5rem;
+		color: #000
+	}
+	.f_app_list{
+		margin-top: 5px;
+		overflow: hidden;
+	}
+	.f_app_list a{
+		display: block;
+		width: 33.333333333%;
+		float: left;
+	}
+	.f_app_list a img{
+		display: block;
+		width: 75px;		
+		margin: 6px auto;
+	}	
+	.f_app_list a p{
+		line-height: 1.5rem;
+		width: 75px;
+		margin: 0 auto;
+	}
+	@media all and (min-device-width:320px){
+	    .f_app_list a img{
+			width: 75px;
+		}
+		.f_app_list a p{
+			width: 75px;
+		}
+	}
+	@media all and (min-device-width:375px) and (max-device-width: 400px){
+     	.f_app_list a img{
+			width: 88px;
+		}
+		.f_app_list a p{
+			width: 88px;
+		}
+	}
+	@media all and (min-device-width:400px) and (max-device-width: 500px){
+     	.f_app_list a img{
+			width: 97px;
+		}
+		.f_app_list a p{
+			width: 97px;
+		}
+	}
+	@media all and (min-device-width:500px) and (max-device-width: 640px){
+     	.f_app_list a img{
+			width: 128px;
+		}
+		.f_app_list a p{
+			width: 128px;
+		}
+	}
+	.app_name{
+		font-size: 1.3rem;
+		color: #575756;
+		overflow: hidden;
+		text-overflow:ellipsis;
+		white-space: nowrap;
+	}
+	.app_company{
+		font-size: 1.2rem;
+		color: #868686
+	}
+	.app_install{
+		font-size: 1.3rem;
+		color: #005496
+	}
+	footer{
+		padding-left: 12px;
+		height: 20px;
+		line-height: 20px;
+		background-color: #fff;
+		position: fixed;
+		bottom: 2px;
+		left: 0px;
+		z-index: 5
+	}
+</style>
+</head>
+<body>
+	<div class="viewport">
+		<div class="f_warp">
+			<div class="f_explan">
+				<p>迄今为止，已有百度、高德、中国移动、豆瓣、蜻蜓FM、新浪、搜狗、阿里巴巴虾米，考拉和腾讯八家公司（包括10款应用）与福特合作。</p>
+			</div>
+			<div class="f_app ui-refresh">
+				<h3>必备App</h3>
+				<nav class="f_app_list data-list">
+				{% if pagination and pagination['paglist']%}
+					{% for p in pagination['paglist']%}
+					<a href="{{p['applink_url']}}">
+						<img src="{{p['applink_img']}}">
+						<p class="app_name">{{p['applink_name']}}</p>
+						<p class="app_company">{{p['download_name']}}</p>
+						<p class="app_install">免费安装</p>
+					</a>
+					{% end %}
+					<input type="hidden" id="pageno" name="pageno" value="{{pagination['pageno']}}" />
+					<input type="hidden" id="totalpag" name="totalpag" value="{{pagination['totalpag']}}" />
+				{% else %}
+					<input type="hidden" id="pageno" name="pageno" value="0" />
+				{% end %}
+				</nav>
+				{% if pagination and pagination['paglist'] and (int(pagination['pageno']) < int(pagination['totalpag'])) %}
+					<div class="ui-refresh-down"></div>
+				{% end %}
+			</div>
+		</div>
+		<!--<footer>点击<a href="javascript:void(0);">阅读原文</a>，了解更多福特AppLink™使用指南。</footer>-->
+	</div>
+</body>
+<script type="text/javascript" src="/fordwechat/static/applink/resources/js/zepto.min.js"></script>
+<script type="text/javascript" src="/fordwechat/static/applink/resources/js/gmu.min.js"></script>
+<script type="text/javascript" src="/fordwechat/static/applink/resources/js/$lite.js"></script>
+<script type="text/javascript">	
+   /*
+    (function () {
+        //组件初始化js begin
+        //实例，由于本地不走ajax所以假设5s数据回来,走ajax时就把这段代码删除
+		//$('.ui-refresh-down').remove();
+        $('.ui-refresh').refresh({
+            load: function (dir, type) {
+                var me = this;
+                var $list = $('.data-list');
+                var data = [{html:'<a href="javascript:void(0);"><img src="../resources/images/app.png"><p class="app_name">豆瓣FM</p><p class="app_company">豆瓣FM</p><p class="app_install">免费安装1</p></a>'},{html:'<a href="javascript:void(0);"><img src="../resources/images/app.png"><p class="app_name">豆瓣FM</p><p class="app_company">豆瓣FM</p><p class="app_install">免费安装2</p></a>'}];
+                window.setTimeout(function(){
+                	var html = (function (data) {      //数据渲染
+	                    var liArr = [];
+	                    $.each(data, function () {
+	                        liArr.push(this.html);
+	                    });
+	                    return liArr.join('');
+	                })(data);
+	
+	                $list[dir == 'up' ? 'prepend' : 'append'](html);
+	                me.afterDataLoading();    //数据加载完成后改变状态
+	                $('.ui-refresh-down').find('span').eq(0).addClass('ui-refresh-icon');
+                }, 5000);
+            }
+        });
+    })();*/
+
+    //ajax调用数据方法
+    //返回的数据格式：data=[{html:''},{html:''},...]
+    (function () {
+		//alert(window.history.length);{{pagination['pageno']}}
+		//alert("{{pagination['pageno']}}");
+		if("{{pagination['pageno']}}" == "1")//针对chrome回退事件做的操作
+			$("#pageno").val(1);
+		if(parseInt($("#pageno").val())>0 && parseInt($("#pageno").val())<parseInt($("#totalpag").val()))
+			$('.ui-refresh').refresh({
+				load: function (dir, type) {
+					var me = this;
+					pageno = parseInt($("#pageno").val()) + 1
+					if(pageno >= parseInt($("#totalpag").val()))
+					{
+						$('.ui-refresh-down').remove();
+						pageno = parseInt($("#totalpag").val());
+					}
+					$("#pageno").val(pageno);
+					$.getJSON('/getinfo?state=401&pageno=' + pageno, function (data) {
+					//$.getJSON('/fordwechat/control?state=401&pageno=' + pageno, function (data) {
+						var $list = $('.data-list'),
+								html = (function (data) {      //数据渲染
+									var liArr = [];
+									$.each(data, function () {
+										liArr.push(this.html);
+									});
+									return liArr.join('');
+								})(data);
+						$list[dir == 'up' ? 'prepend' : 'append'](html);
+						me.afterDataLoading();    //数据加载完成后改变状态
+						$('.ui-refresh-down').find('span').eq(0).addClass('ui-refresh-icon');
+					});
+				}
+			});
+			//if($("#pageno").val() == $("#totalpag").val())
+				//$('.ui-refresh-down').remove();
+		var start_y = 0;
+		$(document).on('touchstart', function(event) {
+			start_y = event.touches[0].pageY;
+			console.log('s:' + start_y);
+		}).on('touchmove', function(e) {
+			var y = e.touches[0].pageY;
+			console.log('m:' + y);
+			if (y - start_y > 10) {
+				window.location.href="/getinfo?state=400";
+				//window.location.href="/fordwechat/control?state=401&pageno=1";
+			}
+		}).on('touchend', function(e) {
+			console.log('e:');
+		});
+    })();
+</script>
+</html>
+
+

@@ -1,0 +1,32 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Head</title>
+  <link href="/fordwechat/static/css/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div class="head">
+    <h1>长安福特微客服管理平台</h1>
+    <div class="top_link">
+      <ul>
+        <li class="welcome">欢迎您</li>
+        <!--<li><a href="/login" target="_top">回主页</a></li>
+         <li><a href="#" target="menu">系统消息</a></li> -->
+        <li><a href="/admin/logout" target="_top">注销</a></li>
+      </ul>
+    </div>
+    <div id="datetime"></div>
+  </div>
+  <script type="text/javascript" src="/fordwechat/static/js/prototype.js"></script>
+  <script type="text/javascript" src="/fordwechat/static/js/wunderman.js"></script>
+  <script type="text/javascript" src="/fordwechat/static/js/common.js"></script>
+  <script type="text/javascript">
+  function init(){
+      animate.bindClock();
+  }
+  Event.observe(window, 'load', init);
+  </script>
+</body>
+</html>

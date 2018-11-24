@@ -1,0 +1,106 @@
+<!--<!DOCTYPE HTML PUBLIC>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <title>使用html5 FileReader获取图片，并异步上传到服务器(not iframe)</title>
+
+
+  <script type="text/javascript">
+  window.onload = function(){
+	$('#b1').click(function(){
+		$.ajax({
+			type: 'POST',
+			url: '/yihu?state=191',
+			data: {'imgdata':'iVBORw0KGgoAAAANSUhEUgAAACwAAAAOCAYAAABU4P48AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAGYktHRAD/AP8A/6C9p5MAAAF6SURBVEhL1ZY9coMwEIWfchZIkckJxAmAhoojiNJu3KV0lwZK+xRU6ATmBJkUEXdRVj8MmGFsk9ge+5vReFlb2of0diymCTwRL0CHKmJgjKGQPnszJAqqw1iEqvOphZDgexJjRweq9QGrwKcWcmfB/+cCwf0xDiMan2dXIZp870ZBM6ecsIQs7Lzx2rLwa428ekawKZBgTxEvFbQqwSlu1+G830VDx61Qmh/RrO0So8YZBH2060//ohK1KUyILHYBcVqwrK1YgxHJwjVa//z1MxUj0OzMwgFe311mGTEyo5gq1kZxX5uX2Ax6L/QwTVK2WYZxmHYNf0Pow78SO8XYk2Lpt5fnKW3BwGWC228oH8756mrEG2enfYLEbS/y9HhjTgvuF6DDSaIKHTXYdsZX1yNAmtuCDp5jovfcDgdYHTQa1w0IrYc5SqVh7XoDgjS3jW0QH6sjO1jMX/NDoUpNgum6IHTjU2MeSLDSZD9zr7FDzKklnuzyA/wCcpDKoLig94YAAAAASUVORK5CYII='},
+			dataType: 'json',
+			//timeout: 1800,
+			//context: $('body'),
+			success: function(data){
+				//假设data为true 表示成功   false表示失败
+				alert(data.filepath);
+			},
+			/*error: function(xhr, type){
+				alert('Ajax error!')
+			}*/
+		});
+	});
+  }
+  </script>
+
+ </head>
+
+ <body>
+  <p><input type="button" id="b1" value="提交"></p>
+ </body>  
+</html>-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=" utf-8">
+<meta name="author" content="http://www.softwhy.com/" />
+<title>蚂蚁部落</title>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script type='text/javascript'>
+$(window).load(function(){ 
+  /** 
+  * convertImgToBase64 
+  * @param {String} url 
+  * @param {Function} callback 
+  * @param {String} [outputFormat='image/png'] 
+  * @author HaNdTriX 
+  * @example 
+  convertImgToBase64('http://goo.gl/AOxHAL', function(base64Img){ 
+    console.log('IMAGE:',base64Img); 
+  }) 
+  */ 
+  function convertImgToBase64(url, callback, outputFormat){ 
+    var canvas = document.createElement('CANVAS'); 
+    var ctx = canvas.getContext('2d'); 
+    var img = new Image; 
+    img.crossOrigin = 'Anonymous'; 
+    img.onload = function(){ 
+      canvas.height = img.height; 
+      canvas.width = img.width; 
+      ctx.drawImage(img,0,0); 
+      var dataURL = canvas.toDataURL(outputFormat || 'image/png'); 
+      callback.call(this, dataURL); 
+      // Clean up 
+      canvas = null; 
+    }; 
+    img.src = url; 
+  } 
+ 
+  $('#img2b64').submit(function(event){ 
+    var imageUrl = $(this).find('input[name=url]').val(); 
+    console.log('imageUrl', imageUrl); 
+    convertImgToBase64(imageUrl, function(base64Img){ 
+      $('.output') 
+      .find('textarea') 
+      .val(base64Img) 
+      .end() 
+      .find('a') 
+      .attr('href', base64Img) 
+      .text(base64Img) 
+      .end() 
+      .find('img') 
+      .attr('src', base64Img); 
+    }); 
+    event.preventDefault(); 
+  }); 
+});
+</script>
+</head>
+<body>
+<h2>Input</h2>
+<form class="input-group" id="img2b64">
+  <input type="url" name="url"  value="http://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png">
+  <span class="input-group-btn"><input type="submit"></span>
+</form>
+<hr>
+<div class="output">
+  <textarea class="form-control"></textarea>
+</div>
+</body>
+</html>

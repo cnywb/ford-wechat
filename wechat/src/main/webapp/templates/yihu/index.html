@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/fordwechat/static/yihu/css/style02.css" rel="stylesheet" />
+     <link rel="stylesheet" href="/fordwechat/static/yihu/css/swiper.min.css">
+    <!--移动端版本兼容 -->
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if(window.screen.height == 480) {
+            document.write('<link href="/fordwechat/static/yihu/css/style2.css" rel="stylesheet" />');
+        }
+        if(/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if(version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+            } else {
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+    </script>
+    <!--移动端版本兼容 end -->
+    <title>翼虎微刊</title>
+    <script src="/fordwechat/static/yihu/js/jquery.min.js"></script>
+	<script src="/fordwechat/static/yihu/js/index.js"></script>
+     <script src="/fordwechat/static/yihu/js/swiper.min.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script src="/fordwechat/static/yihu/js/wechat.js"></script>
+</head>
+
+<body>
+ <div class="swiper-container">
+	<div class="swiper-wrapper">
+		<div class="swiper-slide">
+			<div class='section1'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			 </div>
+		</div>
+		<div class="swiper-slide">
+			<div class='section2'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			</div>
+		</div>
+		<div class="swiper-slide">
+		<div class='section3'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class='section4'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class='section5'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class='section6'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class='section7'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class='section8'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class='section10'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class='section11'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class='section12'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class='section13'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class='section14'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class='section15'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class='section16'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class='section17'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class='section18'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class='section19'>
+				<img src='/fordwechat/static/yihu/img/upmove.png' class='button'  width='100%' />
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class='section20'>
+				<a href='javascript:;' class='back'></a>
+				<a href='javascript:;' class='share'></a>
+				<a href='http://m.kuga.ford.com.cn' class='detail'></a>
+			</div>
+		</div>
+	</div>
+</div>
+	
+<div class='overlay' style='display: none;'>
+	<div class='shadow'></div>
+	<img  src='/fordwechat/static/yihu/img/sharetips.png'/>	
+</div>	
+</body>
+
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        direction: 'vertical'
+    });
+    </script>
+</html>

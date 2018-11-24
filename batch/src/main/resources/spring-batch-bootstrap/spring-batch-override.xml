@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+	http://www.springframework.org/schema/task
+	http://www.springframework.org/schema/task/spring-task.xsd">
+	<!--重载spring batch admin 默认实现 -->
+
+	<bean id="jobRepository"
+		class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="transactionManager" ref="transactionManager" />
+		<!--设置数据库隔离级别 -->
+		<property name="isolationLevelForCreate" value="ISOLATION_DEFAULT" />
+		<property name="tablePrefix" value="${batch.table.prefix}"/>
+	</bean>
+
+
+	<!-- job注册机 -->
+	<bean id="jobRegistry" class="org.springframework.batch.core.configuration.support.MapJobRegistry"/>
+	<!--自动注册job  -->
+	<bean id="jobRegistryBeanPostProcessor" class="org.springframework.batch.core.configuration.support.JobRegistryBeanPostProcessor">
+		<property name="jobRegistry" ref="jobRegistry"/>
+	</bean>
+	<bean id="jobExplorer" class="org.springframework.batch.core.explore.support.JobExplorerFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<bean id="jobOperator" class="org.springframework.batch.core.launch.support.SimpleJobOperator">
+		<property name="jobLauncher" ref="jobLauncher"/>
+		<property name="jobExplorer" ref="jobExplorer"/>
+		<property name="jobRepository" ref="jobRepository"/>
+		<property name="jobRegistry" ref="jobRegistry"/>
+	</bean>
+	
+	
+	<!-- 异步jobLauncher 开始 -->
+	<task:executor id="asyncJobLauncherTaskExecutor" pool-size="10000" rejection-policy="ABORT" />
+	<bean id="asyncTaskExecutor"
+		class="org.springframework.batch.admin.util.ThrottledTaskExecutor">
+		<property name="taskExecutor" ref="asyncJobLauncherTaskExecutor" />
+	</bean>
+	<bean id="asyncTaskJobLauncher"
+		class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<property name="jobRepository" ref="jobRepository" />
+		<property name="taskExecutor" ref="asyncTaskExecutor" />
+	</bean>
+	<bean id="asyncJobService" class="org.springframework.batch.admin.service.SimpleJobServiceFactoryBean">
+		<property name="jobRepository" ref="jobRepository" />
+		<property name="jobLauncher" ref="asyncTaskJobLauncher" />
+		<property name="jobLocator" ref="jobRegistry" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!--异步jobLauncher 结束 -->
+
+	<!-- 同步jobLauncher 开始 -->
+	<!-- 设置jobInstance运行方式为同步方式，用于自动跑批程序生成影像件文件传送任务 -->
+	<bean id="syncTaskExecutor" class="org.springframework.core.task.SyncTaskExecutor"/>
+
+	<bean id="taskJobLauncher"
+		class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<property name="jobRepository" ref="jobRepository" />
+		<property name="taskExecutor" ref="syncTaskExecutor" />
+	</bean>
+
+	<!-- 使用同步的方式，提供jobService实现，区别于batch-admin当中的jobService -->
+	<bean id="jobService" class="org.springframework.batch.admin.service.SimpleJobServiceFactoryBean">
+		<property name="jobRepository" ref="jobRepository" />
+		<property name="jobLauncher" ref="taskJobLauncher" />
+		<property name="jobLocator" ref="jobRegistry" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 同步jobLauncher 结束 -->
+
+</beans>

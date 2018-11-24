@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>车展 - 福特</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style"  />
+<meta content="telephone=no" name="format-detection" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" href="/fordwechat/static/css/t.css">
+</head>
+<body>
+<form action="/yihu?state=131" method="post" name="aotushowform" id="aotushowform" >
+	<div class="c_view">
+		<div class="c_v_po">
+			<div class="c_opac"></div>
+			<div class="c_cen">
+				<div class="c_c_left"></div>
+				<div class="c_c_right"></div>
+			</div>
+			<div class="c_opac_d"></div>
+			<div class="c_code"><img src="/fordwechat/static/images/code.png"></div>
+
+			<div class="c_up">
+				<h3>长安福特邀您相约车展</h3>
+				<p>参加长安福特微信活动，莅临长安福特展台，有机会赢取长安福特限量车模等精美礼品哦。</p>
+				<div class="c_form">
+					<div class="c_form_item">
+						<div class="c_form_label"><label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label></div>
+						<div class="c_form_input"><input type="text" id="username" name="username" class="f_input" /></div>
+					</div>
+					<div class="c_form_item">
+						<div class="c_form_label"><label>手机号码：</label></div>
+						<div class="c_form_input"><input type="text" id="tel" name="tel" class="f_input" /></div>
+					</div>
+				</div>
+				<div class="c_button">
+					<a href="javascript:;" onclick="subForm();">开启精彩之旅</a>
+				</div>
+			</div>
+
+			<div class="c_down">
+			<dl>
+				<dt>1、</dt>
+				<dd>填写个人信息，点击“开启精彩之旅”，有机会获取精美礼品；</dd>
+			</dl>
+			<dl>
+				<dt>2、</dt>
+				<dd>抽奖时间及获奖名单将通过“长安福特微客服”进行告知，可识别下方二维码或添加帐号进行关注获取中奖信息；</dd>
+			</dl>
+			<dl>
+				<dt>3、</dt>
+				<dd>上传车展中您与长安福特车辆的合照至“长安福特微客服”，有机会获取限量版车模；</dd>
+			</dl>
+			<dl>
+				<dt>4、</dt>
+				<dd>主办方在中国境内法律法规范允许范围内，对该活动拥有合理解释权。</dd>
+			</dl>
+		</div>
+		
+		</div>
+	</div>
+</form>
+</body>
+<script type="text/javascript" src="/fordwechat/static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+if("{{msg}}" != ""){
+	alert("{{msg}}")
+}
+function subForm(){
+	if(validateMobilePhoneNo($("#tel").val()))
+	{
+		$("#aotushowform").submit();
+	}
+	else
+	{
+		alert("请输入正确的手机号码！");
+	}
+}
+function validateMobilePhoneNo(mobilePhoneNo){
+		var reg=/^((19[0-9])|(16[0-9])|(14[0-9])|(17[0-9])|(13[0-9])|(15[^4,\D])|(18[0-9]))\d{8}$/;
+		return mobilePhoneNo.match(reg);
+}
+</script>
+</html>

@@ -1,0 +1,135 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="static/presaleowner/assets/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="static/presaleowner/assets/css/style.css">
+<title>长安福特微客服</title>
+<meta charset="utf-8">
+<script type="text/javascript" src="static/presaleowner/assets/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="static/presaleowner/assets/js/index.js"></script>
+<script>	
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;
+i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();
+a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-69201345-2', 'auto');
+ga('send', 'pageview');
+
+ga('set','campaignName','车主认证');
+ga('set','campaignSource','{{openid}}');
+ga('set','campaignMedium','weixin');
+
+$(document).ready(function(){
+	ff = parseInt($("#f").val()) + 1;
+	$("#f").val(ff);
+	if ($("#msg").val() != "" && ff==1)
+	{
+		if (msg.indexOf("认证成功")>-1)
+		{
+			window.location.href='http://fe.huangu001.cn/index.php?g=Wap&m=Fordtestdrive2&a=reindex31form2&token=jvvktf1390570573&success=1&yoy=20160630md5vktf139057057&phone={{mobile}}&openid={{openid}}&op={{op}}&mytime={{time}}';
+		}else if($("#msg").val()=='customer_service'){
+			alert("是否需要人工服务，若需要请拨打客服热线：<a href='tel:400-887-7766'>400-887-7766</a>按数字键转1，由人工客服为您解答，我们的人工坐席服务时间为每天上午9点-下午18点。");
+		}else{
+			alert($("#msg").val());
+		}			
+	}
+  
+  $("#tongybtn").click(function(){
+	$("#pageForm").submit();
+  });
+  $("#forgetvin").click(function(){
+	mobile = $("#mobile").val();
+	var reg = /^1[34587]\d{9}/;
+	if($.trim(mobile)=="" || !reg.test($.trim(mobile)) || $.trim(mobile).length!='11')
+	{
+		alert("您还没有填写手机号码，请完整填写，以便我们将VIN码发送至您的手机。");
+		return;
+	}
+	$.ajax({
+		async:false,
+		url: 'http://42.159.146.200/club_mobile/member/getVinsBySmsJSONP.htm',
+		type: "GET",
+		dataType: 'jsonp',
+		jsonp: 'jsonpcallback',
+		data: {'mobilePhoneNo':mobile},
+		timeout: 5000,
+		beforeSend: function(){
+		//jsonp 方式此方法不被触发.原因可能是dataType如果指定为jsonp的话,就已经不是ajax事件了
+		},
+		success: function (json) {
+			if(json.code=='1'){
+				alert('您填写的手机号码正确！您的VIN码将以短信形式发送至您的手机，请注意查收。正确填写VIN码等信息即可成为微客服认证车主。');
+			}else{
+				alert('对不起！系统未能查询到您的手机号码，请填写您在购车时预留的信息，或近期维修保养时填写的联系方式。如有疑问，请拨打<a href="tel:400-887-7766">400-887-7766</a>转3，由人工客服为您解决。');
+			}
+		},
+		complete: function(XMLHttpRequest, textStatus){
+		
+		},
+	   error: function(xhr){
+		//jsonp 方式此方法不被触发.原因可能是dataType如果指定为jsonp的话,就已经不是ajax事件了
+		//请求出错处理
+		alert("请求出错(请检查相关度网络状况.)");
+	   }
+	});
+	
+  });
+});
+function writeViewPort() {
+	var ua = navigator.userAgent;
+	var viewportChanged = false;
+	var scale = 0;
+
+	if (ua.indexOf("Android") >= 0 && ua.indexOf("AppleWebKit") >= 0) {
+		var webkitVersion = parseFloat(ua.slice(ua.indexOf("AppleWebKit") + 12));
+		// targets android browser, not chrome browser (http://jimbergman.net/webkit-version-in-android-version/)
+		if (webkitVersion < 535) {
+			viewportChanged = true;
+			scale = getScaleWithScreenwidth();
+			document.write('<meta name="viewport" content="width=640, initial-scale=' + scale + ', minimum-scale=' + scale + ', maximum-scale=' + scale + '" />');
+		}
+	}
+	if (ua.indexOf("Firefox") >= 0) {
+		viewportChanged = true;
+		scale = (getScaleWithScreenwidth() / 2);
+		document.write('<meta name="viewport" content="width=640, user-scalable=false, initial-scale=' + scale + '" />');
+	}
+
+	if (!viewportChanged) {
+		document.write('<meta name="viewport" content="width=640, user-scalable=false" />');
+	}
+
+	if (ua.indexOf("IEMobile") >= 0) {
+		document.write('<meta name="MobileOptimized" content="640" />');
+	}
+
+	document.write('<meta name="HandheldFriendly" content="true"/>');
+}
+
+function getScaleWithScreenwidth() {
+	var viewportWidth = 640;
+	var screenWidth = window.innerWidth;
+	return (screenWidth / viewportWidth);
+}
+writeViewPort();			
+
+</script>
+</head>
+<body>
+<form action="{{control_url}}?state=333" method="post" id="pageForm">
+	<div class="wrap">
+		<img src="static/presaleowner/assets/i/logo.png" class="logo ab">
+		<img src="static/presaleowner/assets/i/mainForm.png" class="mainForm ab00">
+		<a href="javascript:;" class="forgetPswd ab" id="forgetvin"><img src="static/presaleowner/assets/i/forgetpswd.png"></a>
+		<img src="static/presaleowner/assets/i/submitBtn.png" class="submitBtn ab" id="tongybtn">
+		<input type="text" class="inputBlock inputName ab" maxlength="13" value="{{name}}" name="name"/>
+		<input type="tel" class="inputBlock inputMobi ab" maxlength="11" value="{{mobile}}" name="mobile" id="mobile"/>
+		<input type="text" class="inputBlock inputVin ab" maxlength="17" value="{{vincode}}" name="vincode"/>
+		<input type="hidden" name="vin" id="vin" value="{{vincode}}" />
+		<input type="hidden" name="source_state" id="source_state" value="{{source_state}}" />
+		<input type="hidden" name="dealercode" id="dealercode" value="{{dealercode}}" />
+		<input type="hidden" name="f" id="f" value="0">
+		<input type="hidden" name="msg" id="msg" value="{{msg}}" />
+	</div>	
+</form>
+</body>
+</html>

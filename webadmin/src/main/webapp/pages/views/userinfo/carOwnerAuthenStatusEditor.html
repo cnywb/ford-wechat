@@ -1,0 +1,129 @@
+<div>
+    <form name="dataForm" novalidate ng-submit="submit(dataForm.$valid)" class="form-horizontal form">
+        <div class="modal-body form-horizontal form">
+            <div class="form-body portlet dbLight" style="margin-bottom: 0px;">
+                <div class="portlet-title">
+                    <div class="caption font-green-sharp">
+                        <i class="icon-{{dbForm.title.icon}} iconfont font-green-sharp" style="font-size: 16px; margin-top: 0px;"></i>
+                        <span class="caption-subject bold uppercase">{{dbForm.showEditBtn?(dbForm.globalFieldEditor?'查看':'编辑'):'认证审核'}}{{dbForm.title.label}}</span>
+                    </div>
+                    <div class="tools" ng-if="true">
+                        <i class="iconfont icon-guanbi" ng-click="cancel()"></i>
+                    </div>
+                </div>
+
+                <div class="portlet-body">
+
+                    <div class="form-group" ng-class="{ 'has-error' : dataForm.type.$invalid && submited }">
+                        <label class="col-md-3 control-label">
+                            <span class="required"> * </span>审核状态
+                        </label>
+                        <div class="col-md-6">
+                            <div style="padding-top: 0.4rem;">
+                                {{data.type_}}
+                            </div>
+                          <!--  <div>
+                                <input type="text" ng-model="data.type_" name="type" required ng-maxlength="64" ng-minlength="1" class="form-control" placeholder="" ng-disabled="formDisabled"/>
+                            </div>-->
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : dataForm.userVin.$invalid && submited }">
+                        <label class="col-md-3 control-label">
+                            <span class="required"> * </span>VIN码
+                        </label>
+                        <div class="col-md-6">
+                            <div>
+                                <input type="text" ng-model="data.userVin" name="userVin" required ng-maxlength="64" ng-minlength="1" class="form-control" placeholder="" ng-disabled="formDisabled"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : dataForm.memo.$invalid && submited }">
+
+                        <label class="col-md-3 control-label">
+                            <span class="required"> * </span> 备注
+                        </label>
+                        <div class="col-md-6">
+                            <div>
+                                <textarea ng-model="data.memo" name="memo" rows="4" ng-required="true" class="form-control" placeholder="在这里添加认证审核说明" ng-maxlength="256"  style="resize: none;border-radius: 5px"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">
+                            <!--<span class="required"> * </span>-->行驶证
+                        </label>
+
+                        <div class="col-md-6" style="overflow:auto;height: 100px;" >
+                            <div ng-repeat="img in imgData">
+                                <div style="float: left;padding-bottom: 0.3rem;">
+                                    <img ng-click="changePic($event)" ng-src="{{img.imageUrl}}" style="height: 40px;width: 50px;">
+                                    <div style="float:right;padding-left:1rem;padding-top: 10px;">
+                                        点击图片查看大图
+                                    </div>
+                                    <input type="radio" name="radio" ng-bind="{{img.id}}"  ng-click="sub(img.id)">选择
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+               <!-- <div id="js-img-view" class="show-img">
+                    <img id="big-image">
+                    <a ng-click="closePic()"></a>
+                </div>-->
+
+                <div id="js-img-view" class="show-img">
+                    <img id="big-image" style="transform:rotate({{rotate}}deg);">
+                    <!--<a ng-click="closePic()"></a>-->
+                    <a style="position: absolute;height: {{rotateClose.height}}px;width: {{rotateClose.width}}px; right: {{rotateClose.right}}px;top:{{rotateClose.top}}px;" type="button" ng-click="closePic()"></a>
+                    <input style="position: absolute; right: {{rotate1.right}}px;top:{{rotate1.top}}px;" type="button" ng-click="rotateClick()" value="旋转"/>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit" ng-show="!dbForm.showEditBtn || !dbForm.globalFieldEditor" ng-disabled="dbForm.submitting"><i class="iconfont icon-queding" style="color: white"></i>自动审核</button>
+                    <button class="btn btn-warning" type="button" ng-click="notPass()" ng-if="true"><i class="iconfont icon-guanbi" style="color: white"></i>审核不通过</button>
+                    <button class="btn btn-warning" type="button" ng-click="cancel()" ng-if="true"><i class="iconfont icon-guanbi" style="color: white"></i>关闭</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <style>
+        /* 图片放大的代码 */
+        .show-img{
+            position: fixed;
+            left: 58%;
+            top: 120%;
+           /* background: #fff;*/
+            z-index: 999999;
+            margin-left: -450px;
+            margin-top: -333px;
+            display: none;
+        }
+        .show-img img{
+            width: 800px;
+            height: 500px;
+        }
+        .show-img a{
+            position: absolute;
+        /*    width: 40px;
+            height: 40px;
+            right: -40px;
+            top: 0px;*/
+            background: url(../resources/css/images/close.png) -10px -10px no-repeat;
+        }
+   /*     .show-img a:hover{
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            right: -40px;
+            top: 0px;
+            background: url(../../../resources/css/images/close.png) -10px -10px no-repeat;
+        }*/
+    </style>
+</div>

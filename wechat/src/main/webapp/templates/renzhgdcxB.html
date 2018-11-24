@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no" />
+<title>长安福特微客服</title>
+<link rel="stylesheet" href="static/css/main.css">
+<script src="static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".minusAp").toggle(
+	  function(){
+		$(this).addClass('plusAm');
+	  	$(this).siblings('table').show();
+	  },
+	  function(){
+		$(this).removeClass('plusAm');
+	  	$(this).siblings('table').hide();
+	  }
+	);
+});
+</script>
+</head>
+
+<body>
+<div class="wrap">
+	<div class="gdcxB-box">
+	{% if result %}
+		<ul>
+			
+				{% for carinfo in result['carInfoList'] %}
+				<li>
+					<a href="javascript:(0);" class="minusAp">VIN码: {{carinfo['vin']}}</a>
+					<table cellpadding="0" cellspacing="0" width="100%">
+						<tr>
+							<th width="30%" class="first">经销商名称</th>
+							<!--<th width="26%">费用统计</th>-->
+							<th width="30%">日期</th>
+							<th width="14%" class="last"></th>
+						</tr>
+						<tr>
+							<td class="last" colspan="4" height="6"></td>
+						</tr>
+						{% if carinfo['carRepairs'] %}
+							{% for repair in carinfo['carRepairs'] %}
+							<tr>
+								<td class="first">{{repair['vsstName']}}</td>
+								<!--<td>￥{{repair['nbalanceFee']}}</td>-->
+								<td>{{repair['vrepairDate']}}</td>
+								<td class="last"><a href="{{control_url}}?state=36&vrepairId={{repair['repairId']}}">详情</a></td>
+							</tr>
+							<tr>
+								<td class="last" colspan="4" height="6"></td>
+							</tr>
+							{% end %}
+						{% end %}
+					</table>
+				</li>
+				{% end %}
+			
+		</ul>
+		<br />
+		<br />
+		<h3 style="font-size:2em">维保工单信息始于2011年1月，若要了解之前的工单记录，可拨打<a href="tel:400-887-7766">400-887-7766</a>转3，由人工客服为您查询。
+		例：如您购车时间为2012年3月，您可查询到从购车日期起至近期的工单记录；
+       如您购车时间为2010年3月，您只能查询到自2011年1月起至近期的工单记录，2011年1月前的记录无法查询。
+		</h3>
+	{% else %}
+		<h3>暂未查到维修保养记录</h3>
+	{% end %}
+	</div>
+</div>
+</body>
+{% include 'common.html' %}
+</html>

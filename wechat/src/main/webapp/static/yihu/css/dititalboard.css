@@ -1,0 +1,123 @@
+﻿body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;font-size:66.3%}
+fieldset,img{border:0;}
+ul,ol{list-style:none;}
+table{border-collapse:collapse;border-spacing:0;}
+a{text-decoration: none;color:#000;}
+a:hover{text-decoration: underline;color:#000;}
+small{font-size:12px;}
+h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-size:100%;}
+label,input,select,form img,button,textarea{vertical-align:middle;outline:none}
+address,caption,cite,code,dfn,em,strong,th,optgroup{font-style:normal;font-weight:normal;}
+.clear:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clear{display:inline-block;}
+/* Hides from IE-mac \*/
+* html .clear{height:1%;}
+.clear{display:block;}
+/* End hide from IE-mac */
+
+html,body{height:100%;}
+body{font:12px "Microsoft YaHei","宋体",sans-serif;}
+a:hover{text-decoration:none;}
+.page {
+background-color: #e7e7e7;
+}
+.topcontentbg {
+position: absolute;
+top: 0;
+background: url('../img/top_bg.gif') repeat-x;
+background-size: 100% 100%;
+width: 100%;
+display: block;
+height: 105%;
+}
+.topcontentbg  img{
+position: relative;
+bottom: 0;
+top: 63%;
+opacity:0;
+}
+
+
+.contentMiddle {
+position: relative;
+width: 67%;
+margin: 0 auto;
+}
+.wrap {
+position: relative;
+width: 100%;
+overflow: hidden;
+}
+
+img.peta {
+margin: 80px 39% 50px;
+position: relative;
+}
+.wrap  ul{
+width:6294px;
+position: relative;
+}
+.wrap  ul li{
+float:left
+}
+
+.contentLeft {
+width: 16.5%;
+float: left;
+position: absolute;
+top: 85%;
+}
+
+.contentRight {
+width: 16.5%;
+float: right;
+right:0;
+position: absolute;
+top: 80%;
+}
+
+.contentLeft img {
+float:right
+}
+.contentRight img {
+float:left
+}
+
+.button {
+position: absolute;
+top: 50%;
+z-index: 1;
+width: 90%;
+left: 5%;
+}
+.button  a{
+width: 37px;
+height: 37px;
+display: block;
+}
+.button .btn_r {
+background: url('../img/icon_arrow_b.png') no-repeat;
+float:right;
+}
+
+.button .btn_l {
+background: url('../img/icon_arrow_l.png') no-repeat;
+float:left;
+}
+
+@-webkit-keyframes kolbg{
+    0%{top:63%;opacity:0}
+    100%{top:100%;opacity:1}
+}
+@-moz-keyframes kolbg{
+    0%{top:63%;opacity:0}
+    100%{top:100%;opacity:1}
+}
+@-o-keyframes kolbg{
+    0%{top:63%;opacity:0}
+    100%{top:100%;opacity:1}
+}
+@keyframes kolbg{
+    0%{top:63%;opacity:0}
+    100%{top:100%;opacity:1}
+}

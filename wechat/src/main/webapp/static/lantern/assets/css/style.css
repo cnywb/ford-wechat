@@ -1,0 +1,242 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;font-size:66.3%}
+fieldset,img{border:0;}
+ul,ol{list-style:none;}
+table{border-collapse:collapse;border-spacing:0;}
+a{text-decoration: none;color:#000;}
+a:hover{text-decoration: underline;color:#000;}
+small{font-size:12px;}
+h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-size:100%;}
+label,input,select,form img,button,textarea{vertical-align:middle;outline:none}
+address,caption,cite,code,dfn,em,strong,th,optgroup{font-style:normal;font-weight:normal;}
+.clear:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clear{display:inline-block;}
+/* Hides from IE-mac \*/
+* html .clear{height:1%;}
+.clear{display:block;}
+/* End hide from IE-mac */
+
+html,body{height:100%;}
+body{font-family"Microsoft YaHei","微软雅黑",sans-serif; background: #000;}
+a:hover{text-decoration:none;}
+
+body {
+	width: 100%;
+	height: 100%;
+	background-color: #eec678;
+	min-height: 1008px;
+}
+.page {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	min-height: 1008px;
+}
+
+.firstBg {
+	width: 100%;
+	height: 100%;
+}
+
+.borderHold {
+	background: url(../i/border.png) no-repeat;
+	background-size:100% 100%;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.titleLight {
+	position: absolute;
+	top: 18px;
+	left: 50%;
+	margin-left: -110px;
+}
+.formP {
+	position: absolute;
+	top: 241px;
+	left: 0;
+}
+
+.inputForm {
+	position: absolute;
+	background: transparent;
+	color: #630108;
+	border: none;
+	font-size: 22px;
+}
+.inputName {
+	width: 400px;
+	height: 35px;
+	left: 177px;
+	top:264px;
+}
+.inputTel {
+	width: 400px;
+	height: 35px;
+	left: 177px;
+	top:350px;
+}
+
+
+
+.selectArea {
+	font-size: 20px;
+    position: absolute;
+    border: none;
+    border-radius: 0px;
+    text-indent: 5px;
+    -webkit-appearance: none;
+    background: transparent;
+    color: #630108;
+}
+
+.selectCar {
+	width: 400px;
+	height: 35px;
+	left: 177px;
+	top:437px;
+}
+
+.selectDate {
+	width: 350px;
+	height: 35px;
+	left: 224px;
+	top:523px;
+}
+
+.selectProvince {
+	width: 250px;
+	height: 35px;
+	left: 62px;
+	top:614px;
+}
+
+.selectCity {
+	width: 250px;
+	height: 35px;
+	left: 340px;
+	top:614px;
+}
+
+.selectDealer {
+	width: 400px;
+	height: 35px;
+	left: 177px;
+	top:700px;
+}
+
+.btnSubmit {
+	position: absolute;
+	left: 50%;
+	margin-left: -132px;
+	top:830px;
+}
+.overlay {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.successLayer, .shareLayer {
+	background-color: rgba(255,246,204,0.8);
+}
+
+.successPic, .shareok {
+	position: absolute;
+	top:0;
+	left: 40px;
+}
+.successBottom {
+	position: absolute;
+	bottom:0;
+	left: 0;
+	width: 100%;
+}
+.shareArrow {
+	position: absolute;
+	top:60px;
+	right: 40px;
+}
+.shareBtn {
+	position: absolute;
+	left: 50%;
+	top: 520px;
+	margin-left: -99px;
+}
+.shareCopy {
+	color: #630108;
+	text-align: center;
+	font-weight: 400;
+	position: absolute;
+	top:380px;
+	width: 100%;
+}
+.shareCopy p {
+	font-size: 15px;
+	margin-bottom:3px;
+}
+.shareCopy2 {
+	color: #630108;
+	text-align: center;
+	font-weight: 400;
+	position: absolute;
+	top:360px;
+	width: 100%;
+}
+.shareCopy2 p {
+	font-size: 24px;
+	margin-bottom:8px;
+}
+.close {
+	position: absolute;
+	top: 198px;
+	right: 95px;
+}
+
+.dn {
+	display: none;
+}
+
+.leftLogo {
+	position: absolute;
+	left: 40px;
+	top: 40px;
+}
+.rightLogo {
+	position: absolute;
+	right: 43px;
+	top: 33px;
+}
+
+.noticeLayer {
+	background: url(../i/bg2.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+.ruleCopy {
+	position: absolute;
+	left: 35px;
+	top: 105px;
+	}
+.noticeLayer .close {
+	right: 50px;
+	top: 60px;
+	width: 30px;
+}
+.btnCarAuth {
+	position: absolute;
+	right: 35px;
+	bottom: 60px;
+}
+.btnDriveApply {
+	position: absolute;
+	bottom: 60px;
+	left: 35px;
+}
+.noticeLink {
+	position: absolute;
+	bottom: 33px;
+	right: 42px;
+}

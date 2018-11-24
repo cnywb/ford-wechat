@@ -1,0 +1,109 @@
+server:
+  port: 8800
+  session:
+    cookie:
+      name: ESSIONID-HUB
+logging:
+  level:
+    root: info
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}) [%thread] %clr(%-5level) %logger{50}[%L] -%msg%n"
+    file: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}) [%thread] %clr(%-5level) %logger{50}[%L] -%msg%n"
+  config: classpath:logback-uat.xml
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@120.25.228.245:1521:orcl
+    username: crm
+    password: 119119
+    tomcat:
+      max-wait: 500
+      max-active: 200
+      initial-size: 5
+      max-idle: 5
+      min-idle: 5
+  redis:
+    host: 120.26.102.228
+    password: None
+    port: 6379
+    timeout: 60000
+    database: 1
+    pool:
+      max-wait: 10000
+      max-idle: 8
+      min-idle: 0
+oss:
+  bucket: wodewj
+  schema: http://
+  endpoint:
+    external: oss-cn-shanghai.aliyuncs.com
+    internal: oss-cn-shanghai.aliyuncs.com
+  accessKeyId: LTAI7TFCUvmtKooi
+  accessKeySecret: 0NJNj7hDsufnWTfGMsnvtW0C2hEINh
+azure:
+  blob:
+    url: https://xiqing.blob.core.chinacloudapi.cn/callcenter/
+    account:
+      name: xiqing
+      key: NEbUcwHWChzwj0B4y3RHi7I6WTVwRsIvjzVNY9Rc/y6WDVFK58w93pKHWYpc9wHhIfvOltOEAsxwRVXvIX9DDw==
+    container:
+      name: callcenter
+alibaba:
+  ocr:
+    url: http://dm-53.data.aliyun.com/rest/160601/ocr/ocr_vehicle.json
+    app:
+      code: 470ce2171d334028809975fa67be50ae
+es:
+  server:
+    host: 43.226.165.230
+    port: 9300
+weixin:
+  config:
+    appId: wx2d4ff8b7fac19195
+    appSecret: a3f7a9816151e4454e24391edbb522bc
+  message:
+    authen:
+      id: kJdAKHGyOXlgDaTsAQ3gXVIblfsCWKQUVuo89gjsGJ8
+      url: http://dev.point.xiqing.info/bind/static/init.html?state=31
+    mobile:
+      id: 50lN8cuykV5qoQq_zOCqOK6B5F1730C4509mdfe9ERI
+      url: http://dev.point.xiqing.info/bind/static/init.html?state=31
+    unbind:
+      id: P2_PXqZ8-Gy6ZVpWbndEa2LUxJ4s7JknUh2ApP4zzeA
+      url: http://dev.point.xiqing.info/bind/static/init.html?state=31
+  authen:
+      url: https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxbc330df0e013e079&secret=1d5a471f4b31f030ff4f02c95baa7e94&code=%s&grant_type=authorization_code
+sms:
+  url: http://120.26.107.97:8180/webservice/http/service
+  cid: 9000561
+  uid: admin
+  pwd: 20160630
+parllay:
+  access-token:
+    url: http://api.parllay.cn/social/token/get?platId=7UOHYCCD9T
+  oauth:
+    url: http://api.parllay.cn/social/sns/oauth2/authorize?channel=rtm&platId=7UOHYCCD9T&scope=snsapi_userinfo&state=justcode&url=
+hub:
+  oauth:
+    url: http://neel.point.xiqing.info/hub/oauth/:state/authorize
+  survey:
+    oauth:
+      url: http://neel.point.xiqing.info/hub/oauth/wenjuan/:state/authorize
+    client:
+      url:
+    callback:
+      url: http://neel.point.xiqing.info/hub/callback/wenjuan
+wenjuan:
+  api:
+    url: http://apitest.wenjuan.com/openapi/v3/
+    appKey: wjrk1gycdidtoip31u
+    appSecret: 06caaf5b6d9f8688081399e89b740274
+    user: 13058855949
+  client:
+    url: http://apitest.wenjuan.com/
+dms:
+  url: https://tesths01.cfmadms.com/DataReciveService
+  username: wumderman
+  password: 123456
+  business_type: WD01
+  zip: 1

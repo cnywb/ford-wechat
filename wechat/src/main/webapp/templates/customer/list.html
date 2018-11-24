@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>未回答问题列表</title>
+<link href="/fordwechat/static/css/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="content">
+<form autocomplete="off" action="/dkf/service/1" method="post" id="pageForm">
+		<div class="outer">
+			<h4><a href="javascript:;" onclick="divshow()" class="icon_new">添加</a>多客服图文消息列表</h4>
+			<fieldset>
+			<p>
+			关键字:<input type="text" name="key_words" id="key_words" value="{{key_words}}" />
+			<input type="hidden" name="delkey" id="delkey" value="" />
+			<input type="hidden" name="searchkey" id="searchkey" value="" />
+			</p>
+			<p>
+				<input type="submit" value="查询" />
+			</p>
+			</fieldset>
+			<div class="tb">
+				<div class="table">
+					<table border="1" style="border-collapse:collapse;" >
+				      	<tr>
+					      	<td><b>关键字</b></td>
+					      	<td><b>相关操作</b></td>
+				      	</tr>
+						{% if list %}
+							{% for l in list %}
+							<tr>
+							 <td>
+								{{l['key_words']}}
+							 </td>
+							 <td>
+							 <a href="javascript:;" onclick="search_key('{{l['key_words']}}')">查看详情</a>
+							 <a href="javascript:;" onclick="del_key('{{l['key_words']}}')">删除</a>
+							 <input type="button" onClick="putmsg('{{l['content']}}');" value="输出到会话窗口"/>
+							 </td>
+							</tr>
+							{% end %}
+						{% end %}
+				    </table>
+				</div>
+			</div>
+		</div>
+</form>
+<form autocomplete="off" action="/dkf/service/4" method="post" id="pageForm">
+<div class="quspopup">
+	<fieldset>
+			<p>
+			关键字:<input type="text" name="key_words" id="key_words" value="" />
+			</p>
+			<p>
+			消息标题:<input type="text" name="news_title" id="news_title" value="" />
+			</p>
+			<p>
+			消息简介:<input type="text" name="news_digest" id="news_digest" value="" />
+			</p>
+			<p>
+			消息图标:<input type="text" name="news_cover" id="news_cover" value="" />
+			</p>
+			<p>
+			消息链接:<input type="text" name="news_url" id="news_url" value="" />
+			</p>
+			<p>
+				<input type="submit" value="添加" /><input type="button" onClick="clodiv()" value="取消" />
+			</p>
+	</fieldset>
+</div>
+</form>
+<script src="/fordwechat/static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="http://o2o.gtimg.com/module/jquery.js" ></script>
+<script type="text/javascript">
+function del_key(key){
+	if (confirm("真的要删除吗？")){
+		$("#delkey").val(key);
+		$("#pageForm").attr("action", "/dkf/service/2");
+		$("#pageForm").submit();
+	}
+}
+function search_key(key){
+	$("#searchkey").val(key);
+	$("#pageForm").attr("action", "/dkf/service/3");
+	$("#pageForm").submit();
+}
+function putmsg(cotent){
+	random = Math.ceil(Math.random()*10000000)
+	msg = '{"head":{"random":"'+ random +'"}, "body":[{"type":7, "content":[' + cotent + ']}]}';
+	var strReturn = window.external.PutMsg('{"msg":'+msg+'}');
+}
+function clodiv(){
+	$(".quspopup").hide();
+}
+function divshow(){
+	$(".quspopup").show();
+}
+</script>
+</body>
+</html>

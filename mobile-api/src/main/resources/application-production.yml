@@ -1,0 +1,103 @@
+server:
+  port: 7777
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@123.147.244.153:1521:fordclub
+    username: crm
+    password: Abcd1234!
+    tomcat:
+      max-wait: 500
+      max-active: 200
+      initial-size: 5
+      max-idle: 5
+      min-idle: 5
+  redis: #生产Redis
+    host: wcRedis.redis.cache.chinacloudapi.cn
+    password: Q2WLn1AigDxaR5SvFI//pnEIjVU+yt5UCfK26u44N+8=
+    port: 6379
+    timeout: 60000
+    database: 1
+    pool:
+      max-wait: 10000
+      max-idle: 100
+      min-idle: 5
+oss:
+  bucket: wodewj
+  schema: http://
+  endpoint:
+    external: oss-cn-shanghai.aliyuncs.com
+    internal: oss-cn-shanghai.aliyuncs.com
+  accessKeyId: LTAI7TFCUvmtKooi
+  accessKeySecret: 0NJNj7hDsufnWTfGMsnvtW0C2hEINh
+azure:
+  blob:
+    url: https://cafcreporting.blob.core.chinacloudapi.cn/callcenter/
+    account:
+      name: cafcreporting
+      key: yr1P/ZAqLMD+TB5lrBHefoFlB+7FW5liBun5b6Jt9iTxHexs+VTdKpw7Sk97sscwopQW5STGq8mhi5F4Mxr0Lw== 
+    container:
+      name: callcenter
+alibaba:
+  ocr:
+    url: https://dm-53.data.aliyun.com/rest/160601/ocr/ocr_vehicle.json
+    app:
+      code: 470ce2171d334028809975fa67be50ae
+es:
+  server:
+    host: 123.147.244.140
+    port: 9300
+# 微信相关配置
+weixin:
+  config:
+    appId: wxbc330df0e013e079
+    appSecret: 1d5a471f4b31f030ff4f02c95baa7e94
+  message:
+    authen:
+      id: vm3rbUIlvIQDUR_Ja6M8vM6X17KSn1KIzJVMm53wJX4
+      url: http://point.xiqing.info/bind/static/init.html?state=31
+    mobile:
+      id: jWdNkUtVWpZ0A-EJeerNApneGANUVKoHwZ3a-eySmBE
+      url: http://point.xiqing.info/bind/static/init.html?state=31
+    unbind:
+      id: Mzz13-rqhJ-mw70UtlS2BCgImqzccr5thnyshnw2im4
+      url: http://point.xiqing.info/bind/static/init.html?state=31
+  authen:
+    url: https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxbc330df0e013e079&secret=1d5a471f4b31f030ff4f02c95baa7e94&code=%s&grant_type=authorization_code
+sms:
+  url: http://120.26.107.97:8180/webservice/http/service
+  cid: 9000561
+  uid: admin
+  pwd: 20160630
+parllay:
+  access-token:
+    url: http://api.parllay.cn/social/token/get?platId=7UOHYCCD9T
+hub:
+  oauth:
+    url: http://point.xiqing.info/hub/oauth/:state/authorize
+  survey:
+    oauth:
+      url: http://point.xiqing.info/hub/oauth/wenjuan/:state/authorize
+    client:
+      url:
+    callback:
+      url: http://point.xiqing.info/hub/callback/wenjuan/
+wenjuan:
+  api:
+    url: https://www.wenjuan.com/openapi/v3/
+    appKey:
+    appSecret:
+    user:
+  client:
+    url: https://www.wenjuan.com/
+dms:
+  url: https://dms01.changanford.cn/DataReciveService
+  username: wumderman
+  password: 123456
+  business_type: WD01
+  zip: 1
+wireframe:
+  request:
+    dms:
+      url:
+      contentType:

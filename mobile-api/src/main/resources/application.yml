@@ -1,0 +1,27 @@
+server:
+  session:
+    cookie:
+      name: MOBILEAPISESSION
+spring:
+  profiles:
+    active: @spring.profiles.active@
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 500Mb
+      max-request-size: 500Mb
+  jpa:
+    database: oracle
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.Oracle10gDialect
+    show-sql: true
+
+  cache:
+    type: redis
+    cache-names: systemCache
+logging:
+  level:
+    root: info
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}) [%thread] %clr(%-5level) %logger{50}[%L] -%msg%n"

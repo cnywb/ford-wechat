@@ -1,0 +1,145 @@
+<div xmlns="http://www.w3.org/1999/html">
+    <form name="dataForm" novalidate ng-submit="submit(dataForm.$valid)" class="form-horizontal form">
+        <div class="modal-body form-horizontal form">
+            <div class="form-body portlet dbLight" style="margin-bottom: 0px;">
+                <div class="portlet-title">
+                    <div class="caption font-green-sharp">
+                        <i class="icon-{{dbForm.title.icon}} iconfont font-green-sharp" style="font-size: 16px; margin-top: 0px;"></i>
+                        <span class="caption-subject bold uppercase">添加活动配置</span>
+                    </div>
+                    <div class="tools" ng-if="true">
+                        <i class="iconfont icon-guanbi" ng-click="cancel()"></i>
+                    </div>
+                </div>
+
+                <div class="portlet-body">
+
+                    <div class="row col-lg-12">
+
+                        <div class="form-group" style="padding-top: 1rem;">
+                            <label class="col-lg-3 control-label">活动时间</label>
+                            <div class="col-lg-7 pull-left" jrg-datetimepicker="" style="line-height: 27px !important; " ng-model="data.dateNo" opts="opts" placeholder="活动时间" type="pikaday"  value="" ng-change="onchangeStartDate">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">活动名称</label>
+                            <div class="col-lg-7" ng-model="data.projectName">
+                                <!--<div class="col-lg-7">-->
+                                <!--<select class="form-control">-->
+                                    <!--<option value="">{{data.projectName}}</option>-->
+                                <!--</select>-->
+
+                                <select class="form-control" ng-model="data.projectName" ng-change="selectedChange(data.projectName)">
+                                <option ng-repeat="value in data1" value="{{value.projectName}}">
+                                {{value.projectName}}
+                                </option>
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">活动代码</label>
+                            <div class="col-lg-7">
+                                <input type="text" ng-model="data.projectCode"  disabled class="form-control" placeholder="活动代码">
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">最大额度</label>
+                            <div class="col-lg-7">
+                                <input type="number" ng-model="data.max"  required class="form-control" placeholder="最大额度">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">最小额度</label>
+                            <div class="col-lg-7">
+                                <input type="number" ng-model="data.min"  class="form-control" placeholder="最小额度">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">总额度</label>
+                            <div class="col-lg-7">
+                                <input type="number" ng-model="data.totalAmount"  class="form-control" placeholder="总额度">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">份数</label>
+                            <div class="col-lg-7">
+                                <input type="number" ng-model="data.count"   class="form-control" placeholder="份数">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">门槛金额</label>
+                            <div class="col-lg-7">
+                                <input type="number" ng-model="data.lowestAmount"   class="form-control" placeholder="门槛金额">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">开始时间</label>
+                            <div class="col-lg-2" >
+                                <select class="form-control" ng-init="data.startHours = hours[10]" ng-model="data.startHours" ng-options="x for x in hours">
+                                </select>
+                            </div>
+                            <div class="col-lg-2" style="padding-top: 0.5rem;">时</div>
+                            <div class="col-lg-2" >
+                                <select class="form-control" ng-init="data.startMinute = minute[0]" ng-model="data.startMinute" ng-options="x for x in minute">
+                                </select>
+                            </div>
+                            <div class="col-lg-2" style="padding-top: 0.5rem;">分</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">结束时间</label>
+                            <div class="col-lg-2" >
+                                <select class="form-control" ng-init="data.endHours = hours[22]" ng-model="data.endHours" ng-options="x for x in hours">
+                                </select>
+                            </div>
+                            <div class="col-lg-2" style="padding-top: 0.5rem;">时</div>
+                            <div class="col-lg-2" >
+                                <select class="form-control" ng-init="data.endMinute = minute[0]" ng-model="data.endMinute" ng-options="x for x in minute">
+                                </select>
+                            </div>
+                            <div class="col-lg-2" style="padding-top: 0.5rem;">分</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">代金券有效天数</label>
+                            <div class="col-lg-7">
+                                <input type="number" ng-model="data.validTimes"  class="form-control" placeholder="代金券有效天数">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">祝福语</label>
+                            <div class="col-lg-7">
+                                <textarea type="text" ng-model="data.wishing"  class="form-control" placeholder="祝福语"></textarea>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit" ng-show="!dbForm.showEditBtn || !dbForm.globalFieldEditor" ng-disabled="dbForm.submitting"><i class="iconfont icon-queding" style="color: white"></i>确定</button>
+                    <button class="btn btn-warning" type="button" ng-click="cancel()"><i class="iconfont icon-guanbi" style="color: white"></i>关闭</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>

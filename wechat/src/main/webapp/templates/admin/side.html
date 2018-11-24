@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Side</title>
+  <link href="/fordwechat/static/css/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div class="side">
+    <dl class="open">
+		<dt>群发消息管理</dt>
+		<dd>
+			<ul>
+				<li>
+					<a href='/admin/controll/21' rel="21" target='main'>
+					 群发消息列表(默认最新5条)
+					</a>
+					
+				</li>
+				<li>
+					<a href='/admin/controll/24' rel="24" target='main'>
+					 已发送图文消息列表
+					</a>
+				</li>
+			</ul>
+		</dd>
+		<dt>互动问答管理</dt>
+		<dd>
+			<ul>
+				<li>
+					<a href='/admin/controll/11' rel="11" target='main'>
+					 未回答问题列表
+					</a>
+				</li>
+				<li>
+					<a href='/admin/controll/12' rel="12" target='main'>
+					 已回答问题列表
+					</a>
+				</li>
+			</ul>
+		</dd>
+		<dt>标签管理</dt>
+		<dd>
+			<ul>
+				<li>
+					<a href='/admin/controll/30' rel="30" target='main'>
+					 标签列表
+					</a>
+				</li>
+			</ul>
+		</dd>
+		<dt>分组管理</dt>
+		<dd>
+			<ul>
+				<li>
+					<a href='/admin/controll/40' rel="40" target='main'>
+					 分组列表
+					</a>
+				</li>
+			</ul>
+		</dd>
+		<dt>用户管理</dt>
+		<dd>
+			<ul>
+				<li>
+					<a href='/admin/controll/50' rel="50" target='main'>
+					 用户列表
+					</a>
+				</li>
+			</ul>
+		</dd>
+    </dl>
+
+  </div>
+  <script type="text/javascript" src="/fordwechat/static/js/prototype.js"></script>
+  <script type="text/javascript" src="/fordwechat/static/js/common.js"></script>
+  <script type="text/javascript">
+		Event.observe(window, 'load', page.initPage.bind(page));
+  </script>
+</body>
+</html>

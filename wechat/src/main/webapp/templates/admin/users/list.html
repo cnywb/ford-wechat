@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微信用户列表</title>
+<link href="/fordwechat/static/css/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="content">
+	<form autocomplete="off" action="/admin/controll/50" method="post" id="pageForm">
+		<div class="outer">
+			<h3>微信用户列表</h3>
+			<fieldset>
+			<p>
+			开始时间<input type="text" id="sedate1" readonly="true"  name="startDate" class="Wdate"
+				size="13" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'sedate2\')}'})"
+				value="{{startDate}}" />~ 结束时间<input type="text" readonly="true" id="sedate2"
+				name="endDate" class="Wdate" size="13"
+				onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'sedate2\')}'})"
+				value="{{endDate}}" /> 
+			</p>
+			<p>
+			用户昵称：
+			<input type="text" name="nickname" id="nickname" value="{{nickname}}" />
+			</p>
+			<p>
+			用户省份：
+			<input type="text" name="province" id="province" value="{{province}}" />
+			</p>
+			<p>
+			<p>
+			用户城市：
+			<input type="text" name="city" id="city" value="{{city}}" />
+			</p>
+			<p>
+			用户认证状态：
+			<select name="member_state" id="member_state">
+				<option value="" {% if not member_state %}selected="selected"{% end %}>===请选择===</option>
+				<option value="1" {% if str(member_state)=='1' %}selected="selected"{% end %}>认证车主</option>
+				<option value="0" {% if str(member_state)=='0' %}selected="selected"{% end %}>非认证车主</option>
+			</select>
+			</p>
+			<p>
+			用户关注状态：
+			<select name="subscribe_state" id="subscribe_state">
+				<option value="" {% if not subscribe_state %}selected="selected"{% end %}>===请选择===</option>
+				<option value="1" {% if str(subscribe_state)=='1' %}selected="selected"{% end %}>已关注</option>
+				<option value="0" {% if str(subscribe_state)=='0' %}selected="selected"{% end %}>已取消关注</option>
+			</select>
+			</p>
+			<p>
+			用户分组：
+			<select name="wechat_groupid" id="wechat_groupid">
+				<option value="" {% if not wechat_groupid %}selected="selected"{% end %}>===请选择===</option>
+				{% if groups %}
+					{% for g in groups %}
+						<option value="{{g['id']}}" {% if wechat_groupid and str(wechat_groupid)==str(g['id']) %}selected="selected"{% end %}>{{g['groups_name']}}</option>
+					{% end %}
+				{% end %}
+			</select>
+			</p>
+			<p>
+			用户标签：
+			<select name="tags_ids" id="tags_ids">
+				<option value="" {% if not tags_ids %}selected="selected"{% end %}>===请选择===</option>
+				{% if tags %}
+					{% for t in tags %}
+						<option value="{{t['id']}}" {% if tags_ids and str(tags_ids)==str(t['id']) %}selected="selected"{% end %}>{{t['tags_name']}}</option>
+					{% end %}
+				{% end %}
+			</select>
+			</p>
+			<p>
+				<input type="hidden" id="pageno" name="pageno" value="{{pageno}}"/>
+				<input type="button" onclick="subTo();" value="提交" />
+				<input type="button" onclick="setgroupsbycityorprovince();" value="根据城市或省份对用户分组操作" />
+				<input type="button" onclick="tongbu();" value="同步微信后台数据到微客服后台" />
+			</p>
+			</fieldset>
+			<div class="tb">
+				<div class="table">
+					<table border="1" style="border-collapse:collapse;" >
+				      	<tr>
+					      	<td><b>用户昵称</b></td>
+					      	<td><b>性别</b></td>
+							<td><b>省份</b></td>
+							<td><b>城市</b></td>
+							<td><b>头像地址</b></td>
+					      	<td><b>关注状态</b></td>
+							<td><b>用户认证状态</b></td>
+							<td><b>分组</b></td>
+							<td><b>标签</b></td>
+							<td><b>操作</b></td>
+				      	</tr>
+						{% if pagination != None %}
+							{% for u in pagination['paglist'] %}
+							<tr>
+							 <td>{{u['user']['nickname']}}</td>
+							 <td>
+								{% if int(u['user']['sex']) == 1 %}
+									男
+								{% elif int(u['user']['sex']) == 2 %}
+									女
+								{% else %}
+									未知
+								{% end %}
+							 </td>
+							 <td>{{u['user']['province']}}</td>
+							 <td>{{u['user']['city']}}</td>
+							 <td>
+								{% if u['user']['headimgurl']%}
+								<img src="{{u['user']['headimgurl']}}" style="width:50px;"/>
+								{% else %}
+									无头像
+								{% end %}
+							 </td>
+							 <td>
+								{% if int(u['user']['subscribe_state']) == 1 %}
+									已关注
+								{% else %}
+									已取消关注
+								{% end %}
+							 </td>
+							 <td>
+							 {% if int(u['user']['member_state']) == 1 %}
+								认证车主
+							 {% else %}
+								非认证车主
+							 {% end %}
+							 </td>
+							 <td>
+								<select name="q_type" id="q_type" onchange="qtypeChange(this,'{{u['user']['openid']}}');">
+									{% if groups %}
+										{% for g in groups %}
+											<option value="{{g['id']}}" {% if str(u['user']['wechat_groupid'])==str(g['id']) %}selected="selected"{% end %}>{{g['groups_name']}}</option>
+										{% end %}
+									{% end %}
+								</select>
+							 </td>
+							 <td>{{u['tags']}}</td>
+							 <td><a href="javascript:;" onclick="addtags('{{u['user']['openid']}}','{{u['tags']}}')">标签</a></td>
+							</tr>
+							{% end %}
+						{% end %}
+				    </table>
+				</div>
+			</div>
+			{% if pagination != None %}
+			<div>
+				<span class="num">共{{pagination['totalcount']}}条纪录</span>  <span class="num">{{pagination['pageno']}}/{{pagination['totalpag']}}页</span>  <span class="num">第{{pagination['pageno']}}页</span>
+				<a href="javascript:;" onclick="subForm({{pagination['pageno']-1}},{{pagination['totalpag']}})">&lt;上一页</a>
+				<a href="javascript:;" onclick="subForm({{pagination['pageno']+1}},{{pagination['totalpag']}})">下一页&gt;</a>
+			</div>
+			{% end %}
+		</div>
+<div class="quspopup" id="tagsdiv" style="">
+	<p id="tags">
+	{% if tags %}
+		{% for t in tags %}
+			<input type="checkbox" value="{{t['id']}}" name="t_ids" title="{{t['tags_name']}}" />{{t['tags_name']}}
+		{% end %}
+	{% else %}
+		请先创建标签！
+	{% end %}
+	</p>
+	<p>
+		{% if tags %}<input type="submit" id="btn" value="提交" />{% end %}
+		<input type="button" onClick="clodiv()" value="取消" />
+		<input type="hidden" id="openid" name="openid" />
+	</p>
+</div>
+<div class="quspopup" id="cityorprovince" >
+	<p >
+		用户分组：
+		<select name="copgid" id="copgid">
+			<option value="" >===请选择===</option>
+			{% if groups %}
+				{% for g in groups %}
+					<option value="{{g['id']}}" >{{g['groups_name']}}</option>
+				{% end %}
+			{% end %}
+		</select>
+	</p>
+	<p>
+		用户城市或者省份：
+		<input type="text" name="cop" id="cop" />
+	</p>
+	<p>
+		<input type="submit" id="btn" value="提交" />
+		<input type="button" onClick="clodiv1()" value="取消" />
+	</p>
+</div>
+</form>	
+<script src="/fordwechat/static/js/jquery-1.7.2.min.js"></script>
+<script language="javascript" type="text/javascript"
+	src="/fordwechat/static/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+if('{{msg}}'!=''){
+	alert('{{msg}}');
+}
+function qtypeChange(select,openid){
+	//alert($(select).children('option:selected').val());
+	var p1=$(select).children('option:selected').val();
+	$.post("/admin/controll/51", {group_id:p1,openid:openid},
+	function(data){
+		alert(data);
+	});
+}
+function tongbu(){
+	$.post("/admin/controll/53", 
+	function(data){
+		alert(data);
+	});
+}
+function addtags(openid,tags){
+	$("#openid").val(openid);
+	if($("input[name='t_ids']"))
+	{
+		$("input[name='t_ids']").each(function(){
+			if (tags.indexOf($(this).attr('title')) > -1 ){
+				  $(this).attr("checked","checked");
+			}
+		});
+	}
+	$("#pageForm").attr("action", "/admin/controll/52");
+	$("#tagsdiv").show();
+}
+function clodiv(){
+	$("#pageForm").attr("action", "/admin/controll/50");
+	$("#tagsdiv").hide();
+}
+function setgroupsbycityorprovince(){
+	$("#pageForm").attr("action", "/admin/controll/54");
+	$("#cityorprovince").show();
+}
+function clodiv1(){
+	$("#pageForm").attr("action", "/admin/controll/50");
+	$("#cityorprovince").hide();
+}
+function subTo(){
+	$("#pageno").val(1);
+	$("#pageForm").attr("action", "/admin/controll/50");
+	$("#pageForm").submit();
+}
+function subForm(pageNo,totalpag){
+	if (pageNo < 1)
+		pageNo = 1;
+	if (pageNo > totalpag)
+		pageNo = totalpag;
+	$("#pageno").val(pageNo);
+	$("#pageForm").attr("action", "/admin/controll/50");
+	$("#pageForm").submit();
+}
+</script>
+</body>
+</html>

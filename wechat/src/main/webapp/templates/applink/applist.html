@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" href="/fordwechat/static/applink/resources/css/al.css">
+</head>
+<body>
+<div class="view_t">
+	<div class="view_page">
+		<div class="view_title"><span>必备app</span></div>
+		<div class="s_list view_list">
+			<nav class="f_app_list data-list" id="data-list">
+				{% if pagination and pagination['paglist']%}
+					{% for p in pagination['paglist']%}
+					<a href="{{p['applink_url']}}">
+						<img src="{{p['applink_img']}}">
+						<p class="app_name">{{p['applink_name']}}</p>
+						<p class="app_company">{{p['download_name']}}</p>
+						<p class="app_install">免费安装</p>
+					</a>
+					{% end %}
+					<input type="hidden" id="pageno" name="pageno" value="{{pagination['pageno']}}" />
+					<input type="hidden" id="totalpag" name="totalpag" value="{{pagination['totalpag']}}" />
+				{% else %}
+					<input type="hidden" id="pageno" name="pageno" value="0" />
+				{% end %}
+			</nav>
+		</div>
+		{% if pagination and pagination['paglist'] and (int(pagination['pageno']) < int(pagination['totalpag'])) %}
+		<div class="t_more view_more" id="tview_more">
+			<a href="javascript:void(0);" id="get_more">
+				<p class="t_more_l">显示更多</p>
+				<div class="t_more_r"><p class="t_more_arrow view_more_arrow"></p></div>
+			</a>
+		</div>  
+		{% end %}
+    </div>
+</div>
+<span class="start"><b></b></span>
+<script type="text/javascript" src="/fordwechat/static/applink/resources/js/zepto.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		if("{{pagination['pageno']}}" == "1")//针对chrome回退事件做的操作
+			$("#pageno").val(1);
+		if(parseInt($("#pageno").val())>0 && parseInt($("#pageno").val())<parseInt($("#totalpag").val()))
+		{
+			$('#get_more').tap(function(){
+				//ajax
+				//var html=[];
+				//for(var i=0; i<data.lenght; i++)
+				//var d='<a href="javascript:void(0);"><img src="../resources/images/app.png"><p class="app_name">豆瓣FM</p><p class="app_company">豆瓣FM</p><p class="app_install">免费安装</p></a>';
+				pageno = parseInt($("#pageno").val()) + 1
+				if(pageno >= parseInt($("#totalpag").val()))
+				{
+					$('#tview_more').remove();
+					pageno = parseInt($("#totalpag").val());
+				}
+				$("#pageno").val(pageno);
+				$.getJSON('/getinfo?state=401&pageno=' + pageno, function (data) {
+					html = (function (data) {      //数据渲染
+						var liArr = [];
+						$.each(data, function () {
+							liArr.push(this.html);
+						});
+						return liArr.join('');
+					})(data);
+					//alert(html);
+					$('#data-list').append(html);
+				});
+			});
+		}
+
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       default-autowire="byName" default-lazy-init="false"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <bean name="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host">
+            <value>${mail.host}</value>
+        </property>
+        <property name="username">
+            <value>${mail.from.userName}</value>
+        </property>
+        <property name="password">
+            <value>${mail.from.password}</value>
+        </property>
+        <!-- SMTP服务器验证 -->
+        <property name="javaMailProperties">
+            <props>
+                <!-- 验证身份 -->
+                <prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+                <prop key="mail.smtp.timeout">2500</prop>
+                <prop key="mail.mime.address.strict">false</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean name="javaMailCrcSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host">
+            <value>${mail.host}</value>
+        </property>
+        <property name="username">
+            <value>${mail.crc.from.userName}</value>
+        </property>
+        <property name="password">
+            <value>${mail.crc.from.password}</value>
+        </property>
+        <!-- SMTP服务器验证 -->
+        <property name="javaMailProperties">
+            <props>
+                <!-- 验证身份 -->
+                <prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+                <prop key="mail.smtp.timeout">2500</prop>
+                <prop key="mail.mime.address.strict">false</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

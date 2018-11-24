@@ -1,0 +1,311 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="portlet box blue-sharp">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-cogs"></i>添加\修改图标
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form name="dataForm" novalidate class="form-horizontal form-bordered"
+                      ng-submit="submit(dataForm.$valid)">
+                    <div class="form-group" ng-class="{ 'has-error' : dataForm.type.$invalid && submited }">
+                        <label class="col-lg-3 control-label"><span class="required"> * </span>所属分类</label>
+                        <div class="col-md-9 dbFormItem">
+                            <div class="input-group">
+                                <ui-select ng-model="iconMenu.type"
+                                           name="type" ng-required="true">
+                                    <ui-select-match placeholder="请选择">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices
+                                            repeat="item in iconMenuType | selectPropsFilter:{name:$select.search}">
+                                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="help-block">
+                                    选择将图标放在哪个分类下面
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : dataForm.name.$invalid && submited }">
+                        <label class="col-lg-3 control-label"><span class="required"> * </span>名称</label>
+                        <div class="col-lg-9">
+                            <div class="input-group">
+                                <input ng-model='iconMenu.name' name="name" type="text" class="form-control"
+                                       ng-required="true">
+                            </div>
+                            <p class="help-block">
+                                页面上显示的图标名称
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : dataForm.imgUrl.$invalid && submited }">
+                        <label class="col-lg-3 control-label"><span class="required"> * </span>图标</label>
+                        <div class="col-lg-9">
+                            <div class="input-group">
+                                <div class="row">
+                                    <div class="col-md-6" style="text-align: center">
+                                        <img ng-src="{{iconMenu.imageUrl}}" width="50"
+                                             height="50">
+                                    </div>
+                                    <div class="col-md-6" style="text-align: center">
+
+                                        <a class=dbFileAddPic href="javascript:void(0);" style="width: 82px;"><span><em>+</em>添加图片</span>
+                                            <input
+                                                    class="dbFilePrew" title=支持jpg、jpeg、gif、png格式，文件小于5m tabindex=3
+                                                    type="file" size=3
+                                                    name="file" nv-file-select uploader="uploader"></a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="help-block">
+                                上传新的图片，请保持文件名不重复，否则会<span style="color:red">替换</span>原文件
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="form-group " ng-class="{ 'has-error' : dataForm.href.$invalid && submited }">
+                        <label class="col-lg-3 control-label"><span class="required"> * </span>链接地址</label>
+                        <div class="col-lg-9">
+                            <div>
+                                <input ng-model='iconMenu.href' name="href" type="text" class="form-control"
+                                       ng-required="true">
+                            </div>
+                            <p class="help-block">
+                                图标点击后链接的页面地址
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : dataForm.order.$invalid && submited }">
+                        <label class="col-lg-3 control-label">
+                            <span class="required"> * </span>排序值
+                        </label>
+                        </label>
+                        <div class="col-lg-9">
+                            <div class="input-group">
+                                <input ng-model='iconMenu.order' name="order" type="number" class="form-control"
+                                       ng-required="true">
+                            </div>
+                            <p class="help-block">
+                                同一个分类下，数值越大越靠前面显示,建议从99开始
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">是否需要认证</label>
+                        <div class="col-lg-9">
+                            <div class=" form-md-checkboxes" style="margin: 0px;">
+                                <div class="md-checkbox-inline">
+                                    <div class="md-checkbox"><input type="checkbox" ng-model="iconMenu.requiredAuth"
+                                                                    class="ng-scope">
+                                        <label ng-click="iconMenu.requiredAuth=!iconMenu.requiredAuth">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span>
+                                            需要认证
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="help-block">
+                                勾选后，则访问这个菜单时对未认证用户会提示需要认证。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">是否推荐</label>
+                        <div class="col-lg-9">
+                            <div class=" form-md-checkboxes" style="margin: 0px;">
+                                <div class="md-checkbox-inline">
+                                    <div class="md-checkbox"><input type="checkbox" ng-model="iconMenu.recommend"
+                                                                    class="ng-scope">
+                                        <label ng-click="iconMenu.recommend=!iconMenu.recommend">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span>
+                                            推荐到首页
+                                        </label>
+
+                                    </div>
+                                    <div class="md-checkbox">
+                                        <input type="checkbox" ng-model="iconMenu.redTip" class="ng-scope">
+                                        <label ng-click="iconMenu.redTip=!iconMenu.redTip">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span>
+                                            红标
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="help-block">
+                                勾选推荐到首页，则在指定结束时间前，一直固定在首页显示。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">推荐结束时间</label>
+                        <div class="col-lg-9">
+                            <div class="input-group">
+                                <input ng-model='iconMenu.recommendEndTime' name="recommendEndTime" type="text"
+                                       class="form-control date-picker"
+                                       ng-required="field.required" data-date-format="yyyy-mm-dd" readonly>
+                            </div>
+                            <p class="help-block">
+                                到时间后，会从首页上消失，为空则一直保留
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn purple"><i class="fa fa-check"></i> 保存</button>
+                                <button type="button" class="btn btn-primary" ng-click="preview()">立即预览</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="portlet box purple">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-cogs"></i>全部图标实时预览
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="panel-top" style="max-width: 357px;" ng-repeat="icon in iconMenusViewData">
+                    <div class="panel-heading" style="">
+                        <span></span>
+                        <h3 class="panel-title">{{icon.typeName}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="index-content">
+                            <ul ng-repeat="menus in icon.menus">
+                                <li ng-repeat="menu in menus.menus">
+                                    <img ng-src="{{menu.imageUrl}}">
+                                    <div  ng-class="{'redTip':menu.redTip}"><span>{{menu.name}}</span><span ng-if="menu.name">({{menu.order}})</span></div>
+                                    <div ng-if="menu.id">
+                                        <button class="btn btn-danger" ng-click="deleteMenu(menu.id)">删除</button>
+                                    </div>
+                                    <div ng-if="!menu.id&&menu.name">
+                                        <button class="btn">临时</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="portlet box purple">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-cogs"></i>首页图标实时预览
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="panel-top" style="max-width: 357px;">
+                    <div class="panel-heading" style="">
+                        <span></span>
+                        <h3 class="panel-title">首页图标</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="index-content">
+                            <ul ng-repeat="menus in indexIconMenusViewData">
+                                <li ng-repeat="menu in menus.menus">
+                                    <img ng-src="{{menu.imageUrl}}">
+                                    <div  ng-class="{'redTip':menu.redTip}"><span>{{menu.name}}</span><span ng-if="menu.name">({{menu.order}})</span></div>
+                                    <div ng-if="menu.id">
+                                        <button class="btn btn-danger" ng-click="deleteMenu(menu.id)">删除</button>
+                                    </div>
+                                    <div ng-if="!menu.id&&menu.name">
+                                        <button class="btn">临时</button>
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        .index-content {
+            background: #fff;
+            font-size: 12px;
+            color: #000;
+            width: 100%;
+        }
+
+        .index-content ul {
+            width: 100%;
+            overflow: hidden;
+            padding-bottom: 1.2rem;
+            display: table;
+        }
+
+        .index-content ul li {
+            width: 25%;
+            display: table-cell;
+            padding-top: 1.2rem;
+            text-align: center;
+            vertical-align: bottom;
+        }
+
+        .index-content ul li img {
+            display: block;
+            width: 32%;
+            margin: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .panel-top {
+            border-top: 1px solid rgba(173, 173, 173, 0.56);
+
+        }
+
+        .panel-body {
+            padding: 0;
+        }
+
+        .panel-heading {
+            border-radius: 0;
+            border-left: 4px solid #8e5fa2;
+            margin-top: 8px;
+        }
+
+        .redTip {
+            color: red;
+        }
+    </style>
+</div>

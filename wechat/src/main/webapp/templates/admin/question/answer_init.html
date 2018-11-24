@@ -1,0 +1,38 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Create</title>
+  <link href="/fordwechat/static/css/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="content">
+  <div class="outer">
+    <h3>回答问题管理</h3>
+    <form action="/admin/controll/14" method="post" >
+	<input type="hidden" id="qid" name="qid" value="{{quest['id']}}"/>
+	<input type="hidden" id="url" name="url" value="{{url}}"/>
+    <div class="gb">
+      <h4>问答问题</h4>
+      <div class="form">
+        <p><span class="left">问题标题：</span>{{quest['q_title']}}</p>
+        <p><span class="left">问题内容：</span>{{quest['q_content']}}</p>
+		<p><span class="left">问题类别：</span>{% if quest['questiontype'] %}{{quest['questiontype']}}{% else %}未分配{% end %}</p>
+        <p><label class="left">问题回答：</label>
+		<textarea cols="60" rows="20" class="wide" id="content_1" name="a_content">{% if quest['a_content'] != None %}{{quest['a_content']}}{% end %}</textarea>
+		</p>
+      </div>
+    </div>
+    <div class="bset">
+      <a href="{{url}}">&lt;返回</a>
+      <input type="submit" class="button" value="提交" />
+    </div>  
+    </form>
+  </div>
+  <script type="text/javascript">
+  //page.markSide('11');
+  if('{{msg}}'!=''){
+	alert('{{msg}}')
+  }
+  </script>
+</body>
+</html>

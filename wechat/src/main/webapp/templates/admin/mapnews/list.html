@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>群发信息管理</title>
+<link href="/fordwechat/static/css/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="content">
+		<div class="outer">
+			<h3>群发信息列表</h3>
+			<div class="tb">
+				<div class="table">
+					<table border="1" style="border-collapse:collapse;" >
+				      	<tr>
+							{% if mapnews != None %}
+								<td><b>图文消息名称0</b></td>
+								<td><b>图文消息名称1</b></td>
+								<td><b>图文消息名称2</b></td>
+								<td><b>图文消息名称3</b></td>
+								<td><b>图文消息名称4</b></td>
+								<td><b>图文消息名称5</b></td>
+								<td><b>图文消息名称6</b></td>
+								<td><b>图文消息名称7</b></td>
+								<td><b>图文消息名称8</b></td>
+								<td><b>图文消息名称9</b></td>
+								<td><b>最后修改时间</b></td>
+								<td><b>相关操作</b></td>
+							{% end %}
+				      	</tr>
+						{% if mapnews != None %}
+							{% for mapnew in mapnews['item'] %}
+							<tr>
+								{% for new in mapnew['content']['news_item'] %}
+									<td><a href="{{new['url']}}" target="_blank">{{new['title']}}</a></td>
+								{% end %}
+								{% for i in range(0,10-len(mapnew['content']['news_item'])) %}
+									<td></td>
+								{% end %}
+							<td>{{mapnew['update_time']}}</td>
+							<td><a href="/admin/controll/22?media_id={{mapnew['media_id']}}">选择用户组群发</a>
+							<!-- oULu_jnO40gHW-zPx-Zngp08Gr_4测试的我的微信openid -->
+							<a href="/admin/controll/27?media_id={{mapnew['media_id']}}&open_id=oULu_jnzQ2lwKEKfI69pW3ky2X8A" >群发预览</a></td>
+							</tr>
+							{% end %}
+						{% end %}
+				    </table>
+				</div>
+			</div>
+		</div>
+	
+</body>
+<script type="text/javascript">
+  //page.markSide('11');
+  if('{{msg}}'!=''){
+	alert('{{msg}}')
+  }
+  </script>
+
+</html>

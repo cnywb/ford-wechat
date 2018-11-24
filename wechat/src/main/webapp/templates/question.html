@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no" />
+
+<title>长安福特微客服</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    <script src="/static/js/jquery-1.7.2.min.js"></script>
+    <script src="/static/js/common.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#close1").click(function(){
+    $("#msg1").hide();
+  });
+  $("#close2").click(function(){
+    $("#msg2").hide();
+  });
+    $("#sub").click(function () {
+        if ($.trim($("#q_content").val()) == '' || $.trim($("#q_title").val()) == '') {
+            $("#msg2").show();
+            return;
+        }
+        $.ajax({
+            type: "POST", url: "/fordwechat/saveQuestion.do", data: {
+                qTitle: $.trim($("#q_title").val()), openid: openid,
+                qContent: $.trim($("#q_content").val()), questionType: $("#questiontype").val()
+            },
+            datatype: "json", async: false,
+            success: function (data) {
+                if (data == '1')
+                    $("#msg1").show();
+            }
+
+        });
+    });
+
+});
+</script>  
+</head>
+
+<body>
+<form action="" method="post" id="pageForm">
+
+    <div class="wrap">
+    	<input type="text" class="q-tt1 blk" name="q_title" id="q_title" placeholder="问题标题" /><br /><br />
+		<select name="questiontype" id="questiontype" placeholder="问题类别" style="width: 520px; border: 1px solid #5d7784; margin-bottom: 15px; height: 80px; color: #8e8f8f; font-size: 3em;display:block;margin:0 auto">
+			<option value="咨询类">咨询类</option>
+			<option value="投诉类">投诉类</option>
+			<option value="建议类">建议类</option>
+			<option value="其它">其它</option>
+		</select>
+		<br /><br />
+        <textarea type="text" class="q-ta1 blk" id='q_content' name="q_content" placeholder="输入问题描述...."></textarea><br /><br />
+        <a href="javascript:;" id="sub"><img src="/static/images/question-btn.gif" class="blk"/></a>
+    </div>
+	<div class="quspopup" id='msg1'>
+        <p>提交成功!<br><a href="javascript:;" class="close" id="close1"><img src="/static/images/submit_btn02.gif" alt=""></a>
+        </p>
+	</div>
+	<div class="quspopup" id='msg2'>
+        <p>请输入问题标题和问题描述!<br><a href="javascript:;" class="close" id="close2"><img src="/static/images/submit_btn02.gif"
+                                                                                  alt=""></a></p>
+	</div>
+	</form>
+	
+</body>
+
+</html>

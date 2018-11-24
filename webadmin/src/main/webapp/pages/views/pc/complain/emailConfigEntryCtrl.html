@@ -1,0 +1,146 @@
+<div class="row">
+    <div class="portlet box blue-sharp">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs"></i>管理客诉发送邮件
+            </div>
+            <div class="tools">
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <form name="dataForm" novalidate class="form-horizontal form-bordered" ng-submit="submit(dataForm.$valid)">
+                <div class="form-group " ng-class="{ 'has-error' : dataForm.sendEmail.$invalid && submited }">
+                    <label class="col-lg-3 control-label"><span class="required"> * </span>客诉发送邮件</label>
+                    <div class="col-lg-9">
+                        <div>
+                            <textarea cols="10" rows="5" style="resize: none" ng-model='data.sendEmail' name="sendEmail" class="form-control" ng-required="true">
+                            </textarea>
+                        </div>
+                        <p class="help-block">
+                            客诉Excel发送对象的邮件，多个使用;分割！
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label"><span class="required"> * </span>客诉抄送邮件</label>
+                    <div class="col-lg-9">
+                        <div>
+                            <textarea cols="10" rows="5" style="resize: none" ng-model='data.ccEmail' class="form-control">
+                            </textarea>
+                        </div>
+                        <p class="help-block">
+                            客诉Excel抄送对象的邮件，多个使用;分割！
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group " ng-class="{ 'has-error' : dataForm.href.$invalid && submited }">
+                    <label class="col-lg-3 control-label">最新一次修改时间</label>
+                    <div class="col-lg-9">
+                        <div>
+                            <input ng-model='data.lastDate' disabled class="form-control">
+                        </div>
+                        <p class="help-block">
+                            最新一次操作提交邮件配置的修改时间
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group " >
+                    <label class="col-lg-3 control-label">历史客诉发送邮件</label>
+                    <div class="col-lg-9">
+                        <div>
+                            <textarea cols="10" rows="2" style="resize: none;" disabled ng-model='data.historyEmail' class="form-control">
+                            </textarea>
+                        </div>
+                        <p class="help-block">
+                            上一次修改历史客诉发送邮件记录。
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group " >
+                    <label class="col-lg-3 control-label">历史客诉抄送邮件</label>
+                    <div class="col-lg-9">
+                        <div>
+                            <textarea cols="10" rows="2" style="resize: none;" disabled ng-model='data.historyCCEmail' class="form-control">
+                            </textarea>
+                        </div>
+                        <p class="help-block">
+                            上一次修改历史客诉抄送邮件记录。
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-lg-3 control-label">历史客诉发送邮件</label>
+                    <div class="col-lg-9">
+                        <div>
+                            <input cols="10" rows="5" style="resize: none;" disabled ng-model='data.historyDate' class="form-control">
+                        </div>
+                        <p class="help-block">
+                            上一次修改历史客诉发送邮件记录，变更记录时间
+                        </p>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" class="btn purple"><i class="fa fa-check"></i> 保存</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <style>
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        .index-content {
+            background: #fff;
+            font-size: 12px;
+            color: #000;
+            width: 100%;
+        }
+
+        .index-content ul {
+            width: 100%;
+            overflow: hidden;
+            padding-bottom: 1.2rem;
+            display: table;
+        }
+
+        .index-content ul li {
+            width: 25%;
+            display: table-cell;
+            padding-top: 1.2rem;
+            text-align: center;
+            vertical-align: bottom;
+        }
+
+        .index-content ul li img {
+            display: block;
+            width: 32%;
+            margin: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .panel-top {
+            border-top: 1px solid rgba(173, 173, 173, 0.56);
+
+        }
+
+        .panel-body {
+            padding: 0;
+        }
+
+        .panel-heading {
+            border-radius: 0;
+            border-left: 4px solid #8e5fa2;
+            margin-top: 8px;
+        }
+
+        .redTip {
+            color: red;
+        }
+    </style>
+</div>

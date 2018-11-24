@@ -1,0 +1,85 @@
+package ${PACKAGE_NAME};
+
+import ${PACKAGE_NAME}.vo.*;
+import io.dabing.common.date.DateUtil;
+import io.dabing.core.repository.domain.Page;
+import io.dabing.core.web.annotation.ApiService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Controller;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Controller;
+
+
+
+/**
+ * Created by ${USER} on ${YEAR}-${MONTH}-${DAY}.
+ * 描述:TODO
+ *
+ * @since 1.0
+ */
+@Controller
+public class ${NAME}Controller {
+
+    @Autowired
+    ${NAME}Service service;
+
+    /**
+     * 按关键字分页查询对象 调用${TransCode}Page
+     *
+     * @param req 请求入参对象(包含了keyWord关键字)
+     * @return
+     */
+    @ApiService(transCode="${TransCode}Page")
+    public Page<${NAME}PageResp> ${TransCode}Page(${NAME}PageReq req) {
+        Page<${NAME}> pages = service.pagingBy(req.getPage());
+        Page<${NAME}PageResp> respS = pages.map(new Converter<${NAME}, ${NAME}PageResp>() {
+            public ${NAME}PageResp convert(${NAME} source) {
+                ${NAME}PageResp resp = new ${NAME}PageResp();
+                if (source != null) {
+                    BeanUtils.copyProperties(source, resp);
+                    resp.setCreatedDate(DateUtil.formatDate(source.getCreatedDate(), DateUtil.FORMAT_DATETIME_YYYY_MM_DD_HH_MM_SS));
+                }
+                return resp;
+            }
+        });
+        return respS;
+    }
+
+    /**
+     * 创建/修改对象处理 调用${TransCode}Handle
+     *
+     * @param req 请求入参对象
+     * @return
+     */
+    @ApiService(transCode="${TransCode}Handle")
+    public String ${TransCode}Handle(${NAME}HandleReq req) {
+        ${NAME} entity = new ${NAME}();
+        if (req.getId() != null) {
+            entity = service.get(req.getId());
+        }
+        BeanUtils.copyProperties(req, entity);
+        if (req.getId() != null) {
+            service.update(entity);
+        } else {
+            service.save(entity);
+        }
+        return "";
+    }
+
+    /**
+     * 删除对象处理,批量,单一删除均支持 调用${TransCode}Remove
+     *
+     * @param req 请求入参对象
+     * @return
+     */
+    @ApiService(transCode="${TransCode}Remove")
+    public void ${TransCode}Remove(${NAME}RemoveReq req) {
+        for (${NAME}RemoveVo vo : req.getDataVo()) {
+            service.delete(vo.getId());
+        }
+    }
+}

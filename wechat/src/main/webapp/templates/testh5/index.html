@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/fordwechat/static/testh5/css/style02.css" rel="stylesheet" />
+    <!--移动端版本兼容 -->
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if(window.screen.height == 480) {
+            //document.write('<link href="/fordwechat/static/testh5/css/style2.css" rel="stylesheet" />');
+        }
+        if(/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if(version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+            } else {
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+    </script>
+    <!--移动端版本兼容 end -->
+    <title>长安福特微客服</title>
+    <script src="/fordwechat/static/testh5/js/jquery.min.js"></script>
+	
+</head>
+
+<body>
+<div class='index'>
+	<div class='mask'>
+		<a href='javascript:;' onclick="doTrack1()"><img src='/fordwechat/static/testh5/img/p1.png' class='p1 musicrotate'  / ></a>
+		<a href='/fordwechat/control?state=35'><img src='/fordwechat/static/testh5/img/p2.png' class='p2 musicrotate' / ></a>
+		<a href='http://mp.weixin.qq.com/s?__biz=MjM5NDkzMDAwMA==&mid=208656153&idx=1&sn=6e1a2e76c336b276ab62f95fc641ab56#rd'><img src='/fordwechat/static/testh5/img/p3.png' class='p3 musicrotate'  / ></a>
+		<a href='javascript:;'><img src='/fordwechat/static/testh5/img/p4.png' class='p4 musicrotate' id='jifenhaoli'/></a>
+		<a href='javascript:;'><img src='/fordwechat/static/testh5/img/p5.png' class='p5' id='jifen'/></a>
+		<a href='/fordwechat/control?state=37'><img src='/fordwechat/static/testh5/img/p5_1.png'  class='p6 maskon'/ ></a>
+		<img src='/fordwechat/static/testh5/img/box.png' class='p7 boxup' / >
+		<img src='/fordwechat/static/testh5/img/h5.png' style='width:100%,height:100%' / >
+		<input type="hidden" name="f" id="f" value="0">
+	</div>
+	
+</div>
+<!--信息正确-->
+<div class="dialog-mod" id="msg_ok">
+	<img src="/fordwechat/static/testh5/guagua/img/close.png" class="close"/>
+	<div class="no-msg">
+		<p class="no-content" style="margin-left:10%;margin-right:10%;margin-top:8%;font-size:2em">即将上线，敬请期待！</p>
+	</div>
+</div>
+
+
+<!--信息有误-->
+<div class="dialog-mod" id="msg_error" style="height:15%">
+	<img src="/fordwechat/static/testh5/guagua/img/close.png" class="close"/>
+	<div class="no-msg">
+		<p class="no-content" style="font-size:2em">您已是微客服认证车主，</p>
+		<br />
+		<p class="no-content" style="font-size:2em">点击确定进入幸运刮奖区！</p>
+		<br><br>
+		<a href="javascript:void(0);" class="dialog-btn" id="re_input" style="font-size:1.5em;padding-left:25px;padding-right:25px;">确定</a>
+	</div>
+</div>
+</body>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;
+i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();
+a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-69201345-2', 'auto');
+ga('send', 'pageview');
+
+ga('set','campaignName','即刻认证');
+ga('set','campaignSource','{{openid}}');
+ga('set','campaignMedium','weixin');
+
+function doTrack1(){
+	ga('send', 'event', 'Link', 'Click','即刻认证',1);
+	window.location.href='/fordwechat/control?state=31&source_state=2';
+}
+
+$(function () {
+	ff = parseInt($("#f").val()) + 1;
+	$("#f").val(ff);
+	$("#jifenhaoli").click(function (){
+		$("#msg_ok").show();
+	});
+	$("#re_input").click(function (){
+		window.location.href='/fordwechat/control?state=305&vin={{vin}}';
+	});
+	if('{{vin}}'!="" && ff==1){
+		$("#msg_error").show();
+	}
+	$(".close").click(function () {
+       $(".dialog-mod").hide();
+    });
+	$("#jifen").click(function () {
+       $("#msg_error").show();
+    });
+});
+</script>
+{% include '../common.html' %}
+</html>

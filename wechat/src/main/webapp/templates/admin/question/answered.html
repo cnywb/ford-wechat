@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>未回答问题列表</title>
+<link href="/fordwechat/static/css/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="content">
+	<form autocomplete="off" action="/admin/controll/12" method="post" id="pageForm">
+		<div class="outer">
+			<h3>已回答问题列表</h3>
+			<fieldset>
+			<p>
+			开始时间<input type="text" id="sedate1" readonly="true"  name="startDate" class="Wdate"
+				size="13" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'sedate2\')}'})"
+				value="{{startDate}}" />~ 结束时间<input type="text" readonly="true" id="sedate2"
+				name="endDate" class="Wdate" size="13"
+				onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'sedate2\')}'})"
+				value="{{endDate}}" /> 
+			</p>
+			<p>
+			问题类别
+			<select name="questiontype" id="questiontype">
+				<option value="" {% if not questiontype %}selected="selected"{% end %}>===请选择===</option>
+				<option value="咨询类" {% if questiontype=='咨询类' %}selected="selected"{% end %}>咨询类</option>
+				<option value="投诉类" {% if questiontype=='投诉类' %}selected="selected"{% end %}>投诉类</option>
+				<option value="建议类" {% if questiontype=='建议类' %}selected="selected"{% end %}>建议类</option>
+				<option value="其它" {% if questiontype=='其它' %}selected="selected"{% end %}>其它</option>
+			</select>
+			</p>
+			<p>
+				<input type="hidden" id="pageno" name="pageno" value="{{pageno}}"/>
+				<input type="hidden" id="qid" name="qid" value="0"/>
+				<input type="submit" value="提交" />
+			</p>
+			</fieldset>
+			<div class="tb">
+				<div class="table">
+					<table border="1" style="border-collapse:collapse;" >
+				      	<tr>
+					      	<td><b>问题名称</b></td>
+					      	<td><b>提问时间</b></td>
+							<td><b>回答内容</b></td>
+							<td><b>问题类别</b></td>
+					      	<td><b>相关操作</b></td>
+				      	</tr>
+						{% if pagination != None %}
+							{% for quest in pagination['paglist'] %}
+							<tr>
+							 <td>{{quest['q_title']}}</td>
+							 <td>{{quest['create_date']}}</td>
+							 <td>{{quest['a_content']}}</td>
+							 <td>
+								<select name="q_type" id="q_type" onchange="qtypeChange(this);">
+									<option value="{{quest['id']}}:" {% if not quest['questiontype'] %}selected="selected"{% end %}>===未分配===</option>
+									<option value="{{quest['id']}}:咨询类" {% if quest['questiontype']=='咨询类' %}selected="selected"{% end %}>咨询类</option>
+									<option value="{{quest['id']}}:投诉类" {% if quest['questiontype']=='投诉类' %}selected="selected"{% end %}>投诉类</option>
+									<option value="{{quest['id']}}:建议类" {% if quest['questiontype']=='建议类' %}selected="selected"{% end %}>建议类</option>
+									<option value="{{quest['id']}}:其它" {% if quest['questiontype']=='其它' %}selected="selected"{% end %}>其它</option>
+								</select>
+							 </td>
+							 <td><a href="/admin/controll/13?qid={{quest['id']}}&state=1">修改回答</a>
+							 <a href="javascript:;" onclick="delquest({{quest['id']}})">删除问题</a></td>
+							</tr>
+							{% end %}
+						{% end %}
+				    </table>
+				</div>
+			</div>
+			{% if pagination != None %}
+			<div>
+				<span class="num">共{{pagination['totalcount']}}条纪录</span>  <span class="num">{{pagination['pageno']}}/{{pagination['totalpag']}}页</span>  <span class="num">第{{pagination['pageno']}}页</span>
+				<a href="javascript:;" onclick="subForm({{pagination['pageno']-1}},{{pagination['totalpag']}})">&lt;上一页</a>
+				<a href="javascript:;" onclick="subForm({{pagination['pageno']+1}},{{pagination['totalpag']}})">下一页&gt;</a>
+			</div>
+			{% end %}
+		</div>
+
+	</form>
+	
+	<script src="/fordwechat/static/js/jquery-1.7.2.min.js"></script>
+	<script language="javascript" type="text/javascript"
+		src="/fordwechat/static/js/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript">
+	function qtypeChange(select){
+		//alert($(select).children('option:selected').val());
+		var p1=$(select).children('option:selected').val();
+		$.post("/admin/controll/18", { questiontype:p1 },
+		   function(data){
+			 alert(data);
+		   });
+	}
+	function delquest(qid){
+		if (confirm("真的要删除吗？")){
+			$("#qid").val(qid);
+			$("#pageForm").attr("action", "/admin/controll/17");
+			$("#pageForm").submit();
+		}
+	}
+	function subForm(pageNo,totalpag){
+		if (pageNo < 1)
+			pageNo = 1;
+		if (pageNo > totalpag)
+			pageNo = totalpag;
+		$("#pageno").val(pageNo);
+		$("#pageForm").attr("action", "/admin/controll/12");
+		$("#pageForm").submit();
+	}
+</script>
+</body>
+</html>

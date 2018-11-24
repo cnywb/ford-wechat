@@ -1,0 +1,109 @@
+<div class="row">
+    <div class="portlet box blue-sharp">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs"></i>添加\修改互问互答
+            </div>
+            <div class="tools">
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <form name="dataForm" novalidate class="form-horizontal form-bordered" ng-submit="submit(dataForm.$valid)">
+                <div class="form-group " ng-class="{ 'has-error' : dataForm.question.$invalid && submited }">
+                    <label class="col-lg-3 control-label"><span class="required"> * </span>问题</label>
+                    <div class="col-lg-9">
+                        <div>
+                            <input ng-model='data.question' name="question" type="text" class="form-control" ng-required="true">
+                        </div>
+                        <p class="help-block">
+                            互问互答问题描述
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group " ng-class="{ 'has-error' : dataForm.tags.$invalid && submited }">
+                    <label class="col-lg-3 control-label">标签</label>
+                    <div class="col-lg-9">
+                        <div>
+                            <input ng-model='data.tags' name="tags" type="text" class="form-control">
+                        </div>
+                        <p class="help-block">
+                            互问互答问题标签。多个以逗号，隔开（例如：养车,行车）
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label"><span class="required"> * </span>内容:</label>
+                    <div class="col-lg-9">
+                        <div id="answerEditor" class="form-control" style="height: 500px;">
+                        </div>
+                        <p class="help-block">
+                            PS:图片按钮选择添加上传图片时，请保持文件名不重复，否则会<span style="color:red">替换</span>原文件
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" class="btn purple"><i class="fa fa-check"></i> 保存</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <style>
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        .index-content {
+            background: #fff;
+            font-size: 12px;
+            color: #000;
+            width: 100%;
+        }
+
+        .index-content ul {
+            width: 100%;
+            overflow: hidden;
+            padding-bottom: 1.2rem;
+            display: table;
+        }
+
+        .index-content ul li {
+            width: 25%;
+            display: table-cell;
+            padding-top: 1.2rem;
+            text-align: center;
+            vertical-align: bottom;
+        }
+
+        .index-content ul li img {
+            display: block;
+            width: 32%;
+            margin: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .panel-top {
+            border-top: 1px solid rgba(173, 173, 173, 0.56);
+
+        }
+
+        .panel-body {
+            padding: 0;
+        }
+
+        .panel-heading {
+            border-radius: 0;
+            border-left: 4px solid #8e5fa2;
+            margin-top: 8px;
+        }
+
+        .redTip {
+            color: red;
+        }
+    </style>
+</div>

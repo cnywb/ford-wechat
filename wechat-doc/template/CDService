@@ -1,0 +1,36 @@
+/*
+ * Copyright (c)  ${YEAR}
+ * All rights reserved.
+ * ${NAME}.java ${YEAR}-${MONTH}-${DAY} ${TIME}
+ */
+
+package ${PACKAGE_NAME};
+
+
+
+import io.dabing.common.grid.GridPage;
+import io.dabing.core.repository.domain.Page;
+import java.util.List;
+
+/**
+ * 描述：TODO
+ *
+ * @author ${USER} create on ${YEAR}-${MONTH}-${DAY}
+ * @since 1.0
+ */
+public interface ${NAME}Service {
+
+    Page<${NAME}> pagingBy(GridPage page);
+
+    void save(${NAME} object);
+
+    void delete(List<${NAME}> objectList);
+
+    void delete(${NAME} object);
+
+    void delete(Long id);
+
+    void update(${NAME} object);
+
+    ${NAME} get(Long id);
+}

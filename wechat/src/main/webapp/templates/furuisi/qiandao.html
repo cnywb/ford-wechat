@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no" />
+
+<title>福特</title>
+<link rel="stylesheet" href="/fordwechat/static/furuisi/css/main.css">
+
+<script src="/fordwechat/static/furuisi/js/jquery-1.7.2.min.js"></script>
+
+    
+
+</head>
+
+<body style="background: url(/fordwechat/static/furuisi/images/kaquanbg.jpg) no-repeat center top; background-size: 115%; padding-top: 20%;">
+	<div class="wrap">
+    	<div class="cardquan">
+			<div class="kaqSub">
+				<div class="kaqcont">
+					<h2>签到</h2>
+					<form name="form1" id="form1" method="post" action="/yihu?state=161">
+					<ul class="note">
+						<li><span>手机号码：</span><input type="text" value="" name="tel" /></li>
+						<li><span>卡券：</span><input type="text" value="" name="cardcode" /></li>
+					</ul>
+					<a href="javascript:;" class="cardSubtn" onclick="subForm();">完成签到</a>
+					</form>
+				</div>
+				<p class="btnLast"></p>
+			</div>
+		</div>
+		
+    </div>
+</body>
+<script type="text/javascript">
+function subForm(){
+	$("#form1").submit();
+}
+if('{{msg}}'!=''){
+	alert('{{msg}}');
+}
+</script>
+</html>

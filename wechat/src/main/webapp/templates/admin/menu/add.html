@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加编辑菜单</title>
+<link href="/fordwechat/static/css/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="content">
+	<form autocomplete="off" action="/admin/controll/63" method="post" id="pageForm">
+		<div class="outer">
+			<h3>添加子菜单</h3>
+			<fieldset>
+			<p>
+				主菜单：
+				<select name="parentid" id="parentid">
+					{% for main in mainlist %}
+						<option value="{{main['id']}}" >{{main['menu_name']}}</option>
+					{% end %}
+				</select>
+			<p/>
+			<p>菜单名称:<input type="text" name="menu_name" value=""/><p/>
+			<p>菜单事件类别:
+				<select name="menu_type" id="menu_type">
+						<option value="click" >click事件</option>
+						<option value="view" >view事件</option>
+				</select>
+			<p/>
+			<p>关键字:<input type="text" name="menu_key" value=""/>click事件必须填写<p/>
+			<p>事件链接:<input type="text" name="menu_url" value=""/>view事件必须填写<p/>
+			<p>排序顺序:<input type="text" name="orderno" value=""/><p/>
+			<p>
+				<input type="submit" value="提交" />
+			</p>
+			</fieldset>
+		</div>
+	</form>
+</body>
+<script type="text/javascript">
+  //page.markSide('11');
+  if('{{msg}}'!=''){
+	alert('{{msg}}')
+  }
+  </script>
+</html>

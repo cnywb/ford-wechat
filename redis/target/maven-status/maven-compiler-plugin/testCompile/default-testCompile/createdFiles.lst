@@ -1,0 +1,6 @@
+io\dabing\redis\TestMain.class
+io\dabing\redis\BinaryRedisClientTest.class
+io\dabing\redis\AtomicReferenceTest.class
+io\dabing\redis\User.class
+io\dabing\redis\RedisAllTest.class
+io\dabing\redis\RedisClientTest.class

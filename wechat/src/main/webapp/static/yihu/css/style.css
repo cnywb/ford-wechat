@@ -1,0 +1,157 @@
+﻿body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;font-size:66.3%}
+fieldset,img{border:0;}
+ul,ol{list-style:none;}
+table{border-collapse:collapse;border-spacing:0;}
+a{text-decoration: none;color:#000;}
+a:hover{text-decoration: underline;color:#000;}
+small{font-size:12px;}
+h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-size:100%;}
+label,input,select,form img,button,textarea{vertical-align:middle;outline:none}
+address,caption,cite,code,dfn,em,strong,th,optgroup{font-style:normal;font-weight:normal;}
+.clear:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clear{display:inline-block;}
+/* Hides from IE-mac \*/
+* html .clear{height:1%;}
+.clear{display:block;}
+/* End hide from IE-mac */
+
+html,body{height:100%;  background: #1d1e1f;  width: 100%;overflow-x: hidden;}
+body{font:12px "Microsoft YaHei","宋体",sans-serif;}
+a:hover{text-decoration:none;}
+img.button {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+a.gonext,a.pgonext,a.pback,a.goQrcode {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 925px;
+  z-index: 7;
+  display: block;
+  left: 391px;
+}
+a.pgonext {
+  left: 290px;
+}
+a.pback {
+  left: 188px;
+}
+.p2 .animate {
+  top: 496px;
+}
+.p3 .animate {
+top: 482px;
+  left: 47%;
+}
+.p4 .animate {
+   top: 462px;
+}
+
+.animate {
+  position: absolute;
+  top: 320px;
+  width: 42px;
+  height: 42px;
+  left: 50.5%;
+}
+.animate  img{position: absolute;top:0;display:none}
+a.p3gonext,a.p3back {
+  position: relative;
+  width: 97px;
+  height: 95px;
+  display: block;
+    float: left;
+  margin: 5px 0 30px 100px;
+}
+a.p3back {
+margin: 5px 0 30px 168px;
+}
+.category a {
+  position: absolute;
+  width: 200px;
+  height: 74px;
+}
+
+.category a.part1 {
+  top: 275px;
+  left: 287px;
+}
+
+.category a.part2 {
+  top: 397px;
+  left: 382px;
+}
+
+.category a.part3 {
+  top: 522px;
+  left: 343px;
+}
+
+.category a.part4 {
+  top: 653px;
+  left: 376px;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+}
+.shadow {
+  position: fixed;
+  background: #000;
+  opacity:0.5;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+a.detail,a.back,a.share {
+  position: absolute;
+  width: 213px;
+  height: 56px;
+  top: 390px;
+  left: 33.5%;
+}
+a.back {
+  top: 476px;
+  left: 18%;
+  width: 175px;
+}
+a.share {
+  top: 476px;
+  left: 54.5%;
+  width: 175px;
+}
+a.share{
+  top: 476px;
+  left: 52.5%;
+}
+a.getqrcode {
+  position: absolute;
+  width: 148px;
+  height: 148px;
+  display: block;
+  z-index: 10;
+  top: 208px;
+  left: 68px;
+}
+.qrcode img{
+  position: relative;
+  margin: 0% auto;
+  display: block;
+  padding: 10% 0;
+}
+.qrcode {
+  position: relative;
+  z-index: 10;
+}
+
+.overlay img {
+  position: relative;
+}
+
+.p3detail {
+  position: relative;
+}

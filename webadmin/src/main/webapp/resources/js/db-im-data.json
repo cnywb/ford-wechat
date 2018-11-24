@@ -1,0 +1,939 @@
+{
+  "infoType": [
+    {
+      "name": "养车用车",
+      "value": "养车用车"
+    },
+    {
+      "name": "行车安全",
+      "value": "行车安全"
+    },
+    {
+      "name": "用车安全",
+      "value": "用车安全"
+    }
+  ],
+  "msgType": [
+    {
+      "name": "活动消息",
+      "value": "活动消息"
+    },
+    {
+      "name": "推广消息",
+      "value": "推广消息"
+    }
+  ],
+  "templateType": [
+    {
+      "name": "公告消息",
+      "value": "公告消息"
+    },
+    {
+      "name": "个人消息",
+      "value": "个人消息"
+    }
+  ],
+  "useChannel": [
+    {
+      "name": "微信平台",
+      "value": "微信平台"
+    },
+    {
+      "name": "个人中心",
+      "value": "个人中心"
+    }
+  ],
+  "typeCode": [
+    {
+      "name": "业务枚举",
+      "value": "businessTm"
+    },
+    {
+      "name": "全局枚举",
+      "value": "global"
+    }
+  ],
+  "yesOrNo": [
+    {
+      "name": "是",
+      "value": "是"
+    },
+    {
+      "name": "否",
+      "value": "否"
+    }
+  ],
+  "channel": [
+    {
+      "name": "ODP",
+      "value": "ODP"
+    },
+    {
+      "name": "CSI",
+      "value": "CSI"
+    }
+  ],
+  "operationType": [
+    {
+      "name": "登陆",
+      "value": "USER_LOGIN"
+    },
+    {
+      "name": "退出",
+      "value": "USER_LOGOUT"
+    },
+    {
+      "name": "密码过期",
+      "value": "USER_PASSWORD_EXPIRED"
+    },
+    {
+      "name": "新增用户",
+      "value": "USER_CREATE"
+    },
+    {
+      "name": "修改用户",
+      "value": "USER_MODIFY"
+    },
+    {
+      "name": "修改密码",
+      "value": "USER_PASSWORD_MODIFY"
+    },
+    {
+      "name": "重置密码",
+      "value": "USER_PASSWORD_RESET"
+    },
+    {
+      "name": "删除用户",
+      "value": "USER_REMOVE"
+    },
+    {
+      "name": "新增角色",
+      "value": "ROLE_CREATE"
+    },
+    {
+      "name": "修改角色",
+      "value": "ROLE_MODIFY"
+    },
+    {
+      "name": "删除角色",
+      "value": "ROLE_REMOVE"
+    },
+    {
+      "name": "资源授权",
+      "value": "AUTH_ROLE_RESOURCE"
+    },
+    {
+      "name": "授权用户新增",
+      "value": "AUTH_ROLE_USER_ADD"
+    },
+    {
+      "name": "授权用户删除",
+      "value": "AUTH_ROLE_USER_REMOVE"
+    },
+    {
+      "name": "资源创建",
+      "value": "RESOURCE_CREATE"
+    },
+    {
+      "name": "资源修改",
+      "value": "RESOURCE_MODIFY"
+    }
+  ],
+  "messageBatchType": [
+    {
+      "name": "短信",
+      "value": "1"
+    },
+    {
+      "name": "邮件",
+      "value": "2"
+    }
+  ],
+  "messageBatchStatus": [
+    {
+      "name": "数据准备",
+      "value": "1"
+    },
+    {
+      "name": "待发送",
+      "value": "2"
+    },
+    {
+      "name": "发送中",
+      "value": "3"
+    },
+    {
+      "name": "完成",
+      "value": "4"
+    }
+  ],
+  "gender": [
+    {
+      "name": "男",
+      "value": "男"
+    },
+    {
+      "name": "女",
+      "value": "女"
+    }
+  ],
+  "resourceType": [
+    {
+      "name": "全局资源",
+      "value": "global"
+    },
+    {
+      "name": "业务资源",
+      "value": "business"
+    }
+  ],
+  "productType": [
+    {
+      "name": "延保服务SRP",
+      "value": "延保服务SRP"
+    },
+    {
+      "name": "保养服务SSP",
+      "value": "保养服务SSP"
+    }
+  ],
+  "SRPCarType": [
+    {
+      "name": "新嘉年华",
+      "value": "新嘉年华"
+    },
+    {
+      "name": "翼搏",
+      "value": "翼搏"
+    },
+    {
+      "name": "经典福克斯",
+      "value": "经典福克斯"
+    },
+    {
+      "name": "新福克斯",
+      "value": "新福克斯"
+    },
+    {
+      "name": "翼虎",
+      "value": "翼虎"
+    },
+    {
+      "name": "新蒙迪欧",
+      "value": "新蒙迪欧"
+    },
+    {
+      "name": "致胜",
+      "value": "致胜"
+    },
+    {
+      "name": "麦柯斯",
+      "value": "麦柯斯"
+    },
+    {
+      "name": "福睿斯",
+      "value": "福睿斯"
+    },
+    {
+      "name": "锐界",
+      "value": "锐界"
+    },
+    {
+      "name": "金牛座",
+      "value": "金牛座"
+    }
+  ],
+  "SSPCarType": [
+    {
+      "name": "新福克斯  New Focus 1.6L",
+      "value": "新福克斯  New Focus 1.6L"
+    },
+    {
+      "name": "新福克斯  New Focus 2.0L",
+      "value": "新福克斯  New Focus 2.0L"
+    },
+    {
+      "name": "翼虎  Kuga 1.6L",
+      "value": "翼虎  Kuga 1.6L"
+    },
+    {
+      "name": "翼虎  Kuga 2.0L",
+      "value": "翼虎  Kuga 2.0L"
+    },
+    {
+      "name": "翼虎  Kuga 1.5T",
+      "value": "翼虎  Kuga 1.5T"
+    },
+    {
+      "name": "福克斯  Focus",
+      "value": "福克斯  Focus"
+    },
+    {
+      "name": "新嘉年华  New Fiesta",
+      "value": "新嘉年华  New Fiesta"
+    },
+    {
+      "name": "新嘉年华MCA New Fiesta MCA",
+      "value": "新嘉年华MCA New Fiesta MCA"
+    },
+    {
+      "name": "新嘉年华 1.0T New Fiesta MCA1.0T",
+      "value": "新嘉年华 1.0T New Fiesta MCA1.0T"
+    },
+    {
+      "name": "翼博  Ecosport 1.0L",
+      "value": "翼博  Ecosport 1.0L"
+    },
+    {
+      "name": "翼博  Ecosport 1.5L",
+      "value": "翼博  Ecosport 1.5L"
+    },
+    {
+      "name": "新蒙迪欧 New Mondeo 1.5L",
+      "value": "新蒙迪欧 New Mondeo 1.5L"
+    },
+    {
+      "name": "新蒙迪欧 New Mondeo  2.0L",
+      "value": "新蒙迪欧 New Mondeo  2.0L"
+    },
+    {
+      "name": "麦柯斯  S-MAX",
+      "value": "麦柯斯  S-MAX"
+    },
+    {
+      "name": "致胜  Zhisheng",
+      "value": "致胜  Zhisheng"
+    },
+    {
+      "name": "致胜  Zhisheng GTDi",
+      "value": "致胜  Zhisheng GTDi"
+    },
+    {
+      "name": "福睿斯 Escort",
+      "value": "福睿斯 Escort"
+    },
+    {
+      "name": "锐界 Edge 2.0L",
+      "value": "锐界 Edge 2.0L"
+    },
+    {
+      "name": "锐界 Edge  2.7L",
+      "value": "锐界 Edge  2.7L"
+    },
+    {
+      "name": "全新福克斯  All New Focus 1.0L",
+      "value": "全新福克斯  All New Focus 1.0L"
+    },
+    {
+      "name": "全新福克斯  All New Focus 1.5L",
+      "value": "全新福克斯  All New Focus 1.5L"
+    },
+    {
+      "name": "全新福克斯  All New Focus 1.6L",
+      "value": "全新福克斯  All New Focus 1.6L"
+    },
+    {
+      "name": "金牛座 Taurus 2.0L",
+      "value": "金牛座 Taurus 2.0L"
+    },
+    {
+      "name": "金牛座 Taurus 2.7L",
+      "value": "金牛座 Taurus 2.7L"
+    }
+  ],
+  "SRPPlan": [
+    {
+      "name": "精选关爱",
+      "value": "精选关爱"
+    },
+    {
+      "name": "至尊关爱",
+      "value": "至尊关爱"
+    }
+  ],
+  "SSPPlan": [
+    {
+      "name": "基础保养套餐 BSSP",
+      "value": "基础保养套餐 BSSP"
+    },
+    {
+      "name": "高级保养套餐 ASSP",
+      "value": "高级保养套餐 ASSP"
+    }
+  ],
+  "SRPbuyTime": [
+    {
+      "name": "新购车",
+      "value": "新购车"
+    },
+    {
+      "name": "在保车",
+      "value": "在保车"
+    }
+  ],
+  "productMonths": [
+    {
+      "name": "12",
+      "value": "12"
+    },
+    {
+      "name": "24",
+      "value": "24"
+    },
+    {
+      "name": "40",
+      "value": "40"
+    }
+  ],
+  "dataFileStatus": [
+    {
+      "name": "数据未导入",
+      "value": "1"
+    },
+    {
+      "name": "部分成功",
+      "value": "2"
+    },
+    {
+      "name": "成功",
+      "value": "3"
+    },
+    {
+      "name": "失败",
+      "value": "4"
+    }
+  ],
+  "analysisType": [
+    {
+      "name": "月报",
+      "value": "4"
+    },
+    {
+      "name": "季报",
+      "value": "3"
+    },
+    {
+      "name": "半年报",
+      "value": "2"
+    },
+    {
+      "name": "年报",
+      "value": "1"
+    }
+  ],
+  "analysisYears": [
+    {
+      "name": "2016年",
+      "value": "2016"
+    },
+    {
+      "name": "2017年",
+      "value": "2017"
+    },
+    {
+      "name": "2018年",
+      "value": "2018"
+    }
+  ],
+  "analysisMonths": [
+    {
+      "name": "01月",
+      "value": "01"
+    },
+    {
+      "name": "02月",
+      "value": "02"
+    },
+    {
+      "name": "03月",
+      "value": "03"
+    },
+    {
+      "name": "04月",
+      "value": "04"
+    },
+    {
+      "name": "05月",
+      "value": "05"
+    },
+    {
+      "name": "06月",
+      "value": "06"
+    },
+    {
+      "name": "07月",
+      "value": "07"
+    },
+    {
+      "name": "08月",
+      "value": "08"
+    },
+    {
+      "name": "09月",
+      "value": "09"
+    },
+    {
+      "name": "10月",
+      "value": "10"
+    },
+    {
+      "name": "11月",
+      "value": "11"
+    },
+    {
+      "name": "12月",
+      "value": "12"
+    }
+  ],
+  "status_": [
+    {
+      "name": "待处理",
+      "value": "1"
+    },
+    {
+      "name": "处理中",
+      "value": "2"
+    },
+    {
+      "name": "已处理",
+      "value": "3"
+    }
+  ],
+  "errorLogDataType": [
+    {
+      "name": "呼叫反馈数据",
+      "value": "CallCenterObResult"
+    },
+    {
+      "name": "DMS新车主数据",
+      "value": "DmsNewCarOwner"
+    }
+  ],
+  "ErrorLogStatus": [
+    {
+      "name": "未处理",
+      "value": "1"
+    },
+    {
+      "name": "已处理",
+      "value": "2"
+    }
+  ],
+  "analysisStatus": [
+    {
+      "name": "申诉前",
+      "value": "1"
+    },
+    {
+      "name": "申诉中",
+      "value": "2"
+    },
+    {
+      "name": "申诉后",
+      "value": "3"
+    }
+  ],
+  "calcStatus": [
+    {
+      "name": "待计算",
+      "value": "1"
+    },
+    {
+      "name": "计算中",
+      "value": "2"
+    },
+    {
+      "name": "计算完成",
+      "value": "3"
+    }
+  ],
+  "issueStatus": [
+    {
+      "name": "未下发",
+      "value": "1"
+    },
+    {
+      "name": "下发中",
+      "value": "2"
+    },
+    {
+      "name": "已下发",
+      "value": "3"
+    }
+  ],
+  "appealStatus": [
+    {
+      "name": "申诉未开始",
+      "value": "1"
+    },
+    {
+      "name": "申诉中",
+      "value": "2"
+    },
+    {
+      "name": "申诉结束",
+      "value": "3"
+    }
+  ],
+  "areaStatus": [
+    {
+      "name": "启用",
+      "value": "启用"
+    },
+    {
+      "name": "停用",
+      "value": "停用"
+    }
+  ],
+  "appealType": [
+    {
+      "name": "车主",
+      "value": "车主"
+    },
+    {
+      "name": "联系人",
+      "value": "联系人"
+    }
+  ],
+  "fieldClearType": [
+    {
+      "name": "正确",
+      "value": "正确"
+    },
+    {
+      "name": "添加",
+      "value": "添加"
+    },
+    {
+      "name": "更新",
+      "value": "更新"
+    }
+  ],
+  "auditStatus": [
+    {
+      "name": "未申诉",
+      "value": "1"
+    },
+    {
+      "name": "申诉待审核",
+      "value": "2"
+    },
+    {
+      "name": "申诉审核中",
+      "value": "3"
+    },
+    {
+      "name": "申诉已审核",
+      "value": "4"
+    }
+  ],
+  "AuditConclusion": [
+    {
+      "name": "未审核",
+      "value": "未审核"
+    },
+    {
+      "name": "通过",
+      "value": "通过"
+    },
+    {
+      "name": "部分通过",
+      "value": "未通过"
+    },
+    {
+      "name": "未通过",
+      "value": "未通过"
+    }
+  ],
+  "callStatus": [
+    {
+      "name": "空错号",
+      "value": "空错号"
+    },
+    {
+      "name": "停机关机",
+      "value": "停机关机"
+    },
+    {
+      "name": "秘书台",
+      "value": "秘书台"
+    },
+    {
+      "name": "停机关机",
+      "value": "停机关机"
+    },
+    {
+      "name": "不在服务区",
+      "value": "不在服务区"
+    },
+    {
+      "name": "无人接听",
+      "value": "无人接听"
+    },
+    {
+      "name": "忙音",
+      "value": "忙音"
+    },
+    {
+      "name": "未找到关键人",
+      "value": "未找到关键人"
+    },
+    {
+      "name": "稍后联系",
+      "value": "稍后联系"
+    }
+  ],
+  "plantFormSelect": [
+    {
+      "name": "iOS",
+      "value": "iOS"
+    },
+    {
+      "name": "Android",
+      "value": "Android"
+    }
+  ],
+  "questionTypeSelect": [
+    {
+      "name": "咨询类",
+      "value": "咨询类"
+    },
+    {
+      "name": "投诉类",
+      "value": "投诉类"
+    },
+    {
+      "name": "建议类",
+      "value": "建议类"
+    },
+    {
+      "name": "其他",
+      "value": "其他"
+    }
+  ],
+  "dealerTypeSelect": [
+    {
+      "name": "经销商",
+      "value": "0"
+    },
+    {
+      "name": "意见领袖",
+      "value": "1"
+    },
+    {
+      "name": "车主手册",
+      "value": "2"
+    },
+    {
+      "name": "活动",
+      "value": "3"
+    }
+  ],
+  "statusTypeSelect": [
+    {
+      "name": "待处理",
+      "value": "1"
+    },
+    {
+      "name": "处理中",
+      "value": "2"
+    },
+    {
+      "name": "已处理",
+      "value": "3"
+    },
+    {
+      "name": "失败",
+      "value": "4"
+    }
+  ],
+  "statusAuthenSelect": [
+    {
+      "name": "未审核",
+      "value": "0"
+    },
+    {
+      "name": "已审核",
+      "value": "1"
+    }
+  ],
+  "assessStatusSelect": [
+    {
+      "name": "未审核",
+      "value": "0"
+    },
+    {
+      "name": "审核中",
+      "value": "1"
+    },
+    {
+      "name": "已审核",
+      "value": "2"
+    }
+  ],
+  "batchTypeSelect": [
+    {
+      "name": "自动认证",
+      "value": "AUTO_AUTH"
+    },
+    {
+      "name": "每月认证报告",
+      "value": "MONTH_VERIFY_REPORT"
+    },
+    {
+      "name": "每日认证报告",
+      "value": "DAY_AUTH_REPORT"
+    },
+    {
+      "name": "认证数据发送DMS",
+      "value": "AUTH_TO_DMS"
+    },
+    {
+      "name": "公告预览记录保存至DB",
+      "value": "BROWSE_MSG_TO_DB"
+    },
+    {
+      "name": "菜单点击记录保存至DB",
+      "value": "BROWSE_MENU_TO_DB"
+    }
+  ],
+  "verifyTypeSelect": [
+    {
+      "name": "认证",
+      "value": "1"
+    },
+    {
+      "name": "解绑",
+      "value": "2"
+    }
+  ],
+  "sendDmsStatusTypeSelect": [
+    {
+      "name": "不发送",
+      "value": "0"
+    },
+    {
+      "name": "待发送",
+      "value": "1"
+    },
+    {
+      "name": "成功",
+      "value": "3"
+    },
+    {
+      "name": "失败",
+      "value": "2"
+    }
+  ],
+  "surveyStatus": [
+    {
+      "name": "未发布",
+      "value": 0
+    },
+    {
+      "name": "收集中",
+      "value": 1
+    },
+    {
+      "name": "已结束",
+      "value": 2
+    },
+    {
+      "name": "暂停中",
+      "value": 3
+    },
+    {
+      "name": "已删除",
+      "value": -2
+    },
+    {
+      "name": "永久删除",
+      "value": -1
+    }
+  ],
+  "sendResultSelect": [
+    {
+      "name": "成功",
+      "value": "成功"
+    },
+    {
+      "name": "失败",
+      "value": "失败"
+    }
+  ],
+  "operationTypeSelect": [
+    {
+      "name": "访问页面",
+      "value": "0"
+    },
+    {
+      "name": "点击抽奖",
+      "value": "1"
+    }
+  ],
+  "batchStatusSelect": [
+    {
+      "name": "未处理",
+      "value": "0"
+    },
+    {
+      "name": "已处理",
+      "value": "1"
+    }
+  ],
+  "statusAuthSelect": [
+    {
+      "name": "未领用",
+      "value": "0"
+    },
+    {
+      "name": "领用中",
+      "value": "1"
+    },
+    {
+      "name": "已领用",
+      "value": "2"
+    }
+  ],
+  "sendSmsSelect": [
+    {
+      "name": "待发送",
+      "value": "待发送"
+    },
+    {
+      "name": "已发送",
+      "value": "已发送"
+    },
+    {
+      "name": "发送失败",
+      "value": "发送失败"
+    }
+  ],
+  "sendDmsStatusSelect": [
+    {
+      "name": "待发送",
+      "value": "待发送"
+    },
+    {
+      "name": "发送中",
+      "value": "发送中"
+    },
+    {
+      "name": "已发送",
+      "value": "已发送"
+    }
+  ],
+  "cancelStatusSelect": [
+    {
+      "name": "否",
+      "value": "0"
+    },
+    {
+      "name": "是",
+      "value": "1"
+    }
+  ]
+
+}
+
+

@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>菜单列表</title>
+<link href="/fordwechat/static/css/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="content">
+	<form autocomplete="off" action="/admin/controll/60" method="post" id="pageForm">
+		<div class="outer">
+			<h3><a href="/admin/controll/62" class="icon_new">添加子菜单</a>菜单列表</h3>
+			<fieldset>
+			<p>
+				<input type="button" onclick="tongbu();" value="同步菜单到微信平台" />
+				<input type="hidden" name="sid" id="sid" value="" />
+			</p>
+			</fieldset>
+			<div class="tb">
+				<div class="table">
+					<table border="1" style="border-collapse:collapse;" >
+				      	<tr>
+					      	<td><b>主菜单名称</b></td>
+					      	<td><b>子菜单名称</b></td>
+							<td><b>菜单事件类别</b></td>
+							<td><b>关键字（click事件）</b></td>
+							<td><b>菜单链接（view事件）</b></td>
+							<td><b>排序序列</b></td>
+					      	<td><b>操作</b></td>
+				      	</tr>
+						{% if menu %}
+							{% for m in menu %}
+							<tr>
+							 <td>{{m['menu_name']}}</td>
+							 <td></td>
+							 <td>
+							 {% if m['menu_type'] %}
+								{{m['menu_type']}}
+							 {% end %}
+							 </td>
+							 <td>
+							 {% if m['menu_key'] %}
+								{{m['menu_key']}}
+							 {% end %}
+							 </td>
+							 <td>
+							 {% if m['menu_url'] %}
+								{{m['menu_url']}}
+							 {% end %}
+							 </td>
+							 <td>{{m['orderno']}}</td>
+							 <td>
+							 <a href="" >修改主菜单</a>
+							 </td>
+							</tr>
+								{% if m['submenu'] %}
+									{% for sub in m['submenu'] %}
+										<tr>
+										 <td></td>
+										 <td>{{sub['menu_name']}}</td>
+										 <td>
+										 {% if sub['menu_type'] %}
+											{{sub['menu_type']}}
+										 {% end %}
+										 </td>
+										 <td>
+										 {% if sub['menu_key'] %}
+											{{sub['menu_key']}}
+										 {% end %}
+										 </td>
+										 <td>
+										 {% if sub['menu_url'] %}
+											{{sub['menu_url']}}
+										 {% end %}
+										 </td>
+										 <td>{{sub['orderno']}}</td>
+										 <td>
+										 <a href="" >修改子菜单</a>
+										 <a href="/admin/controll/64?id={{}}" >删除</a>
+										 </td>
+										</tr>
+									{% end %}
+								{% end %}
+							{% end %}
+						{% end %}
+				    </table>
+				</div>
+			</div>
+		</div>
+</form>	
+<script src="/fordwechat/static/js/jquery-1.7.2.min.js"></script>
+<script language="javascript" type="text/javascript"
+	src="/fordwechat/static/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+if('{{msg}}'!=''){
+	alert('{{msg}}');
+}
+function tongbu(){
+	$.post("/admin/controll/61", 
+	function(data){
+		alert(data);
+	});
+}
+function delsub(id){
+	$("#sid").val(id);
+	$("#pageForm").attr("action", "/admin/controll/64");
+	$("#pageForm").submit();
+}
+</script>
+</body>
+</html>

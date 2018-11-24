@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="keywords" content="">
+<meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="/static/applink/resources/css/a.css">
+</head>
+<body>
+<div class="viewport">
+    <div class="page">
+        <div class="f_top">
+            <img src="/static/applink/resources/images/wechat-1-01.jpg" alt=""/>
+            <p style="font-size: 16px;font-weight: bolder;color: #5f5f5f;border-bottom: 1px solid #c4c4c4;padding: 10px 0;line-height: 22px;width: 94%;margin: auto;letter-spacing: 1px;">
+                迄今为止，已有豆瓣、蜻蜓、考拉、腾讯、网易、喜马拉雅、央广7家公司（包括12款应用程序）与福特合作。
+            </p>
+        </div>
+    	<div class="s_list">
+    		<nav class="f_app_list data-list" id="data-list">
+
+			</nav>
+    	</div>
+
+    	<div class="p_line"></div>
+    	<div class="p_view">
+            <div class="v_top"><img src="/static/applink/resources/images/al002.jpg" alt=""/></div>
+    		<div class="v_link">
+    			<a href="http://www.ford.com.cn/sync/support/user-guide?v=101" class="bg1">
+    				<h3 class="v_link_icon1"></h3>
+	        		<p class="v_more_l">用户指南</p>
+	        		<div class="t_more_r"><p class="v_more_arrow"></p></div>
+        		</a>
+        		<a href="http://www.ford.com.cn/sync/support/compatibility-chart/mobile?v=101" class="bg2">
+        			<h3 class="v_link_icon2"></h3>
+	        		<p class="v_more_l">手机/媒体播放器兼容性列表</p>
+	        		<div class="t_more_r"><p class="v_more_arrow"></p></div>
+        		</a>
+    		</div>
+            <div class="v_txt" style="font-size: 16px;letter-spacing: 1px;">
+                <p>
+                    你是否幻想过在未来某一天，你的爱车和人类一样智能，了解你所有的需求和驾驶习惯，只需一句话就能够规划好一整天的行车路线，
+                    更便捷地享受车内音乐，和社交网站上的好友轻松互动......
+                </p>
+                <p>
+                    现在，福特正为了实现车主的期待而努力，SYNC<span class="font-corner">&reg;</span>独有的福特AppLink™可在驾驶途中，通过语音指令操控，将您与您最喜爱的手机应用程序相联
+                    （福特AppLink™仅适用于部分福特车型）。
+                </p>
+                <p>
+                    访问您最喜爱的音乐和有声读物，随时了解当地路况及天气情况，提高工作效率的同时，不错过任何新闻和体育赛事。一切，都可在驾驶途中，通过福特AppLink™语音操控，轻松实现。
+                </p>
+            </div>
+			<div class="v_read"><span>点击<a href="http://www.ford.com.cn/sync">阅读原文</a>，了解更多福特AppLink™使用指南。</span></div>
+    	</div>
+    </div>
+</div>
+<div class="ios_mark"></div>
+<div class="ios_layer">
+	<div class="ios_box">
+		<div class="ios_close"></div>
+		<div class="ios_txt">
+			<h3>尊敬的用户</h3>
+			<p>自2013年起微信不支持ios版本的手机直接在微信端打开链接，如您需要下载该app软件，请点击微信右上方“...”图标，通过其他浏览器打开链接，如有不便敬请谅解，谢谢！</p>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/static/applink/resources/js/zepto.min.js"></script>
+<script src="/static/js/common.js"></script>
+<script type="text/javascript">
+    //alert(encodeURIComponent("图标"));
+    //document.location="http://localhost:8080/templates/applink/c.html?openid=dsfs1234"; //+ encodeURIComponent("图标");
+	$(function(){
+		var win = {
+			'width': $(window).width(),
+			'height': $(window).height()
+		};
+		var create = function() {
+			$('.ios_mark').css({
+				'width': win.width + 'px',
+				'height': win.height + 'px',
+				'background': '#fff'
+			});
+			$('.ios_layer').css({
+				'width': (win.width - 30) + 'px',
+				'top': ((win.height - 140) / 2) + 'px',
+				'left': '15px'
+			});
+			$('.ios_mark,.ios_layer').show();
+		};
+
+		$.getJSON('/fordwechat/applink.do', function (data) {
+			html = (function (data) {      //数据渲染
+				var liArr = [];
+                $.each(data, function (indx, item) {
+                    liArr.push(item);
+				});
+				return liArr.join('');
+			})(data);
+			//alert(html);
+			$('#data-list').empty();
+			$('#data-list').append(html);
+		});
+
+	});
+
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;
+i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();
+a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-69201345-2', 'auto');
+ga('send', 'pageview');
+
+ga('set','campaignName','applink下载');
+    ga('set', 'campaignSource', openid);
+ga('set','campaignMedium','weixin');
+
+
+    //html = (function (data) {      //数据渲染
+    //	var liArr = [];
+    //	$.each(data, function (indx,item) {
+    //		alert(item);
+    //		liArr.push(item);
+    //	});
+    //	return liArr.join('');
+    //})(data);
+    //alert(html);
+</script>
+</body>
+</html>

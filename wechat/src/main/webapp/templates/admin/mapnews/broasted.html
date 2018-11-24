@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>未回答问题列表</title>
+<link href="/fordwechat/static/css/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="content">
+	<form autocomplete="off" action="/admin/controll/24" method="post" id="pageForm">
+		<div class="outer">
+			<div class="tb">
+				<div class="table">
+					<table border="1" style="border-collapse:collapse;" >
+				      	<tr>
+					      	<td><b>发送图文消息标题</b></td>
+					      	<td><b>发送时间时间</b></td>
+					      	<td><b>发送过后是否删除</b></td>
+							<td><b>操作</b></td>
+				      	</tr>
+						{% if pagination != None %}
+							{% for b in pagination['paglist'] %}
+							<tr>
+							 <td>{{b['news_title']}}</td>
+							 <td>{{b['send_date']}}</td>
+							 <td>{% if b['flag']==0 %}否{% else %}是{% end %}</td>
+							 <td><a href="/admin/controll/25?id={{b['id']}}">查看详情</a></td>
+							</tr>
+							{% end %}
+						{% end %}
+				    </table>
+				</div>
+			</div>
+			{% if pagination != None %}
+			<div >
+				<input type="hidden" id="pageno" name="pageno" value="{{pageno}}"/>
+				<span>共{{pagination['totalcount']}}条纪录</span>  <span>{{pagination['pageno']}}/{{pagination['totalpag']}}页</span>  <span>第{{pagination['pageno']}}页</span>
+				<a href="javascript:;" onclick="subForm({{pagination['pageno']-1}},{{pagination['totalpag']}})">&lt;上一页</a>
+				<a href="javascript:;" onclick="subForm({{pagination['pageno']+1}},{{pagination['totalpag']}})">下一页&gt;</a>
+			</div>
+			{% end %}
+		</div>
+
+	</form>
+	
+	<script src="/fordwechat/static/js/jquery-1.7.2.min.js"></script>
+	<script language="javascript" type="text/javascript"
+		src="/fordwechat/static/js/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript">
+	function subForm(pageNo,totalpag){
+		if (pageNo < 1)
+			pageNo = 1;
+		if (pageNo > totalpag)
+			pageNo = totalpag;
+		$("#pageno").val(pageNo);
+		$("#pageForm").attr("action", "/admin/controll/24");
+		$("#pageForm").submit();
+	}
+</script>
+</body>
+</html>

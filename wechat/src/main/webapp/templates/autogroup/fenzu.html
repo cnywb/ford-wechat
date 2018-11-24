@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no" />
+
+<title>选择你的位置 - 福特</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="/static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+function setVideoSize(){
+        $('.fenzuWrap').css({ 'width' : $(window).width() ,  'height' : $(window).height() });
+    }
+    $(window).resize(setVideoSize);
+    window.onload = setVideoSize;
+</script>
+</head>
+<body>
+	<div class="fenzuWrap">
+        <div class="bigbg"></div>
+		<ul class="link">
+			<li class="Owners"><a href="/fordwechat/control?state=31">&lt; 我是车主</a></li>
+			<li class="buyCar"><a href="/fordwechat/control?state=500">我想购车 &gt;</a></li>
+		</ul>
+    </div>
+</body>
+</html>

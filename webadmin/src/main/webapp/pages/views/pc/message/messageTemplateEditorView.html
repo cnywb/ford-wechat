@@ -1,0 +1,29 @@
+<form name="dataForm" novalidate ng-submit="submitForm(dataForm.$valid)">
+    <div class="modal-body form-horizontal form">
+        <div class="form-body portlet light">
+            <div class="portlet-title">
+                <div class="caption font-green-sharp">
+                    <i class="icon-luru iconfont font-green-sharp  tabIcon"></i>
+                    <span class="caption-subject bold uppercase">模板数据信息</span>
+                </div>
+                <div class="tools">
+                    <i class="iconfont icon-guanbi" ng-click="cancel()"></i>
+                </div>
+            </div>
+            <div class="tab-content">
+                <div class="portlet-body">
+                    <db-form-fields></db-form-fields>
+
+                    <db-data-table></db-data-table>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn " ng-class="{'btn-info':dbForm.globalFieldEditor,'btn-danger':!dbForm.globalFieldEditor}" ng-show="dbForm.showEditBtn" type="button" ng-click="dbForm.changeEditStatus()">
+                        {{dbForm.globalFieldEditor?'编辑':'取消'}}
+                    </button>
+                    <button class="btn btn-primary" type="submit" ng-show="!dbForm.showEditBtn || !dbForm.globalFieldEditor">确定</button>
+                    <button class="btn btn-warning" type="button" ng-click="cancel()">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

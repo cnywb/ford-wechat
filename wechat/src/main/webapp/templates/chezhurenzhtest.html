@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no" />
+<title>长安福特微客服</title>
+<link rel="stylesheet" href="static/css/main.css">
+<script src="static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;
+i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();
+a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-69201345-2', 'auto');
+ga('send', 'pageview');
+
+ga('set','campaignName','车主认证');
+ga('set','campaignSource','{{openid}}');
+ga('set','campaignMedium','weixin');
+function vinmsgHtml(html){
+	$("#vinmsg").empty();
+	$("#vinmsg").append(html);
+	$("#vinmsg").append('<br><a href="javascript:;" class="close" id="close1"><img src="static/images/submit_btn02.gif" alt=""></a>');
+	$("#close1").click(function(){
+		$("#msg1").hide();
+	});
+	$("#msg1").show();
+}
+$(document).ready(function(){
+	ff = parseInt($("#f").val()) + 1;
+	$("#f").val(ff);
+	if ($("#msg").val() != "" && ff==1)
+	{
+		$("#msg0").show();
+	}
+	$("#close0").click(function(){
+	var msg = $("#msg").val();
+	$("#msg").val("");
+    $("#msg0").hide();
+	//如果认证成功则跳转到刮刮卡抽奖页面
+	if(msg && msg.indexOf("认证成功")>-1 && ff==1)
+	{
+		//window.location.href='/fordwechat/control?state=305&vin=' + $("#vin").val();/points/validate.html?openId=1234567890
+		window.location.href='http://p.xiqing.info/validate.html?openId={{openid}}';
+	}
+		
+	//WeixinJSBridge.call('closeWindow');//微信中关闭当前页面
+  });
+  
+  $(".tongybtn").click(function(){
+	$("#pageForm").submit();
+  });
+  $("#forgetvin").click(function(){
+	mobile = $("#mobile").val();
+	var reg = /^1[34587]\d{9}/;
+	if($.trim(mobile)=="" || !reg.test($.trim(mobile)) || $.trim(mobile).length!='11')
+	{
+		vinmsgHtml("您还没有填写手机号码，请完整填写，以便我们将VIN码发送至您的手机。")
+		return;
+	}
+	$.ajax({
+		async:false,
+		url: 'http://58.68.246.107/club_mobile/member/getVinsBySmsJSONP.htm',
+		type: "GET",
+		dataType: 'jsonp',
+		jsonp: 'jsonpcallback',
+		data: {'mobilePhoneNo':mobile},
+		timeout: 5000,
+		beforeSend: function(){
+		//jsonp 方式此方法不被触发.原因可能是dataType如果指定为jsonp的话,就已经不是ajax事件了
+		},
+		success: function (json) {
+			if(json.code=='1'){
+				vinmsgHtml('您填写的手机号码正确！您的VIN码将以短信形式发送至您的手机，请注意查收。正确填写VIN码等信息即可成为微客服认证车主。');
+			}else{
+				vinmsgHtml('对不起！系统未能查询到您的手机号码，请填写您在购车时预留的信息，或近期维修保养时填写的联系方式。如有疑问，请拨打<a href="tel:400-887-7766">400-887-7766</a>转3，由人工客服为您解决。');
+			}
+		},
+		complete: function(XMLHttpRequest, textStatus){
+		
+		},
+	   error: function(xhr){
+		//jsonp 方式此方法不被触发.原因可能是dataType如果指定为jsonp的话,就已经不是ajax事件了
+		//请求出错处理
+		alert("请求出错(请检查相关度网络状况.)");
+	   }
+	});
+	
+  });
+});
+</script>
+</head>
+
+<body>
+<form action="{{control_url}}?state=33000" method="post" id="pageForm">
+<div class="wrap">
+	<div class="chezhurz">
+		<div class="fl">
+			<h2>认证车主尊享</h2>
+			<p><img src="static/images/chezhu_logo.gif" alt=""></p>
+		</div>
+		<ul class="fr">
+			<li>查看维修保养记录</li>
+			<li>查看电子账户记录</li>
+			<li>参与认证车主有奖互动活动</li>
+			<li>与厂家对话，专家在线为您解答用车养车疑惑</li>
+			<li>获取厂家/经销商服务促销/活动咨询</li>
+			<li>更多车主专享礼遇，期待上线</li>
+			
+		</ul>
+	</div>
+	<div class="chezhurz-box">
+		<p>*为必填信息，请填写购车时预留的信息，或近期维修保养时填写的联系方式。</p>
+		<table cellpadding="0" cellspacing="0" width="100%" class="tablety">
+			<tr>
+				<th width="40%">＊姓 &nbsp;  &nbsp;   名</th>
+				<td width="60%"><input type="text" value="{{name}}" name="name" class="q-tt3" /></td>
+			</tr>
+			<tr>
+				<td height="28" class="border0" colspan="2"></td>
+			</tr>
+			<tr>
+				<th>＊手 &nbsp;  &nbsp;   机</th>
+				<td><input type="text" value="{{mobile}}" name="mobile" id="mobile" class="q-tt3" /></td>
+			</tr>
+			<tr>
+				<td height="28" class="border0" colspan="2"></td>
+			</tr>
+			<tr>
+				<th>＊车辆VIN码</th>
+				<td><input type="text" value="{{vincode}}" name="vincode" class="q-tt3" /></td>
+				<input type="hidden" name="vin" id="vin" value="{{vincode}}" />
+				<input type="hidden" name="source_state" id="source_state" value="{{source_state}}" />
+				<input type="hidden" name="dealercode" id="dealercode" value="{{dealercode}}" />
+			</tr>
+			<tr>
+				<td height="28" class="border0" colspan="2"></td>
+			</tr>
+			<tr>
+				<td height="48" class="border0" colspan="2" align="right"><a href="javascript:;" id="forgetvin" style=" font-size: 3em; text-decoration: underline; color: #979797;">忘记VIN码</a></td>
+			</tr>
+			<tr>
+				<td height="28" class="border0" colspan="2"></td>
+				<input type="hidden" name="f" id="f" value="0">
+			</tr>
+		</table>
+		<a href="javascript:;" class="tongybtn">确认提交</a>
+	</div>
+</div>
+<div class="quspopup" id="msg0">
+	<p>
+	{% if msg == 'customer_service'%}
+		是否需要人工服务，若需要请拨打客服热线：<a href="tel:400-887-7766">400-887-7766</a>按数字键转1，由人工客服为您解答，我们的人工坐席服务时间为每天上午9点-下午18点。
+	{% else %}
+		{{msg}}
+	{% end %}
+	<br><a href="javascript:(0);" class="close" id="close0"><img src="static/images/submit_btn02.gif" alt=""></a></p>
+	<input type="hidden" name="msg" id="msg" value="{{msg}}" />
+</div>
+<div class="quspopup" id="msg1">
+	<p id="vinmsg">
+	</p>
+</div>
+</form>
+</body>
+{% include 'common.html' %}
+</html>

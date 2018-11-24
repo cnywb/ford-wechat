@@ -1,0 +1,62 @@
+html,body{width:100%; height:100%;}
+body{font-family:"mircrosoft yahei","微软雅黑","ST-Heiti",Tahoma, Verdana, Arial, Geneva, sans-serif; background:url(../i/bg.png);}
+img{border:none;}
+ul,li,dd,dl{margin:0; padding:0; list-style: none;}
+.dn{display:none;}
+.db{display:block;}
+.ab{position:absolute;}
+.ab00{position:absolute;left: 0;top:0;}
+.ab01{position:absolute;left: 0;bottom:0;}
+.ab10{position:absolute;right: 0;top:0;}
+.ab11{position:absolute;right: 0;bottom:0;}
+.tc {text-align: center;}
+
+.wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+}
+.logo{
+	left: 30px;
+	top: 24px;
+}
+.forgetPswd {
+	right: 52px;
+	top: 820px;
+	display: block;
+	width: auto;
+	height: auto;
+}
+.submitBtn {
+	bottom: 25px;
+	left: 50%;
+	margin-left: -127px;
+	
+}
+.inputBlock {
+	background: transparent;
+	border: none;
+	font-size: 1.6rem;
+	border-radius: 0;
+	-webkit-box-shadow:inset 0;
+	-moz-box-shadow:inset 0;
+	box-shadow:inset 0;
+	color: #000000;
+	padding: 0px;
+	outline: none;
+	width: 290px;
+}
+.inputName {
+	left: 153px;
+	top: 556px;
+}
+.inputMobi {
+	left: 180px;
+	top: 651px;
+}
+.inputVin {
+	top: 750px;
+	left: 230px;
+}

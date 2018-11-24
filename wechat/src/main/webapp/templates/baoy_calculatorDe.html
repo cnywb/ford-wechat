@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no" />
+<title>长安福特微客服</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="/static/js/jquery-1.7.2.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var cartype = getparamvalue("cartype");
+            var lictype = getparamvalue("lictype");
+			var year = getparamvalue("year");
+			var month = getparamvalue("month");
+            $.ajax({
+                type: "POST",
+                url: "/fordwechat/getallcalcultors.do",
+				data: {cartype: cartype, lictype: lictype, year: year, month: month},
+                datatype: "json",
+                async: false,
+                success: function (data) {
+                    $('#changes').empty();
+                    $('#checkes').empty();
+                    $.each(data.changes, function (index, item) {
+                        $('#changes').append('<dt><span class="fl">' + (index + 1) + '.' + item.project + '</span>');
+                        $('#changes').append('<dd>查询结论：' + item.result + '</dd>');
+                    });
+                    $.each(data.checkes, function (index, item) {
+                        $('#checkes').append('<li>' + (index + 1) + '.' + item.project + '</li>');
+                    });
+                }
+
+            });
+        });
+    </script>
+</head>
+
+<body>
+<div class="wrap"> 
+	<div class="calcu-boxDe">
+		<h2 class="mtb10">保养计算器</h2>
+		<p class="js">
+			以下建议是基于使用长安福特原厂零件，在正常使用环境下，从技术上对车辆例行保养间隔的最低标准要求。如车辆经常在多尘路况，或长期短>距离、怠速、低速行驶时，建议缩短保养周期，并定期给予爱车全方位的专业检测养护。最终保养项目以经销商实车检查情况为准。</p>
+		<h3>需要更换的保养项目</h3>
+        <dl class="byxmdl" id="changes">
+            <!--<span class="fr"><font>{{items1[i]['price']}}</font></span>--></dt>
+		</dl>
+		<h3>需要检查的保养项目</h3>
+		<p class="js" style="margin-bottom: 15px;">以下项目不是到期必须更换，但到期必须进行检查，最终视检查损耗程度决定是否需要更换。</p>
+        <ul class="byxmul" id="checkes">
+		</ul>
+	</div>
+</div>
+</body>
+</html>

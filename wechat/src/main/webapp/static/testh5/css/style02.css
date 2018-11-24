@@ -1,0 +1,259 @@
+body, div, dl, dt, dd, ul, ol, li,
+h1, h2, h3, h4, h5, h6, pre, code,
+form, fieldset, legend, input, button,
+textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+	}
+fieldset, img {
+    border: 0;
+	display: block;
+	}
+ul,ol {
+	list-style:none;
+	}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+	border-left: 1px solid #cccccc;
+	}
+a{
+	text-decoration:none;
+	}
+a:hover{
+	text-decoration:underline;
+	}
+small {
+	font-size:12px;
+	}
+h1,h2,h3,h4,h5,h6,button,input,select,textarea {
+	font-size:100%;
+	}
+label,input,select,form img,button,textarea {
+	vertical-align:middle;
+	}
+address, caption, cite, code, dfn,
+em, strong, th, optgroup {
+    font-style: normal;
+    font-weight: normal;
+	}	
+.clear:after { 
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clear {
+	display: inline-block;
+	}
+/* Hides from IE-mac \*/
+* html .clear {
+	height: 1%;
+	} 
+.clear {
+	display: block;
+
+	} 
+/* End hide from IE-mac */
+.block { display: block;}
+.none { display: none;}
+/* header */
+   html, body {
+        position: relative;
+        height: 100%;
+    }
+    body {
+        background: #1d1e1f;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+    }
+.index{
+position:relative;
+background:url('../img/h5bg.jpg') no-repeat;
+background-size:100%;
+width:640px;
+height: 100%;
+overflow: hidden;
+}
+ .mask img{
+	position: absolute;top: 0;
+ }
+ img.p1 {
+  top: 80%;
+  left: 30%;
+  z-index: 1;
+}
+img.p2 {
+  top: 43%;
+  left: -2%;
+    z-index: 1;
+}
+img.p7 {
+  top: 392px;
+  left: 157px;
+  z-index: 1;
+   z-index: 1;
+}
+img.p3 {
+  top: 420px;
+  right: 0;
+   z-index: 1;
+  transform-origin: 0px 183px;
+  -o-transform-origin: 0px 183px;
+  -moz-transform-origin: 0px 183px;
+  -webkit-transform-origin: 0px 183px;
+}
+img.p4 {
+  top: 31%;
+  left: 38%;
+   z-index: 1;
+}
+
+img.p5 {
+  top: 32%;
+  left: 72%;
+   z-index: 1;
+}
+
+img.p6 {
+  top: 32%;
+  left: 72%;
+   z-index: 1;
+}
+.boxup{-webkit-animation:updown  0.5s infinite ;-moz-animation:updown 0.5s infinite;-o-transform:updown 0.5s infinite ;animation:updown 0.5s infinite;}
+
+@-webkit-keyframes updown{
+	 100%{top: 385px}
+	50%{top: 392px}
+	0%{top: 385px}
+}
+
+@-moz-keyframes updown{
+    100%{top: 385px}
+	50%{top: 392px}
+	0%{top: 385px}
+}
+@-o-keyframes updown{
+     100%{top: 385px}
+	50%{top: 392px}
+	0%{top: 385px}
+}
+@keyframes updown{
+    100%{top: 385px}
+	50%{top: 392px}
+	0%{top: 385px}
+}
+
+.musicrotate{-webkit-animation:rotate 2s infinite ;-moz-animation:rotate 2s infinite;-o-transform:rotate 2s infinite ;animation:rotate 2s infinite;}
+
+@-webkit-keyframes rotate{
+	100%{-webkit-transform:rotate(5deg);}
+	50%{-webkit-transform:rotate(-5deg);}
+    0%{-webkit-transform:rotate(5deg);}
+}
+
+@-moz-keyframes rotate{
+    100%{-moz-transform: rotate(5deg);}
+	50%{-moz-transform: rotate(-5deg)}
+    0%{-moz-transform: rotate(5deg)}
+}
+@-o-keyframes rotate{
+    100%{-o-transform: rotate(5deg);}
+	100%{-o-transform: rotate(-5deg);}
+    0%{-o-transform: rotate(5deg)}
+}
+@keyframes rotate{
+    100%{transform: rotate(5deg);}
+	50%{transform: rotate(-5deg);}
+    0%{transform: rotate(5deg)}
+}
+
+
+.maskon{-webkit-animation:maskopacity 1s infinite ;-moz-animation:maskopacity 1s infinite;-o-transform:maskopacity 1s infinite ;animation:maskopacity 1s infinite ;}
+
+
+@-webkit-keyframes maskopacity{
+	100%{opacity:0}
+    50%{opacity:1}
+    0%{opacity:0;}
+}
+
+@-moz-keyframes maskopacity{
+	100%{opacity:0}
+    50%{opacity:1}
+    0%{opacity:0;}
+}
+@-o-keyframes maskopacity{
+	100%{opacity:0}
+    50%{opacity:1}
+    0%{opacity:0;}
+}
+@keyframes maskopacity{
+	100%{opacity:0}
+    50%{opacity:1}
+    0%{opacity:0;}
+}
+
+
+/*弹出框*/
+.dialog-mod {
+
+    display: none;
+	border-radius: 15px;
+	position: absolute;
+	padding: 15px;
+	width: 80%;
+	height:20%;
+	top: 22%;
+	left: 6%;
+	/*background: #eef0f1;*/
+    background: rgba(216, 219, 221, 0.9);
+	z-index: 999;
+	text-align: center;
+}
+
+.close {
+	position: absolute;
+	width: 10%;
+	top: 5px;
+	right: 5px;
+}
+
+.dialog-mod {
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 18px;
+	margin-bottom: 12px;
+}
+
+.dialog-mod p {
+	margin-bottom: 5px;
+}
+
+/*没中奖*/
+.dialog-mod .no-msg {
+    color: #435b6a;
+    margin: 13px;
+    text-align: center;
+}
+
+.dialog-mod .no-msg p{
+    margin-bottom: 3px;
+}
+
+.dialog-btn {
+	/*position: relative;*/
+	top: 8px;
+	left: 35%;
+	width: 30%;
+	background-color: #f3f4f5;
+	border: 1px outset #c0c3c5;
+	text-align: center;
+	border-radius: 4px;
+    font-size: 12px;
+    line-height: 14px;
+    padding: 4px;
+}

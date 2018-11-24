@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--移动端版本兼容 -->
+<link rel="stylesheet" href="/fordwechat/static/lantern/assets/css/style.css" />
+<script type="text/javascript">
+var phoneWidth = parseInt(window.screen.width);
+var phoneScale = phoneWidth / 640;
+var ua = navigator.userAgent;
+if(window.screen.height == 480) {
+document.write('<link href="/fordwechat/static/lantern/assets/css/style.css" rel="stylesheet" />');
+}
+if(/Android (\d+\.\d+)/.test(ua)) {
+var version = parseFloat(RegExp.$1);
+if(version > 2.3) {
+document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+} else {
+document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+}
+} else {
+document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;
+i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();
+a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-69201345-2', 'auto');
+ga('send', 'pageview');
+</script><meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
+
+<!--移动端版本兼容 end -->
+<title>忠粉来站队  福运送不停</title>
+</head>
+<body>
+	<div class="page">
+		<img src="/fordwechat/static/lantern/assets/i/bg.jpg" />
+	</div>
+	<div class="borderHold">
+		
+	</div>
+	<img src="/fordwechat/static/lantern/assets/i/topTitle.png" class="titleLight">
+	<img src="/fordwechat/static/lantern/assets/i/formBg.png" class="formP">
+	<input type="text" class="inputForm inputName"/>
+	<input type="tel" class="inputForm inputTel" maxlength="13"/>
+		<select class="selectArea selectCar">
+				<option value="0" selected>请选择</option>
+				<option value="167:经典福克斯">经典福克斯</option>
+                <option value="168:福睿斯">福睿斯</option>
+                <option value="170:新蒙迪欧">新蒙迪欧</option>
+                <option value="171:致胜">致胜</option>
+				<option value="173:全新福克斯">全新福克斯</option>
+                <option value="174:福特金牛座">福特金牛座</option>
+                <option value="175:翼搏">翼搏</option>
+                <option value="176:翼虎">翼虎</option>
+                <option value="177:全新锐界">全新锐界</option>
+		</select>
+		<select class="selectArea selectDate">
+				<option value="0" selected>请选择</option>
+				<option value="1">0-3个月内</option>
+				<option value="2">4-6个月</option>
+				<option value="3">7-12个月</option>
+				<option value="4">1-2年</option>
+				<option value="5">有购车计划但没决定时间</option>
+				<option value="6">暂无购车计划</option>
+		</select>
+		<select class="selectArea selectProvince" id="province">
+				<option value="0" selected>请选择省</option>
+				{% for p in provinces %}
+					<option>{{ p['dealer_province'] }}</option>
+				{% end %}
+		</select>
+		<select class="selectArea selectCity" id="city">
+				<option value="0" selected>请选择市</option>
+		</select>
+		<select class="selectArea selectDealer" id="dealer">
+				<option value="0" selected>(可选填)</option>
+		</select>
+		<img src="/fordwechat/static/lantern/assets/i/btn.png" class="btnSubmit"/>
+		<img src="/fordwechat/static/lantern/assets/i/caFord.png" class="leftLogo">
+		<img src="/fordwechat/static/lantern/assets/i/logo.png" class="rightLogo">
+		<div class="overlay successLayer dn">
+			<img src="/fordwechat/static/lantern/assets/i/successPic.png" class="successPic">
+			<img src="/fordwechat/static/lantern/assets/i/successBottom.png" class="successBottom">
+			<img src="/fordwechat/static/lantern/assets/i/shareBtn.png" class="shareBtn">
+			<div class="shareCopy">
+				<p>展厅还有更多惊喜：</p>
+				<p>2月20日-22日期间订购长安福特任意车型， </p>
+				<p>并于2月29日前提车，</p>
+				<p>即可赢取最高4,999元的现金大奖哦！</p>
+			</div>
+			<img src="/fordwechat/static/lantern/assets/i/close.png" class="close">
+		</div>
+		<div class="overlay shareLayer dn">
+			<img src="/fordwechat/static/lantern/assets/i/shareArrow.png" class="shareArrow">
+			<img src="/fordwechat/static/lantern/assets/i/successBottom.png" class="successBottom">
+		</div>
+		
+		
+<script src="/fordwechat/static/lantern/assets/js/jquery-1.11.3.min.js"></script>
+<script src="/fordwechat/static/lantern/assets/js/jquery.easydropdown.js"></script>
+<script src="/fordwechat/static/lantern/assets/js/index.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/fordwechat/static/lantern/assets/js/wechat.js"></script>
+<script>
+
+</script>
+</body>
+</html>

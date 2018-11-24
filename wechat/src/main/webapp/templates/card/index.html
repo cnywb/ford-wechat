@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<meta name="author" content="markus-allyes" />
+<meta name="description" content="" />
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="/fordwechat/static/card/css/style.css">
+<script src="/fordwechat/static/card/js/lm_dealer.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+</head>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;
+i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();
+a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-69201345-2', 'auto');
+ga('send', 'pageview');
+
+ga('set','campaignName','售前卡卷领取活动');
+ga('set','campaignSource','{{openid}}');
+ga('set','campaignMedium','weixin');
+
+var mengvalue = -1;
+//if(mengvalue<0){mengvalue=0;}
+var phoneWidth = parseInt(window.screen.width);
+var phoneScale = phoneWidth / 640;
+
+var ua = navigator.userAgent;
+if (/Android (\d+\.\d+)/.test(ua)) {
+	var version = parseFloat(RegExp.$1);
+	// andriod 2.3
+	if (version > 2.3) {
+		document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+		// andriod 2.3以上
+	} else {
+		document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+	}
+	// 其他系统
+} else {
+	document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script>
+<body>
+<div class="wrap">
+  <div class="cont">
+    <a href="javascript:void(0);" class="cardSubtn"><a href="javascript:void(0);" class="cardSubtn"><img src="/fordwechat/static/card/images/btn.png"></a></a>
+  </div>
+</div>
+<script type="text/javascript" src="/fordwechat/static/card/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+  var card_id, code_id, is_subsrcibe;
+  var ua = navigator.userAgent,
+      is_ios = /(iPhone|iPad|iPod|iOS)/i.test(ua),
+      is_android = /(Android)/i.test(ua);
+  //获取微信版本号：例如5.2.1
+  function get() {
+    var reg = /MicroMessenger\/([\d\.]+)/i,
+        ret = ua.match(reg);
+
+    if (ret && ret[1]) {
+      return ret[1];
+    }
+    return false;
+  }
+
+  if (typeof WeixinJSBridge == "undefined") {
+    if (get() >= '5.5') {
+      document.addEventListener('WeixinJSBridgeReady', onBridgeReady);
+    } else {
+      document.addEventListener('WeixinJSBridgeReady', onBridgeReadyold);
+    }
+  } else {
+    if (get() >= '5.5') {
+      onBridgeReady();
+    } else {
+      onBridgeReadyold();
+    }
+  }
+});
+
+function onBridgeReady() {
+   $(function() {
+    $('.cardSubtn').click(function() {
+	  ga('send', 'event', 'Link', 'Click','售前卡卷领取点击',1);
+      getCardSignature();
+    });
+  });
+}
+function onBridgeReadyold() {
+    return false;
+}
+
+window.cardExt = {
+    code: '',
+    openid: '',
+    timestamp: '',
+    signature: '',
+}
+function getCardSignature() {
+    //var card_id='pULu_jpJ9F-FgWiDoDwli3DtU1PU';
+	var card_id='pULu_jqoCLLL7omMB_bP2NxtM5cw';
+    //var jsonURL = "http://122.144.137.144:8080/api/game/getCardTicket"
+	var  jsonURL="http://www.changanfordwechat.com/getinfo?state=7";
+    $.ajax({
+        url: jsonURL,
+        dataType: 'jsonp',
+        data: {card_id: card_id},
+        jsonp: 'callback',
+        timeout: 10000,
+        success: function(res) {
+            //console.log(data);
+            window.cardExt.timestamp = res.timestamp;
+            window.cardExt.signature = res.signature;
+
+            getPrize();
+        },
+        error: function(event, data) {
+            //error redirect to anthoer page
+        }
+    });
+    return true;
+}
+function getPrize() {
+  //var card_id='pULu_jpJ9F-FgWiDoDwli3DtU1PU';
+	var card_id='pULu_jqoCLLL7omMB_bP2NxtM5cw';
+    WeixinJSBridge.invoke('batchAddCard', {
+        "card_list": [
+            {
+                "card_id": card_id,
+                "card_ext": "{\"code\":\"\",\"openid\":\"\",\"timestamp\":\"" + window.cardExt.timestamp + "\",\"signature\":\"" + window.cardExt.signature + "\"}"
+            },
+        ],
+    },
+      function(res) {
+      /*   res = JSON.stringify(res);
+     alert(res);
+         */
+       }
+    );
+}
+function dump_obj(myObject) {
+    var s = "";
+    for (var property in myObject) {
+        s = s + "\n " + property + ": " + myObject[property];
+    }
+    return s;
+}
+
+</script>
+</body>
+</html>
+

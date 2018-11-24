@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:batch="http://www.springframework.org/schema/batch"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+      	http://www.springframework.org/schema/batch
+      	http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
+
+
+    <!--邮件发送批次审核-->
+
+
+    <batch:job id="jobTestJob">
+        <batch:description>邮件发送批次</batch:description>
+        <!--用户-->
+        <batch:validator>
+            <bean class="org.springframework.batch.core.job.DefaultJobParametersValidator">
+                <property name="requiredKeys">
+                    <list>
+                        <!--批次号-->
+                        <value>batchNo</value>
+                    </list>
+                </property>
+                <property name="optionalKeys">
+                    <list>
+                        <value>date</value>
+                    </list>
+                </property>
+            </bean>
+        </batch:validator>
+
+        <!--调整任务进程 变为已完成-->
+        <batch:step id="batchTestStep">
+            <batch:description>调整任务进程 变为已完成</batch:description>
+            <batch:tasklet>
+                <!--调整任务进程 变为进行中-->
+                <bean class="com.ford.wechat.batch.tasklet.BatchTestTasklet" scope="step"/>
+            </batch:tasklet>
+        </batch:step>
+    </batch:job>
+    <!--Job Dictionary  start-->
+</beans>

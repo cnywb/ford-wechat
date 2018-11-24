@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no, email=no"/>
+    <title>长安福特微客服</title>
+    <!--<script src="../app/javascript/adaptConmon.js?v=1" type="text/javascript"></script>-->
+    <script src="./javascript/jquery-3.2.1.min.js" type="text/javascript"></script>
+</head>
+<body>
+<div style="width: 100%;text-align: center">
+    <h3 id="tip">页面跳转当中，请稍候...</h3>
+    <h5 id="storageEnable"></h5>
+    <h5 id="getQueryString"></h5>
+    <h4 id="tipMsg"></h4>
+    <a id="openMainAId" href="javascript:void(0)" style="display: none">如未跳转，请点击跳转至主页</a>
+</div>
+</body>
+<script>
+    $("#openMainAId").click(function () {
+        openMain();
+    });
+    $(function () {
+        $("#tipMsg").html("初始化");
+
+        function getQueryString (names, url) {
+            try {
+                url = url || window.location.href;
+                url && url.indexOf("?") > -1 ? url = url.substring(url.indexOf("?") + 1) : "";
+                var reg = new RegExp("(^|&)" + names + "=([^&]*)(&|$)", "i");
+                var r = url ? url.match(reg) : window.location.search.substr(1).match(reg);
+                if (r !== null && r[2] !== "")
+                    return unescape(r[2]);
+                return null;
+            } catch (error) {
+                $("#getQueryString").html("获取异常");
+                return null;
+            }
+        }
+
+        function isWeiXin () {
+            return (/micromessenger/i).test(navigator.userAgent.toLowerCase());
+        }
+
+        if (!isWeiXin()) {
+            //不是微信禁止访问
+            $("#tip").html("请在微信当中打开!");
+            return;
+        }
+
+        var code = getQueryString("code") || "";
+        if (code) {
+            window.sessionStorage.setItem("code", code);
+        }
+        var openId = getQueryString("openId") || "";
+        if (openId == null || openId == '' || this.openId == "undefind") { //openId 不存在
+            $("#tipMsg").html("未关注公众号用户，跳转关注认证！");
+            window.location.href = "http://www.changanfordwechat.com/fordwechat/control?state=17261";
+            return;
+        }
+        $("#tipMsg").html("开始获取认证数据");
+
+        var storageEnable = storageCheck(window.sessionStorage);
+        if (!storageEnable) {
+            return;
+        }
+        $.ajax("/api/public/login", {
+            type: "POST",
+            data: JSON.stringify({openId: openId}),
+            dataType: "json",
+            processDataBoolean: false,
+            contentType: "application/json;charset=UTF-8",
+            success: function (data) {
+                if (data.status == 200) {
+                    $("#tipMsg").html("认证数据获取成功");
+                    try {
+                        window.sessionStorage.setItem("openId", openId);
+                        window.sessionStorage.setItem("headImg", data.body.headImg);
+                        window.sessionStorage.setItem("vin", data.body.vin ? data.body.vin : "");
+                        window.sessionStorage.setItem("userNum", data.body.userNum ? data.body.userNum : "");
+                        window.sessionStorage.setItem("mobile", data.body.mobile ? data.body.mobile : "");
+                        window.sessionStorage.setItem("name", data.body.name ? data.body.name : "");
+                        window.sessionStorage.setItem("isAuth", data.body.auth);
+                        if (data.body['vinList']) {
+                            var vinList = data.body['vinList'].join(",");
+                            window.sessionStorage.setItem("vinList", vinList);//当前openId下所有的vin
+                        }
+                    } catch (e) {
+                        $("#storageEnable").html("storage不可用");
+                        return;
+                    }
+                    $("#openMainAId").css('display', 'block');
+                    openMain();
+                } else {
+                    $("#tipMsg").html("认证数据获取失败！" + data.message + ",</br>请稍候重试或联系客服");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                $("#tip").html("系统异常，请刷新重试!\n" + error.responseText);
+            }
+        });
+    });
+
+    function storageCheck (storage) {
+        if (!!storage) {
+            try {
+                storage.setItem("key", "value");
+                storage.removeItem("key");
+                $("#storageEnable").html("可用");
+                return true;
+            } catch (error) {
+                $("#storageEnable").html("不可用!\n" + error.responseText);
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    function openMain () {
+        var pathName = window.location.pathname;
+        var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+        if (projectName === "/") {
+            projectName = "";
+        }
+        $("#tipMsg").html("认证数据处理完成，即将跳转");
+        var code = window.sessionStorage.getItem("code");
+        if (code == 'go') {
+            window.location.href = window.location.origin + projectName + "/index.html#/complain";
+        } else {
+            window.location.href = window.location.origin + projectName + "/index.html";
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 每日认证激励代金券生成-生成任务 -->
+    <bean id="createGenerateCouponBatchJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="createGenerateCouponBatchTimer"></property>
+                <property name="targetMethod" value="execute"></property>
+            </bean>
+        </property>
+        <!--生产 每天1点30分-->
+        <property name="cronExpression" value="0 55 11 * * ?" />
+        <!--UAT-->
+        <!--<property name="cronExpression" value="0 10 11 * * ?" />-->
+        <!--开发-->
+        <!--<property name="cronExpression" value="0 55 10 * * ?" />-->
+    </bean>
+
+    <!-- 认证激励每日代金券生成 -->
+    <bean id="generateCouponJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="generateCouponJobLauncher"></property>
+                <property name="targetMethod" value="execute"></property>
+            </bean>
+        </property>
+        <!--每日凌晨1点35分开始-->
+        <!--生产-->
+        <property name="cronExpression" value="0 58 11 * * ?"></property>
+        <!--UAT-->
+        <!--<property name="cronExpression" value="0 11 11 * * ?" />-->
+        <!--开发-->
+        <!--<property name="cronExpression" value="0 56 10 * * ?" />-->
+    </bean>
+
+
+
+    <!-- 每日认证激励统计报表-生成任务 -->
+    <bean id="createCouponEventStatisticsBatchJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="createCouponEventStatisticsBatchTimer"></property>
+                <property name="targetMethod" value="execute"></property>
+            </bean>
+        </property>
+        <!--生产-->
+        <property name="cronExpression" value="0 0 07 * * ?"></property>
+        <!--UAT-->
+        <!--<property name="cronExpression" value="0 0 07 * * ?"></property>-->
+        <!--开发-->
+        <!--<property name="cronExpression" value="0 56 10 * * ?" />-->
+    </bean>
+
+    <!-- 认证激励每日统计报表 -->
+    <bean id="couponEventStatisticsJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="couponEventStatisticsJobLauncher"></property>
+                <property name="targetMethod" value="execute"></property>
+            </bean>
+        </property>
+        <!--每日7点05分开始-->
+        <!--生产-->
+        <property name="cronExpression" value="0 05 07 * * ?"></property>
+        <!--UAT-->
+        <!--<property name="cronExpression" value="0 05 07 * * ?"></property>-->
+        <!--开发-->
+        <!--<property name="cronExpression" value="0 56 10 * * ?" />-->
+    </bean>
+
+
+
+    <!-- 发送认证激励代金券至DMS系统-生成任务 -->
+    <bean id="createCouponSendDmsBatchJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="createCouponSendDmsBatchTimer">
+                </property>
+                <property name="targetMethod" value="execute">
+                </property>
+            </bean>
+        </property>
+        <!--生产-->
+        <property name="cronExpression" value="0 * 09-23 * * ?"></property>
+        <!--开发-->
+        <!--<property name="cronExpression" value="0/30 * 09-23 * * ?"></property>-->
+    </bean>
+    <!--发送认证激励代金券至DMS系统-->
+    <bean id="couponSendDmsJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="couponSendDmsJobLauncher"></property>
+                <property name="targetMethod" value="execute"></property>
+            </bean>
+        </property>
+        <!--生产-->
+        <property name="cronExpression" value="30 * 09-23 * * ?"></property>
+        <!--开发-->
+        <!--<property name="cronExpression" value="10/30 * 09-23 * * ?"></property>-->
+    </bean>
+
+
+
+
+    <!-- 认证解绑数据清洗发送dms-生成任务 -->
+    <bean id="createAuthToDmsBatchJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="createAuthToDmsBatchTimer">
+                </property>
+                <property name="targetMethod" value="execute">
+                </property>
+            </bean>
+        </property>
+        <property name="cronExpression" value="0 0/5 * * * ?">
+        </property>
+    </bean>
+
+    <!-- 认证解绑数据清洗发送dms -->
+    <bean id="authToDmsJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="authToDmsJobLauncher">
+                </property>
+                <property name="targetMethod" value="execute">
+                </property>
+            </bean>
+        </property>
+        <property name="cronExpression" value="0 0/1 * * * ?">
+        </property>
+    </bean>
+
+    <!-- 主机厂数据导入 -->
+    <bean id="dmsFactoryJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="dmsFactoryJobLauncher">
+                </property>
+                <property name="targetMethod" value="execute">
+                </property>
+            </bean>
+        </property>
+        <property name="cronExpression" value="0/30 * * * * ?">
+        </property>
+    </bean>
+
+    <!-- 认证解绑数据生成CSV -->
+    <bean id="authToCsvJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="authToCsvJobLauncher">
+                </property>
+                <property name="targetMethod" value="execute">
+                </property>
+            </bean>
+        </property>
+        <property name="cronExpression" value="0/30 * * * * ?">
+        </property>
+    </bean>
+
+    <!-- 每日任务生成-生成任务 -->
+    <bean id="createEveryDayBatchJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="createEveryDayBatchTimer">
+                </property>
+                <property name="targetMethod" value="execute">
+                </property>
+            </bean>
+        </property>
+        <property name="cronExpression" value="0 0 22 * * ?">
+        </property>
+    </bean>
+
+    <!-- 自动认证 -->
+    <bean id="autoAuthJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="autoAuthJobLauncher">
+                </property>
+                <property name="targetMethod" value="execute">
+                </property>
+            </bean>
+        </property>
+        <property name="cronExpression" value="0 0 9 * * ?">
+        </property>
+    </bean>
+
+    <!-- 认证报告 -->
+    <bean id="dayAuthReportJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="dayAuthReportJobLauncher">
+                </property>
+                <property name="targetMethod" value="execute">
+                </property>
+            </bean>
+        </property>
+        <property name="cronExpression" value="0 0 7 * * ?">
+        </property>
+    </bean>
+
+    <!-- 菜单点击量从Redis转至DB  任务创建 -->
+    <bean id="browseMenuToDBTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="browseMenuToDBLauncher">
+                </property>
+                <property name="targetMethod" value="createBatch">
+                </property>
+            </bean>
+        </property>
+        <!--每日凌晨1点开始-->
+        <property name="cronExpression" value="0 0 1 * * ?">
+        </property>
+    </bean>
+
+    <!-- 公告阅读量从Redis转至DB 任务创建 -->
+    <bean id="browseMsgToDBTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="browseMsgToDBLauncher">
+                </property>
+                <property name="targetMethod" value="createBatch">
+                </property>
+            </bean>
+        </property>
+        <!--每日凌晨1点十分开始-->
+        <property name="cronExpression" value="0 10 1 * * ?">
+        </property>
+    </bean>
+
+
+    <!-- 菜单点击量从Redis转至DB  -->
+    <bean id="browseMenuToDBJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="browseMenuToDBLauncher">
+                </property>
+                <property name="targetMethod" value="execute">
+                </property>
+            </bean>
+        </property>
+        <!--每日凌晨1点20分开始-->
+        <property name="cronExpression" value="0 20 1 * * ?">
+        </property>
+    </bean>
+
+    <!-- 公告阅读量从Redis转至DB -->
+    <bean id="browseMsgToDBJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="browseMsgToDBLauncher">
+                </property>
+                <property name="targetMethod" value="execute">
+                </property>
+            </bean>
+        </property>
+        <!--每日凌晨1点30分开始-->
+        <property name="cronExpression" value="0 30 1 * * ?">
+        </property>
+    </bean>
+
+    <!--发送投诉建议至CIC-->
+
+    <bean id="complainSendExcelJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject" ref="complainSendExcelTimer">
+                </property>
+                <property name="targetMethod" value="execute">
+                </property>
+            </bean>
+        </property>
+        <!--每日凌晨1点30分开始-->
+        <property name="cronExpression" value="0 0/20 * * * ?">
+        </property>
+    </bean>
+
+
+
+    <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  -->
+    <bean id="quartzScheduler" lazy-init="true" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+
+
+
+                <!-- 发送dms数据-生成任务 -->
+                <ref bean="createAuthToDmsBatchJobTrigger"/>
+                <!-- 发送dms数据 -->
+                <ref bean="authToDmsJobTrigger"/>
+                <!--每日生成数据-->
+                <ref bean="createEveryDayBatchJobTrigger"/>
+                <!--自动认证-->
+                <ref bean="autoAuthJobTrigger"/>
+
+                <!--菜单点击量、公告阅读量从Redis转至DB-->
+                <ref bean="browseMenuToDBTaskTrigger"/>
+                <ref bean="browseMsgToDBTaskTrigger"/>
+                <ref bean="browseMenuToDBJobTrigger"/>
+                <ref bean="browseMsgToDBJobTrigger"/>
+
+                <!-- 认证激励每日代金券生成 - 生成任务-->
+                <ref bean="createGenerateCouponBatchJobTrigger"/>
+                <!-- 认证激励每日代金券生成 -->
+                <ref bean="generateCouponJobTrigger"/>
+
+                <!-- 认证激励每日统计报表 - 生成任务-->
+                <ref bean="createCouponEventStatisticsBatchJobTrigger"/>
+                <!-- 认证激励每日代金券生成 -->
+                <ref bean="couponEventStatisticsJobTrigger"/>
+
+
+                <!-- 发送认证激励代金券至DMS系统-生成任务 -->
+                <ref bean="createCouponSendDmsBatchJobTrigger"/>
+                <!--发送认证激励代金券至DMS系统-->
+                <ref bean="couponSendDmsJobTrigger"/>
+
+                <!--发送投诉建议至CRC-->
+                <ref bean="complainSendExcelJobTrigger"/>
+
+
+                <!--在线预约-->
+                <!--订单信息-->
+               <!-- <ref bean="wireFrameOrderJobTrigger"/>
+
+                &lt;!&ndash;取消信息&ndash;&gt;
+                <ref bean="wireFrameCancelJobTrigger"/>
+
+                &lt;!&ndash;微客服信息&ndash;&gt;
+                <ref bean="wireFramePersonJobTrigger"/>-->
+
+            </list>
+        </property>
+    </bean>
+
+
+</beans>

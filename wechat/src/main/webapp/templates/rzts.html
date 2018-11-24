@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no" />
+<title>长安福特微客服</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="/static/js/jquery-1.7.2.min.js"></script>
+    <script src="/static/js/common.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#ret").click(function(){
+    //$(".zzc,.quspopup").hide();
+	WeixinJSBridge.call('closeWindow');//微信中关闭当前页面
+  });
+    $("#tongybtn").click(function () {
+        var mobile = queryByName('mobile');
+        var vincode = queryByName('vincode');
+        document.location = "http://" + window.location.host + "/templates/chezhurenzh.html?mobile=" + mobile +
+                "&vincode" + vincode;
+    });
+});
+</script>
+</head>
+
+<body>
+<div class="wrap">
+	<div class="xxyl gdcxA">
+		<p>
+            <img src="/static/images/xxts.jpg" alt="">
+		</p>
+		<div><h2>提示信息</h2></div>
+	</div>
+	<div class="rzts">
+		<p>您输入的VIN码未认证,请先完成车主认证。</p>
+        <a href="javascript:;" class="tongybtn" id="tongybtn">车主认证</a>
+        <a href="javascript:;" id="ret" class="tongybtn"><img src="/static/images/jtbs.jpg" style="margin-right:10px;"
+                                                              alt="">返回车主专享首页</a>
+	</div>
+</div>
+</body>
+</html>

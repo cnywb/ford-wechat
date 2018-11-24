@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="HandheldFriendly" content="true"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+  <meta name="format-detection" content="telephone=no, email=no"/>
+  <title>正在跳转中</title>
+  <!--<script src="../app/javascript/adaptConmon.js?v=1" type="text/javascript"></script>-->
+  <script src="./javascript/jquery-3.2.1.min.js?v=20170711154208" type="text/javascript"></script>
+</head>
+<body>
+  <div style="width: 100%; text-align: center">
+    <h5 id="tip1">加载中...</h5>
+    <h5 id="tip2"></h5>
+    <h5 id="tip3"></h5>
+    <h5 id="tip4"></h5>
+  </div>
+</body>
+<script>
+
+  $(function () {
+    $("#tip4").html("1");
+    function getQueryString(names, url) {
+      url = url || window.location.href;
+      url && url.indexOf("?") > -1 ? url = url.substring(url.indexOf("?") + 1) : "";
+      var reg = new RegExp("(^|&)" + names + "=([^&]*)(&|$)", "i");
+      var r = url ? url.match(reg) : window.location.search.substr(1).match(reg);
+      if (r !== null && r[2] !== "")return unescape(r[2]);
+      return null;
+    }
+
+    $("#tip4").html("2");
+    function isWeiXin() {
+      return (/micromessenger/i).test(navigator.userAgent.toLowerCase());
+    }
+
+    $("#tip4").html("3");
+    function checkStorage() {
+      $("#tip4").html("5-1");
+      if (window.localStorage) {
+        $("#tip4").html("5-2");
+        try {
+          $("#tip4").html("5-3");
+          window.localStorage.setItem('test', 'test');
+          $("#tip4").html("5-4");
+        } catch (e) {
+          $("#tip4").html("5-5");
+          if (e.name === 'QUOTA_EXCEEDED_ERR' || e.name === 'NS_ERROR_DOM_QUOTA_REACHED') {
+            $("#tip1").html("您的设置不支持本地存储" + e.name);
+          } else {
+            $("#tip1").html("您的设置不支持本地存储" + e.name);
+          }
+        }
+      }
+      if (window.sessionStorage) {
+        $("#tip4").html("5-6");
+        try {
+          $("#tip4").html("5-7");
+          window.sessionStorage.setItem('test', 'test');
+          $("#tip4").html("5-8");
+        } catch (e) {
+          $("#tip4").html("5-9");
+          if (e.name === 'QUOTA_EXCEEDED_ERR' || e.name === 'NS_ERROR_DOM_QUOTA_REACHED') {
+            $("#tip2").html("您的设置不支持会话存储" + e.name);
+          } else {
+            $("#tip2").html("您的设置不支持会话存储" + e.name);
+          }
+        }
+      }
+    }
+    function isLocalStorageSupported() {
+      var testKey = 'test',
+        storage = window.sessionStorage;
+      try {
+        storage.setItem(testKey, 'testValue');
+        storage.removeItem(testKey);
+        return true;
+      } catch (error) {
+        return false;
+      }
+    }
+
+    $("#tip4").html("4");
+
+    if (!isWeiXin()) {
+      //不是微信禁止访问
+      window.location.href = "./error.html";
+      return;
+    }
+
+    $("#tip4").html("5");
+
+    //检测localStorage和sessionStorage
+    checkStorage();
+
+    var openId = getQueryString("openId") || "";
+    var channelCode = getQueryString("channelCode") || "";
+    var state = getQueryString("state") || "";
+    var router = getQueryString("router");
+
+    $("#tip4").html("6");
+    if (openId == null || openId == '' || openId == 'undefined' || openId == 'none') { //openId 不存在 重定向到AuthController
+
+      $("#tip4").html("7");
+      window.localStorage.clear();
+      window.sessionStorage.clear();
+      if(router) {
+        window.localStorage.setItem("router", router);
+      }
+      $("#tip4").html("8");
+
+      var authRedirectUrl = "http://dev.point.xiqing.info/fordwechat/fordwechat/control?state=31";
+
+      if (channelCode) {
+        authRedirectUrl = authRedirectUrl + "&dealerCode=" + channelCode;
+      }
+      $("#tip4").html("9");
+      console.log(authRedirectUrl);
+      //重定向到烽火台获取openId
+      $("#tip4").html("10");
+      window.location.href = authRedirectUrl;
+//      window.location.href = window.location.href + "?state=31&openId=o4-Cns0unITS4i_yRtW_NQ000010";
+      return;
+    }
+    $("#tip4").html("11");
+    window.localStorage.setItem("channelCode", channelCode);
+    window.localStorage.setItem("state", state);
+
+    $("#tip4").html("12");
+    $.ajax("/i/login", {
+      type: "POST",
+      data: JSON.stringify({openId: openId, channelCode: channelCode, state: state}),
+      dataType: "json",
+      processDataBoolean: false,
+      contentType: "application/json;charset=UTF-8",
+      success: function (data) {
+        $("#tip4").html("13");
+        if (data.code == 'OK') {
+          $("#tip4").html("14");
+          window.sessionStorage.setItem("KEY_AUTHED", data.body['cars'] > 0);
+          window.sessionStorage.setItem("KEY_CHANNEL_URL", data.body['channelUrl']);
+          window.sessionStorage.setItem("KEY_CHANNEL_TYPE", data.body['channelType']);
+          window.sessionStorage.setItem("KEY_DEALER", data.body['dealer']);
+          window.sessionStorage.setItem("KEY_BINDING", data.body['binding']);
+          window.sessionStorage.setItem("KEY_UNBINDING", data.body['unbinding']);
+
+          $("#tip4").html("15");
+          var routerUrl = router || window.localStorage.getItem("router");
+
+          $("#tip4").html("16");
+          if (data.body['binding']) {//绑定中
+            window.location.href = window.location.origin + "/bind#/hint/bind/waiting";
+          } else if (data.body['unbinding']) {//解绑中
+            window.location.href = window.location.origin + "/bind#/hint/unbind/waiting";
+          } else if (routerUrl) {//
+            window.location.href = window.location.origin + "/bind#/" + routerUrl;
+          } else if (data.body['cars'] <= 0) {//首次绑定
+            window.location.href = window.location.origin + "/bind#/mobile";
+          } else {//已绑定过车辆
+            window.location.href = window.location.origin + "/bind#/cars/0";
+          }
+          return;
+        }
+        $("#tip4").html("17");
+        $("#tip3").html(data.message);
+        return;
+      },
+      error: function (error) {
+        $("#tip4").html("18");
+        if (error.status == 500) {
+//          alert(error.responseJSON.message);
+          console.log(error.responseJSON.message);
+        } else {
+//          alert("获取用户accessToken信息失败！")
+          console.log("获取用户accessToken信息失败");
+        }
+        $("#tip4").html("19");
+        $("#tip3").html(error.message);
+        return;
+      }
+    });
+  })
+</script>
+</html>

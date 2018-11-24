@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no" />
+
+<title>长安福特微客服</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="/static/js/jquery-1.7.2.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            ajaxPost(1);
+        });
+        function ajaxPost(pageNumber) {
+            $.ajax({
+                //提交数据的类型 POST GET
+                type: "POST",
+                //提交的网址
+                url: "/fordwechat/getQuestionTitles.do",
+                //提交的数据
+                data: {pageNumber: pageNumber, pageSize: 2, keyWord: $("#keywords").val()},
+                async: false,
+                //返回数据的格式
+                datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
+                //成功返回之后调用的函数
+                success: function (data) {
+                    $('#page').empty();
+                    $("#pagnation").empty();
+                    if (typeof(data.totalElements) == "undefined" || data.totalElements == 0) {
+                        $('#page').append("<li>无满足条件的数据！</li>");
+                    } else {
+                        $.each(data.content, function (index, item) {
+                            $("#page").append("<li><a href='/templates/answer.html?qid=" +
+                                    item.id + "'>" + item.title + "</a></li>");
+                        });
+
+                        $("#pagnation").append("<div >共" + data.totalElements + "条纪录 " +
+                                data.pageNumber + "/" + data.totalPages + " 第" + data.pageNumber + "页</div>");
+                        $("#pagnation").append('<div class="go-left"><a href="javascript:;" onclick="pageView('
+                                + (data.pageNumber - 1) + ',' + data.totalPages + ')"><img src="/static/images/q-go-left.gif" /></a></div>');
+                        $("#pagnation").append('<div class="go-right"><a href="javascript:;" onclick="pageView('
+                                + (data.pageNumber + 1) + ',' + data.totalPages + ')"><img src="/static/images/q-go-right.gif" /></a></div>');
+                    }
+
+                },
+                error: function (xhr, textStatus) {
+                    //console.log('错误');
+                    //console.log(xhr);
+                    //console.log(textStatus);
+                    //alert(xhr);
+                    //alert(textStatus);
+                    $('#page').empty();
+                    $("#pagnation").empty();
+                    $('#page').append("<li>无满足条件的数据！</li>");
+                },
+            });
+        }
+
+        function pageView(pageNo, totalpag) {
+            if (pageNo < 1)
+                pageNo = 1;
+            if (pageNo > totalpag)
+                pageNo = totalpag;
+            ajaxPost(pageNo);
+        }
+    </script>
+</head>
+<body>
+<form action="" method="post" id="pageForm">
+	<input type="hidden" name="pageno" id="pageno" value="1" />
+	<div class="wrap">
+        <!--<img src="/static/images/qa-banner.jpg"/>-->
+        <h2 style="font-size: 4em;color: #516d7b;padding:30px 50px;">互动问答</h2>
+        <div class="qa-box">
+        	<h2 class="mtb10">常见问题</h2>
+            <ul id="page">
+
+            </ul>
+            <div class="pagnation" id="pagnation">
+
+            </div>
+
+            <input type="text" class="q-tt2" name="keywords" id="keywords" value=""/>
+            <a href="javascript:;" onclick="ajaxPost(1)"><img src="/static/images/qa-btn.gif"/></a>
+            <div class="clear"></div>
+            <a href="/templates/question.html"><img src="/static/images/question-btn.gif" class="mt35 blk"/></a>
+        </div>
+    </div>
+	</form>
+</body>
+
+
+</html>

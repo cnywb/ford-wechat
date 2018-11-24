@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>欢迎光临长安福特微客服管理平台</title>
+  <link href="/fordwechat/static/css/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div class="signin">
+  	<form action="/admin/login" method="post" onsubmit="return check()">
+  	  <dl>
+  	    <dt>用户名：</dt><dd><input type="text" id="tbname" name="login_name" value="" /></dd>
+		<dt>密　码：</dt><dd><input type="password" id="tbpass" name="login_passwd" /></dd>
+		<dt>&nbsp;</dt>
+		<dd>
+		  <input type="image" src="/fordwechat/static/images/btn_login.png" class="btn" />
+		</dd>
+  	  </dl>
+  	</form>
+  </div>
+  <div class="footer"><a href="" class="logo"></a>&copy;2016 长安福特马自达汽车有限公司 版权所有 All Rights Reserved. Powered by <a href="http://www.wunderman.com.cn/" target="_blank">Wunderman Shanghai</a>.</div>
+  <script type="text/javascript" src="/fordwechat/static/js/prototype.js"></script>
+  <script type="text/javascript" src="/fordwechat/static/js/common.js"></script>
+  <script type="text/javascript">
+  function check(event){
+      if ($F('tbname').blank()) {
+          alert('请输入用户名');
+          $('tbname').activate();
+          //Event.stop(event);
+		  return false;
+      }
+      if ($F('tbpass').blank()) {
+          alert('请输入密码');
+          $('tbpass').activate();
+          //Event.stop(event);
+		  return false;
+      }
+      if ($F('tbcode').blank()) {
+          alert('请输入验证码');
+          $('tbcode').activate();
+          //Event.stop(event);
+		  return false;
+      }
+  }	  
+  if ("{{msg}}" != ""){
+	alert('{{msg}}');
+  }
+  </script>
+</body>
+</html>

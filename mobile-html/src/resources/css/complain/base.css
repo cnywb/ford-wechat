@@ -1,0 +1,215 @@
+/* 车主认证css  Create by Richard*/
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  list-style: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+}
+html,body {
+  color: #fff;
+  /*font-family: '宋体', Arial, sans-serif;*/
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  height: 100%;
+  text-align: left;
+  background: #e4e4e4;
+}
+body{
+  width:100% ;
+  margin: 0 auto;
+}
+a{
+  display: block;
+  width: 100%;
+  height: 100%;
+  /*text-decoration:none ;*/
+}
+input,label,select,option,textarea,button,fieldset,legend {
+  font-family: inherit;
+  font-size: 14px;
+}
+button {
+  border: 0;
+}
+button:active,button:focus,a:active,a:hover,input:active,input:focus {
+  outline: 0;
+}
+audio,canvas,iframe,img,svg,video {
+  vertical-align: middle;
+}
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+textarea {
+  resize: vertical;
+}
+i {
+  font-style: normal;
+}
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
+.clear{
+  clear: both;
+}
+.mg-xl{
+  margin: 0.3rem 0;
+}
+.mg-xxxl {
+  margin: 1rem 0;
+}
+.mg-xxxxl{
+  margin: 1.5rem 0;
+}
+.mg-l {
+  margin-left: 0.8rem;
+}
+
+.text-bold{
+  font-weight: bold;
+}
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
+.block{
+  display: block;
+}
+.position-r{
+  position: relative;
+}
+.position-a{
+  position: absolute;
+}
+.width-whole{
+  width: 100%;
+}
+.full-width{
+  width: 100%;
+}
+.width-90{
+  width: 90%;
+}
+.width-80{
+  width: 80%;
+}
+.width-70{
+  width: 70%;
+}
+.width-60{
+  width: 60%;
+}
+.width-50{
+  width: 50%;
+}
+.font-xl{
+  font-size: 16px;
+}
+.padder-v{
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.padder-v-xl{
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+.padder-v-xxl{
+  padding-top: 1.0rem;
+  padding-bottom: 1.0rem;
+}
+.padder-v-xxxl{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.padder-h {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.padder-h-xl {
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+}
+.padder-h-xxl {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.padder{
+  padding: 1rem;
+}
+.padder-b{
+  padding-bottom: 1rem;
+}
+.padder-t{
+  padding-top: 1rem;
+}
+.f-s{
+  font-size: 12px;
+}
+h2{
+  font-size: 16px;
+}
+h4{
+  font-size: 14px;
+}
+.show{
+  display: block !important;
+}
+.hidden{
+  display: none !important;
+}
+.padder-l{
+  padding-left: 0.5rem;
+}
+.padder-l{
+  padding-left: 0.5rem;
+}
+.padder-l-xxl{
+  padding-left: 5rem;
+}
+.display-table{
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+.display-table-cell{
+  display: table-cell;
+  vertical-align: middle;
+}
+.shade{
+  /*display: none;*/
+  background: rgba(0,0,0,0.3);
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+.font-right {
+  text-align: right;
+}
+
+.test-bg {
+  background: red;
+}
+
+.scroll-v {
+  overflow:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.scroll-y{
+  overflow-y:scroll;
+  -webkit-overflow-scrolling:touch;
+}

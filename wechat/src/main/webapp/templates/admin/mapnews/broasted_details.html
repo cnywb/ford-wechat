@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>未回答问题列表</title>
+<link href="/fordwechat/static/css/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="content">
+	<form autocomplete="off" action="/admin/controll/26" method="post" id="pageForm">
+		<div class="outer">
+			<h3>已回答问题列表</h3>
+			<fieldset>
+			<p>
+			图文消息标题：{{broast['news_title']}}</br>
+				<input type="hidden" id="id" name="id" value="{{broast['id']}}"/>
+				<input type="submit" value="删除群发消息" />
+			</p>
+			</fieldset>
+			<div class="tb">
+				<div class="table">
+					<table border="1" style="border-collapse:collapse;" >
+				      	<tr>
+					      	<td><b>分组编号</b></td>
+					      	<td><b>分组名称</b></td>
+							<td><b>消息编号或错误代码</b></td>
+				      	</tr>
+						{% for i in range(0,len(broast['group_ids'])) %}
+						<tr>
+						 <td>{{broast['group_ids'][i].split(':')[0]}}</td>
+						 <td>{{broast['group_ids'][i].split(':')[1]}}</td>
+						 <td>{{broast['msg_ids'][i]}}</td>
+						</tr>
+						{% end %}
+				    </table>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+<script type="text/javascript">
+  //page.markSide('11');
+  if('{{msg}}'!=''){
+	alert('{{msg}}')
+  }
+  </script>
+</html>

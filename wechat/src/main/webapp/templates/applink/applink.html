@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" href="/fordwechat/static/applink/resources/css/al.css">
+</head>
+<body>
+<div class="viewport">
+    <div class="wp-inner">
+        <div class="page">
+        	<div class="f_top"><img src="/fordwechat/static/applink/resources/images/al001.jpg" alt="" /></div>
+        	<div class="s_list">
+        		<nav class="f_app_list data-list" id="data-list">
+					{% if pagination and pagination['paglist']%}
+						{% for p in pagination['paglist']%}
+						<a href="{{p['applink_url']}}">
+							<img src="{{p['applink_img']}}">
+							<p class="app_name">{{p['applink_name']}}</p>
+							<p class="app_company">{{p['download_name']}}</p>
+							<p class="app_install">免费安装</p>
+						</a>
+						{% end %}
+					{% end %}
+				</nav>
+        	</div>
+			{% if pagination and pagination['paglist'] and (int(pagination['pageno']) < int(pagination['totalpag'])) %}
+			<div class="t_more">
+        		<a href="/getinfo?state=401&pageno=1" id="get_more">
+	        		<p class="t_more_l">显示更多</p>
+	        		<div class="t_more_r"><p class="t_more_arrow"></p></div>
+        		</a>
+        	</div>
+			{% end %}
+			<div class="ios_layer">
+				<div class="ios_box">
+					<div class="ios_close"></div>
+					<div class="ios_txt">
+						<h3>尊敬的用户</h3>
+						<p>自2013年起微信不支持ios版本的手机直接在微信端打开链接，如您需要下载该app软件，请点击微信右上方“...”图标，通过其他浏览器打开链接，如有不便敬请谅解，谢谢！</p>
+					</div>
+				</div>
+			</div>
+        </div>
+        <div class="page">
+        	<div class="p_view">
+        		<div class="v_top"><img src="/fordwechat/static/applink/resources/images/al002.jpg" alt="" /></div>
+        		<div class="v_link">
+        			<a href="http://www.ford.com.cn/sync/support/user-guide?v=101" class="bg1">
+        				<h3 class="v_link_icon1"></h3>
+		        		<p class="v_more_l">用户指南</p>
+		        		<div class="t_more_r"><p class="v_more_arrow"></p></div>
+	        		</a>
+	        		<a href="http://www.ford.com.cn/sync/support/compatibility-chart/mobile?v=101" class="bg2">
+	        			<h3 class="v_link_icon2"></h3>
+		        		<p class="v_more_l">手机/媒体播放器兼容性列表</p>
+		        		<div class="t_more_r"><p class="v_more_arrow"></p></div>
+	        		</a>
+        		</div>
+        		<div class="v_txt"><img src="/fordwechat/static/applink/resources/images/al005.jpg" alt="" /></div>
+				<div class="v_read"><span>点击<a href="http://www.ford.com.cn/sync">阅读原文</a>，了解更多福特AppLink™使用指南。</span></div>
+        	</div>
+        </div>
+    </div>
+</div>
+<span class="start"><b></b></span>
+<script type="text/javascript" src="/fordwechat/static/applink/resources/js/zepto.min.js"></script>
+<script type="text/javascript" src="/fordwechat/static/applink/resources/js/zepto.fullpage.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.wp-inner').fullpage();
+
+		var h0=$(window).height();
+		var h1=$('.f_top').height();
+		var h2=h0-h1-60;
+		$('#data-list').height(h2);
+		if(h0<=480){
+			$('.s_list,.f_app_list').css({'margin':'0px'});
+			$('.f_app_list a p').css({'line-height':'1.2rem'});
+			$('.t_more a').css({'line-height':'28px','height':'28px'});
+			$('.t_more_l').css({'font-size':'12px'});
+			$('.t_more_arrow').css({'width':'8px','height':'8px','margin-top':'10px'});
+			$('#data-list').css({'height':'147px'});
+			
+			
+			
+			$('.v_link a').css({'line-height':'30px','font-size':'12px'});
+			$('.v_link_icon1,.v_link_icon2').css({'height':'20px','margin-top':'5px'});
+			$('.v_more_arrow').css({'margin-top':'10px'});
+			$('.v_txt').css({'padding-top':'4px'});
+			$('.v_read').css({'bottom':'5px'});
+		}
+
+		/*if(h0>=610){
+			var d='<a href="javascript:void(0);"><img src="../resources/images/app.png"><p class="app_name">豆瓣FM</p><p class="app_company">豆瓣FM</p><p class="app_install">免费安装</p></a>';
+			$('#data-list').append(d);
+			$('#data-list').append(d);
+			$('#data-list').append(d);
+		}*/
+		if(h0<736){
+			$('.f_app_list a img').css({'width':'65px'});
+			$('.f_app_list a p').css({'line-height':'18px'});
+		}
+		if(h0>=736){
+			$('.f_app_list a img').css({'width':'75px'});
+		}
+		
+		
+		var port = function() {
+			var ua = navigator.userAgent;
+			if (ua.match(/iPhone/i) == "iPhone" || ua.match(/iPad/i) == "iPad") {				
+				$('.ios_layer').css({'width':$(window).width()-32+'px','top':h1+'px'});
+				$('.ios_box').css({'height':(h2+10)+'px'});
+				if(500<h0 && h0<=570)$('.ios_txt h3').css({'padding-top':'60px'});
+				if(h0>570)$('.ios_txt h3').css({'padding-top':'90px'});
+				
+				$('.ios_layer').show();
+				
+				$('.ios_close').tap(function(){
+					$('.ios_layer').hide();
+				});
+			}
+			
+		};
+		
+		port();
+		
+	});
+</script>
+</body>
+</html>

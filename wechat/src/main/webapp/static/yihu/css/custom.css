@@ -1,0 +1,399 @@
+br.clear { display:none; height:0; }
+div#BodyContent{ background: #000; width: 100%; }
+div#BodyContent h1 {}
+body div#BodyFooter { margin-top: 0; }
+
+section { width: 100%; }
+
+.inner { width: 1250px; margin: 0 auto; }
+
+
+#hero { background: #040000; }
+
+
+.dark { background: #252525; padding: 40px 0; }
+.light { background: #fff; padding: 40px 0; }
+
+div#BodyContent .dark h2,
+div#BodyContent .light h2,
+.contentBlock .dark h2,
+.contentBlock .light h2 {
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+div#BodyContent .dark h2,
+.contentBlock .dark h2 {
+    color: #fff;
+}
+div#BodyContent .light h2,
+.contentBlock .light h2 {
+    color: #040000;
+}
+div#BodyContent .dark h2,
+.contentBlock .dark h2 {
+    font-size: 25px;
+    line-height: 1.2;
+}
+div#BodyContent .light h2,
+.contentBlock .light h2 {
+    font-size: 25px; 
+    line-height: 1.2; 
+}
+
+.dark p,
+.light p {
+    font-size: 25px;
+    line-height: 1.25;
+    font-weight: 100;
+    margin-bottom: 1.25em;    
+}
+.dark p { color: #fff; }
+.light p { color: #040000; }
+
+
+.featuredcity {
+    display: block;
+    width: 1210px;
+    height: 328px;
+    text-decoration: none;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.featuredcity.shanghai { background: url('http://compass.xbox.com/assets/5e/bf/5ebf40d0-b85e-43c7-b780-de9f4b7a2066.jpg?n=shanghai.jpg') 0 0 no-repeat; }
+.featuredcity.beijing { background: url('http://compass.xbox.com/assets/16/c7/16c71770-2d0c-47fb-be1f-b7d92e06f84e.jpg?n=beijing.jpg') 0 0 no-repeat; }
+.featuredcity.chengdu { background: url('http://compass.xbox.com/assets/b8/6e/b86e810b-22f7-4461-ba9c-4e14d7afc45e.jpg?n=chengdu.jpg') 0 0 no-repeat; }
+.featuredcity .cityname {
+    font-size: 80px;
+    line-height: 328px;
+    color: #fff;
+    font-weight: bold;
+    display: block;
+    text-shadow: 4px 4px 4px #000, 0px 0px 40px #000 ;
+}
+
+.eventschedule {
+    width: 100%;
+    font-size: 20px;
+    line-height: 1.25;
+}
+.eventschedule th {
+    background: #107c10;
+    color: #fff;
+    font-weight: normal;
+    padding: 5px 20px;
+    text-align: left;
+}
+.eventschedule td {
+    background: #fff;
+    color: #000;
+    padding: 5px 20px;
+    text-align: left;
+}
+.eventschedule tr:nth-child(even) td {
+    background: #cbe3cb;
+}
+
+
+.eventdates {
+    overflow: hidden;
+    list-style: none;
+    margin: 0;
+}
+.eventdates li {
+    font-size: 20px;
+    line-height: 1.25;
+    color: #fff;
+    text-align: center;
+    width: 33%;
+    padding: 20px;
+    float: left;
+    border-right: 1px solid #fff;
+    list-style: none;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+.eventdates li:last-child {
+    border-right: 0;
+}
+.eventdates .date-line1 { font-size: 48px; line-height: 1.1; }
+.eventdates .date-line2 { font-size: 60px; line-height: 1.1; margin-bottom: 20px; }
+.eventdates .venue-line1 { font-size: 35px; line-height: 1.2; margin-bottom: 5px; }
+.eventdates .venue-line2 { font-size: 25px; line-height: 1.2; }
+
+#shanghai {
+    background: url('http://compass.xbox.com/assets/5f/c3/5fc34261-b63a-4dc1-bc49-5b09319e884c.jpg?n=bg-shanghai.jpg') center center no-repeat;
+    background-size: cover;
+}
+#beijing {
+    background: url('http://compass.xbox.com/assets/b4/5d/b45d1614-4296-459a-991f-429fec9d77f3.jpg?n=bg-beijing.jpg') center center no-repeat;
+    background-size: cover;
+}
+#chengdu {
+    background: url('http://compass.xbox.com/assets/b0/cd/b0cd78c5-1815-43d0-b432-e78b29188cc7.jpg?n=bg-chengdu.jpg') center center no-repeat;
+    background-size: cover;
+}
+
+/*--- MOBILE ---*/
+
+.mobile .contentBlock { padding: 0; border-bottom: 0; }
+.mobile .body { }
+.mobile .inner { width: auto; padding: 20px; }
+.contentBlock h2 {  }
+.contentBlock h2.splashBlockHeader { margin: 0; }
+
+.mobile .dark,
+.mobile .light { padding: 20px 0; }
+.mobile .dark p,
+.mobile .light p {
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: normal;
+    margin-bottom: 1.25em;    
+}
+.mobile .eventdates li {
+    font-size: 16px;
+    line-height: 1.25;
+    width: auto;
+    padding: 20px;
+    float: none;
+    border-right: none;
+    border-top: 1px solid #fff;
+}
+.mobile .eventdates .date-line1 { font-size: 24px; line-height: 1.1; }
+.mobile .eventdates .date-line2 { font-size: 28px; line-height: 1.1; }
+.mobile .eventdates .venue-line1 { font-size: 20px; line-height: 1.2; }
+.mobile .eventdates .venue-line2 { font-size: 16px; line-height: 1.2; }
+
+.mobile .eventschedule {font-size: 14px; line-height: 1.25; }
+.mobile .eventschedule th {padding: 5px; }
+.mobile .eventschedule td {padding: 5px; }
+
+.mobile .featuredcity {
+    width: 100%;
+    height: auto;
+}
+.mobile .featuredcity.shanghai,
+.mobile .featuredcity.beijing,
+.mobile .featuredcity.chengdu {
+    background-position: center center;
+}
+.mobile .featuredcity .cityname {
+    font-size: 40px;
+    line-height: 100px;
+}
+
+
+
+
+
+
+/*
+ *  Gallery
+*/
+
+#overlay {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 999;
+    display: none;
+}
+#overlay .disp {
+    width: 960px;
+    height: 540px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -275px 0px 0px -485px;
+    background-color: #E2E2E2;
+    border: 5px solid #FFF;
+    overflow: hidden;
+    background: url('http://compass.xbox.com/assets/dd/18/dd18a0ef-e2c2-4301-84dd-d7296ef63f92.gif?n=ajax-load.gif') no-repeat center center #000;
+}
+#overlay .disp img {
+    width: 100%;
+}
+#overlay .close {
+    width: 50px;
+    height: 50px;
+    background:url('http://compass.xbox.com/assets/ad/cc/adcc48d1-203a-4525-b418-82c7823e6ff5.png?n=icon-close.png') no-repeat center center #FFF;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -275px 0px 0px 435px;
+    z-index: 5;
+    display: inline-block;
+}
+
+#cj-gallery,
+#cj-games { 
+    text-align: center;
+    font-size: 22px;
+    line-height: 1.4;
+    padding: 50px 0;
+}
+#cj-gallery { background-color: #252525; color: #fff; }
+#cj-games { background-color: #fff; color: #252525; }
+
+#cj-gallery h3,
+#cj-games h3 {
+    font-size: 36px;
+    line-height: 1.4;
+    margin-bottom: 0;
+}
+#cj-gallery h3 { color: #fff; }
+#cj-games h3 { color: #252525; }
+
+#cj-gallery .main-video { height:540px; text-align: center; }
+
+
+.slide-window { overflow: hidden; }
+.carousel { min-height:480px; position: relative; }
+.carousel .slide {
+    width:960px;
+    float:left;
+}
+.carousel .slide-container {
+    -webkit-transition: margin 0.3s ease-out;
+       -moz-transition: margin 0.3s ease-out;
+        -ms-transition: margin 0.3s ease-out;
+         -o-transition: margin 0.3s ease-out;
+            transition: margin 0.3s ease-out;
+}
+
+.carousel .slide .img,
+.carousel .slide .vid,
+.carousel .slide a,
+.carousel .slide .img,
+.carousel .slide .vid,
+.carousel .slide a {
+    width: 239px;
+    height: 239px;
+    margin: 0px 1px 1px 0px;
+}
+.carousel .slide .img,
+.carousel .slide .vid {
+    background-size: cover;
+    background-position: center center;
+    float: left;
+}
+.carousel .slide .img.big,
+.carousel .slide .vid.big,
+.carousel .slide .big a {
+    width: 478px;
+    height: 479px;
+    margin: 0px 1px 1px 1px;
+}
+.carousel .slide a { display: inline-block; }
+.carousel .slide .vid a { background: url('http://compass.xbox.com/assets/d5/10/d510db03-823c-408a-b581-4937d1329bd2.png?n=icon-carousel-vid.png') no-repeat center center rgba(0,0,0,0.5); }
+
+.carousel .prev, .carousel .next {
+    width: 36px;
+    height:44px;
+    top:218px;
+    position: absolute;
+    cursor: pointer;
+    display: none;
+}
+.carousel .prev { background: url(http://www.xbox.com/Content/Images/arrow_left.png) center center no-repeat; left:-46px; }
+.carousel .next { background: url(http://www.xbox.com/Content/Images/arrow_right.png) center center no-repeat; right:-46px; }
+
+.mobile .contentBlock {
+    width: auto;
+    min-width:initial;
+    min-height: 0px;
+    margin: 0px auto;
+    padding:0px;
+    border: 0px;
+    }
+.mobile .container { width: 320px; margin: 0 auto; }
+
+.mobile .carousel .slide { width: 320px; }
+.mobile .carousel .prev, .mobile .carousel .next {
+    width: 40px;
+    height: 40px;
+    top: 100px;
+}
+.mobile .carousel .prev { background-position: left center; left: 0;}
+.mobile .carousel .next { background-position: right center; right: 0; }
+
+
+/*
+.mobile #cj-gallery { background-color: #000; }
+.mobile #cj-gallery .title {
+    width: 105px;
+    padding: 5px 0px 30px 70px;
+    background-image: url('http://compass.xbox.com/assets/8f/21/8f21bbbc-410d-4c7b-acec-4ebf3fdd203f.png?n=icon-live-gallery-white.png');
+    background-position: left 0px;
+}
+.mobile #cj-gallery .carousel { min-height: inherit; }
+.mobile #cj-gallery .slide .img, .mobile  #cj-gallery .slide .vid {
+    display: inline-block;
+    float: none;
+}
+
+.mobile #cj-gallery .slide .img,
+.mobile #cj-gallery .slide .vid{
+    width: 25%;
+    height: 60px;
+    margin: 0px;
+    display: block;
+    float: left;
+}
+.mobile #cj-gallery .slide a {
+    width: 100%;
+    height: 100%;
+    border-left: 1px solid #FFF;
+}
+.mobile #cj-gallery .slide div:nth-child(2) a {
+    border-left: none;
+}
+
+.mobile #cj-gallery .slide .img.big,
+.mobile #cj-gallery .slide .vid.big,
+.mobile #cj-gallery .slide .big a {
+    width: 100%;
+    height: 230px;
+    margin: 0px;
+    border: 0px;
+}
+*/
+.mobile #cj-games { background: #252525; }
+.mobile #cj-games h3,
+.mobile #cj-games p { color: #fff; }
+
+.mobile #cj-gallery .title,
+.mobile #cj-games .title {
+    width: 155px; 
+    padding: 0px 0px 30px 70px;
+    background-image: url('http://compass.xbox.com/assets/7a/3e/7a3e3598-b458-4007-b1e2-9e3ecd1f6f6d.png?n=icon-live-games-white.png');
+    background-position: left 0px;
+    color: #FFF;
+}
+.mobile #cj-gallery .carousel,
+.mobile #cj-games .carousel {
+    min-height: inherit;
+}
+.mobile #cj-gallery .slide .img, .mobile  #cj-gallery .slide .vid,
+.mobile #cj-games .slide .img, .mobile  #cj-games .slide .vid {
+    float: none;
+    display: inline-block;
+}
+
+.mobile #cj-gallery .slide .img.big,
+.mobile #cj-gallery .slide .vid.big,
+.mobile #cj-gallery .slide .big a,
+.mobile #cj-games .slide .img.big,
+.mobile #cj-games .slide .vid.big,
+.mobile #cj-games .slide .big a {
+    width: 100%;
+    height: 320px;
+    margin: 0px;
+}
+
+

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no" />
+
+<title>福域认证车主 - 福特</title>
+<link rel="stylesheet" href="/fordwechat/static/presalesmember/css/main.css">
+<script src="/fordwechat/static/presalesmember/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+function vinmsgHtml(html){
+	$("#vinmsg").empty();
+	$("#vinmsg").append(html);
+	//$("#vinmsg").append('<br><a href="javascript:;" class="close" id="close1"><img src="static/images/submit_btn02.gif" alt=""></a>');
+	$("#msg1").show();
+}
+$(document).ready(function(){
+	ff = parseInt($("#f").val()) + 1;
+	$("#f").val(ff);
+	if ($("#msg").val() != "" && ff==1)
+	{
+		$("#msg0").show();
+	}
+	$("#close0").click(function(){
+		var msg = $("#msg").val();
+		$("#msg").val("");
+		$("#msg0").hide();
+		//如果认证成功则跳转到刮刮卡抽奖页面
+		if(msg && msg.indexOf("认证成功")>-1 && ff==1)
+		{
+			window.location.href='/fordwechat/control?state=305&vin=' + $("#vin").val();
+		}
+			
+		//WeixinJSBridge.call('closeWindow');//微信中关闭当前页面
+	});
+	$("#close1").click(function(){
+		$("#msg1").hide();
+	});
+	$("#tongybtn").click(function(){
+		$("#pageForm").submit();
+	});
+	$("#forgetvin").click(function(){
+		mobile = $("#mobile").val();
+		var reg = /^1[34587]\d{9}/;
+		if($.trim(mobile)=="" || !reg.test($.trim(mobile)) || $.trim(mobile).length!='11')
+		{
+			vinmsgHtml("您还没有填写手机号码，请完整填写，以便我们将VIN码发送至您的手机。")
+			return;
+		}
+		$.ajax({
+			async:false,
+			url: 'http://58.68.246.107/club_mobile/member/getVinsBySmsJSONP.htm',
+			type: "GET",
+			dataType: 'jsonp',
+			jsonp: 'jsonpcallback',
+			data: {'mobilePhoneNo':mobile},
+			timeout: 5000,
+			beforeSend: function(){
+			//jsonp 方式此方法不被触发.原因可能是dataType如果指定为jsonp的话,就已经不是ajax事件了
+			},
+			success: function (json) {
+				if(json.code=='1'){
+					vinmsgHtml('您填写的手机号码正确！您的VIN码将以短信形式发送至您的手机，请注意查收。正确填写VIN码等信息即可成为微客服认证车主。');
+				}else{
+					vinmsgHtml('对不起！系统未能查询到您的手机号码，请填写您在购车时预留的信息，或近期维修保养时填写的联系方式。如有疑问，请拨打<a href="tel:400-887-7766">400-887-7766</a>转3，由人工客服为您解决。');
+				}
+			},
+			complete: function(XMLHttpRequest, textStatus){
+			
+			},
+			error: function(xhr){
+				//jsonp 方式此方法不被触发.原因可能是dataType如果指定为jsonp的话,就已经不是ajax事件了
+				//请求出错处理
+				alert("请求出错(请检查相关度网络状况.)");
+			}
+		});
+	
+	});
+});
+</script>
+</head>
+<body>
+<form action="{{control_url}}?state=33" method="post" id="pageForm">
+	<div class="fenzuWrap renzh2">
+        <div class="buyBanner"></div>
+		<div class="buycont">
+			<img src="/fordwechat/static/presalesmember/images/location.png" alt="" class="location" />
+			<h2>欢迎加入车主粉，赢取<span>100元油卡。</span><br>
+			连续7个月，每月中奖电话不N机！</h2>
+			<h2>认证车主专享</h2>
+			<p>￭ 查看认证日期后的维修保养记录<br>
+				￭ 查看电子账户记录<br>
+				￭ 参与福域车主有奖互动活动<br>
+				￭ 与厂家对话，专家在线为你解答用车养车疑惑<br>
+				￭ 获取厂家/经销商服务促销/活动咨询<br>
+			￭ 更多车主专享礼遇，期待上线</p>
+			<ul>
+				<li><span>＊姓名</span><input type="text" value="{{name}}" name="name" /></li>
+				<li><span>＊手机号</span><input type="text" value="{{mobile}}" name="mobile" id="mobile"/></li>
+				<li>
+				<span>＊车辆VIN码</span><input type="text" value="{{vincode}}" name="vincode" />
+				<input type="hidden" name="vin" id="vin" value="{{vincode}}" />
+				<input type="hidden" name="source_state" id="source_state" value="{{source_state}}" />
+				<input type="hidden" name="f" id="f" value="0">
+				</li>
+				<li class="right"><a href="javascript:;" id="forgetvin" style=" font-size: 1em; text-decoration: underline; color: #fff;">忘记VIN码</a></li>
+				</ul>
+			<a href="javascript:;" class="submit" id="tongybtn">提交</a>
+			
+			<p>* 为必填信息，请与购车合同上的信息保持一致，<br>&nbsp;确保认证顺利完成</p>
+		</div>
+    </div>
+	<div class="czrzpopup" id="msg0">
+		<div>
+		<p>
+		{% if msg == 'customer_service'%}
+			是否需要人工服务，若需要请拨打客服热线：<a href="tel:400-887-7766">400-887-7766</a>按数字键转3，由人工客服为您解答，我们的人工坐席服务时间为每天上午9点-下午18点。
+		{% else %}
+			{{msg}}
+		{% end %}
+		</p>
+		</div>
+		<a href="javascript:;" class="submit" id="close0">确认</a>
+		<input type="hidden" name="msg" id="msg" value="{{msg}}" />
+	</div>
+	<div class="czrzpopup" id="msg1">
+		<div>
+		<p id="vinmsg">
+		</p>
+		</div>
+		<a href="javascript:;" class="submit" id="close1">确认</a>
+	</div>
+</form>
+</body>
+{% include '../common.html' %}
+</html>

@@ -1,0 +1,232 @@
+@charset "UTF-8";
+
+/**
+ * @title   CSS Document
+ * @authors wangmin (you@example.org)
+ * @date    2015-06-04 19:48:16
+ * @version Ver 1.0.0
+ */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, input {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {
+	-webkit-text-size-adjust: none;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+html {
+	font-size: 62.5%;
+}
+body {
+	font-size: 1.2rem;
+	font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif;
+	color: #fff
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+body {
+	width: 100%;
+	max-width: 640px;
+	height: 100%;
+	min-height: 568px;
+	background: url(../images/bg01.jpg) no-repeat 0 0;
+	background-size: cover;
+}
+.c_view {
+	width: 92%;
+	background: none;
+	position: absolute;
+	top: 31%;
+	left: 4%;
+	z-index: 1
+}
+.c_v_po{
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.c_opac {
+	width: 100%;
+	height: 200px;
+	background: #000;
+	opacity: 0.3;
+	border-radius: 5px;
+}
+.c_cen{
+	width: 100%;
+	height: 14px;
+	background: none;
+	position: absolute;
+	top: 196px;
+}
+.c_c_left{
+	width: 2px;
+	height: 100%;
+	border-radius: 1px;
+	background:#fff;
+	float: left;
+	margin-left: 10%;
+}
+.c_c_right{
+	width: 2px;
+	height: 100%;
+	border-radius: 1px;
+	background:#fff;
+	float: right;
+	margin-right: 10%;
+}
+.c_opac_d{
+    width: 100%;
+    height: 198px;
+    background: #000;
+    opacity: 0.3;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.c_code{
+	width: 30%;
+	margin: 3% auto 0;
+}
+.c_code img{
+	width: 100%;
+}
+
+.c_up {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 5
+}
+.c_up h3 {
+	width: 100%;
+	height: 2.8rem;
+	padding-top: 0.8rem;
+	text-align: center;
+	font-size: 2.2rem;
+}
+.c_up p {
+	padding: 0 1rem 0.3rem;
+	font-size: 1.2rem;
+	text-align: justify;
+}
+.c_form_item {
+	margin: 0.5rem 1rem 0;
+	overflow: hidden;
+}
+.c_form_label {
+	float: left;
+	width: 30%;
+	height: 24px;
+}
+.c_form_label label {
+	display: block;
+	width: 100%;
+	line-height: 24px;
+	font-size: 1.5rem;
+	letter-spacing: 1px;
+	text-align: justify;
+}
+.c_form_input {
+	float: right;
+	width: 70%;
+}
+.f_input {
+	width: 100%;
+	height: 2rem;
+	line-height: 2rem;
+	text-indent: 5px;
+	background: #fff;
+	border-radius: 3px;
+	border: none;
+}
+.c_button {
+	width: 100%;
+	margin-top: 1.5rem
+}
+.c_button a {
+	display: block;
+	width: 40%;
+	margin: 0 auto;
+	height: 2rem;
+	line-height: 2rem;
+	text-align: center;
+	font-size: 1.4rem;
+	letter-spacing: 3px;
+	background: #002c68;
+	border-radius: 4px;
+	border: 2px solid #71abd3;
+	color: #fff;
+	text-decoration: none;
+	box-shadow: 0 0 2px #71abd3;
+}
+.c_down{
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top:215px;
+	z-index: 5
+}
+.c_down dl{
+	padding: 0 1rem;
+	line-height: 1.5rem;
+	font-size:1.2rem;
+}
+.c_down dl dt{
+	width: 15px;
+	float: left;
+}
+.c_down dl dd{
+	margin-left: 15px;
+	text-align: justify;
+	font-size:1.2rem;
+}
+@media screen and (min-height: 568px) {
+	.c_view{
+		top: 26%;
+	}
+}
+@media screen and (min-width: 375px) {
+	.c_view{
+		top: 27%;
+	}
+	.c_opac_d{
+		height:182px;
+	}
+}
+@media screen and (min-width: 414px) {
+	.c_view{
+		top: 26%;
+	}
+	.c_opac_d{
+		height:146px;
+	}
+	.c_down{
+		top: 222px;
+	}
+ }

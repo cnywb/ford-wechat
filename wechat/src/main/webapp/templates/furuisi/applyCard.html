@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no" />
+
+<title>福特</title>
+<link rel="stylesheet" href="http://www.changanfordwechat.com/fordwechat/static/furuisi/css/main.css">
+
+<script src="http://www.changanfordwechat.com/fordwechat/static/furuisi/js/jquery-1.7.2.min.js"></script>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+    
+
+</head>
+
+<body style="background: url(/fordwechat/static/furuisi/images/kaquanbg.jpg) no-repeat center top; background-size: 115%; padding-top: 20%;">
+	<div class="wrap">
+    	<div class="cardquan">
+			<div class="kaqSub">
+				<div class="kaqcont">
+					<form >
+						<input type="hidden" value="" name="action_url">
+						<p class="dec">* 留下正确的手机号码，活动信息及礼品发放将通过电话与您联络</p>
+						<p class="mobile">手机号码：<input type="number" value="" name="tel" id="tel" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></p>
+						<p class="note">礼品券已发送至您的微信账户，请至微信“我”-“卡包”里查看。马上前往就近经销商门店完成签到，即可获取礼品，数量有限，先到先得</p>
+						<a href="javascript:;" class="cardSubtn" >提  交</a>
+					</form>
+				</div>
+				<div class="cardPop" style=" display: none;">
+					<a href="javascript:;" onClick="$('.cardPop').hide();$('.kaqcont').show();" class="close"><img src="/fordwechat/static/furuisi/images/card_close.png" alt="" /></a>
+					<p class="note note01" >提交失败<br /><br />请确认填写的是有效的手机号码</p>
+					<p class="note note02">提交失败<br /><br />网络出错，请稍后再试</p>
+					<p class="note note03">提交成功，之后将通过电话与您联络！</p>
+				</div>
+				<p class="btnLast"></p>
+			</div>
+		</div>
+		
+    </div>
+<script type="text/javascript">
+
+
+$(document).ready(function () {
+	var card_id, code_id, is_subsrcibe;
+	var ua = navigator.userAgent,
+			is_ios = /(iPhone|iPad|iPod|iOS)/i.test(ua),
+			is_android = /(Android)/i.test(ua);
+
+	//获取微信版本号：例如5.2.1
+	function get() {
+		var reg = /MicroMessenger\/([\d\.]+)/i,
+				ret = ua.match(reg);
+
+		if (ret && ret[1]) {
+			return ret[1];
+		}
+		return false;
+	}
+
+	if (typeof WeixinJSBridge == "undefined") {
+		if (get() >= '5.5') {
+			document.addEventListener('WeixinJSBridgeReady', onBridgeReady);
+		} else {
+			document.addEventListener('WeixinJSBridgeReady', onBridgeReadyold);
+		}
+	} else {
+		if (get() >= '5.5') {
+			onBridgeReady();
+		} else {
+			onBridgeReadyold();
+		}
+	}
+
+
+});
+
+
+function onBridgeReady() {
+
+ $(function() {
+	$('.cardSubtn').click(function() {
+		
+		check();
+	
+	});
+});	
+	
+}
+function onBridgeReadyold() {
+
+
+
+    return false;
+}
+
+
+window.cardExt = {
+    code: '',
+    openid: '',
+    timestamp: '',
+    signature: '',
+}
+
+
+function getCardSignature() {
+
+	var card_id='pULu_jkqR30vMX5q3BiJKMxRUHxw';
+	
+
+    var jsonURL = "http://122.144.137.144:8080/api/game/getCardTicket"
+    $.ajax({
+        url: jsonURL,
+        dataType: 'jsonp',
+        data: {card_id: card_id},
+        jsonp: 'callback',
+        timeout: 10000,
+        success: function(res) {
+            //console.log(data);
+            window.cardExt.timestamp = res.timestamp;
+            window.cardExt.signature = res.signature;
+			
+            getPrize();
+			 
+        },
+        error: function(event, data) {
+            //error redirect to anthoer page
+        }
+
+    });
+    return true;
+
+}
+
+
+function getPrize() {
+
+	var card_id='pULu_jkqR30vMX5q3BiJKMxRUHxw';
+	
+    WeixinJSBridge.invoke('batchAddCard', {
+        "card_list": [
+            {
+                "card_id": card_id,
+                "card_ext": "{\"code\":\"\",\"openid\":\"\",\"timestamp\":\"" + window.cardExt.timestamp + "\",\"signature\":\"" + window.cardExt.signature + "\"}"
+            },
+        ],
+    },
+            function(res) {
+
+               
+          /*     res = JSON.stringify(res);
+			   alert(res);
+            
+             */
+            }
+
+
+    );
+
+
+}
+
+ function dump_obj(myObject) {
+        var s = "";
+        for (var property in myObject) {
+            s = s + "\n " + property + ": " + myObject[property];
+        }
+        return s;
+    }
+
+
+function check(){
+
+
+	
+	var reg = /^1[34587]\d{9}/;
+	openid = '{{openid}}'
+	$(".cardPop .note").hide();
+	if($.trim($("#tel").val())=="" || !reg.test($.trim($('#tel').val())) || $.trim($('#tel').val()).length!='11')
+	{
+		$('.kaqcont').hide();	
+		$(".cardPop").show();
+		$(".cardPop .note01").show();
+		return false;
+	}
+	
+	$.ajax( {
+		url :'/fordwechat/control?state=1103',
+		type : 'post',
+		data: {
+			tel:$("#tel").val()
+			},
+		dataType:'text',
+		success : function(result) {
+		if (result=='0') {
+			$('.kaqcont').hide();	
+			$(".cardPop").show();
+			$(".cardPop .note03").show();
+			getCardSignature();			
+		}else{
+			$('.kaqcont').hide();	
+			$(".cardPop").show();
+			$(".cardPop .note02").show();
+		}
+	},
+	error:function(){
+		$('.kaqcont').hide();	
+		$(".cardPop").show();
+		$(".cardPop .note02").show();
+	}
+	}); 
+
+}
+</script>
+</body>
+</html>

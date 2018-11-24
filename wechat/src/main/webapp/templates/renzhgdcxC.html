@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no" />
+<title>长安福特微客服</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="/static/js/jquery-1.7.2.min.js"></script>
+    <script src="/static/js/common.js"></script>
+<script type="text/javascript">
+    var vrepairId = queryByName('vrepairId');
+$(document).ready(function(){
+    $.ajax({
+        async: false,
+        url: '/fordwechat/repairdetail.do',
+        type: 'GET',
+        dataType: 'json',
+        data: {openid: openid, vrepairId: vrepairId},
+        timeout: 1200000,
+        success: function (data) {
+            $("#container").empty();
+            if (data && typeof(data.carInfo) != 'undefined') {
+                $("#container").append('<h2>' + data.carInfo.vsstName + '</h2><table cellpadding="0" cellspacing="0" width="100%">' +
+                        '<tr><th>工单编号</th><td colspan="3">' + data.carInfo.vbillId + '</td></tr><tr><th width="15%">维修站号</th>' +
+                        '<td width="30%">' + data.carInfo.vsstId + '</td><th width="25%">修理日期</th><td width="30%">' +
+                        data.carInfo.vrepairDate + '</td></tr><tr><th>品牌</th><td>' + data.carInfo.cdBrand + '</td><th>维修站名称</th>' +
+                        '<td>' + data.carInfo.vsstName + '</td></tr><tr><th>VIN码</th><td>' + data.carInfo.vvin + '</td>' +
+                        '<th>车型大类</th><td>' + data.carInfo.cdname + '</td></tr><tr><th></th><td></td><th>发动机号</th>' +
+                        '<td>' + data.carInfo.vengineNmb + '</td></tr></table>');
+                //维修材料
+                $("#container").append('<h3>维修材料</h3><table cellpadding="0" cellspacing="0" width="100%" id="tab1"><tr>' +
+                        '<th width="25%">配件代码</th><th width="35%">配件名称</th><th width="17%">配件数量</th></tr></table>');
+                $.each(data.repairPartInfo, function (idx, item) {
+                    $("#tab1").append('<tr><td>' + item.vpartCode + '</td><td>' + item.vpartName + '</td><td>' + item.npartNum + '</td></tr>');
+                });
+                //维修工时
+                $("#container").append('<h3>维修工时</h3><table cellpadding="0" cellspacing="0" width="100%" id="tab2"><tr>' +
+                        '<th width="20%">维修项目代码</th><th width="20%">维修项目名称</th></tr></table>');
+                $.each(data.laborInfo, function (idx, item) {
+                    $("#tab2").append('<tr><td>' + item.vitemCode + '</td><td>' + item.vitemName + '</td></tr>');
+                });
+                //销售配件
+                $("#container").append('<h3>销售配件</h3><table cellpadding="0" cellspacing="0" width="100%" id="tab3"><tr>' +
+                        '<th width="25%">配件代码</th><th width="35%">配件名称</th><th width="17%">配件数量</th></tr></table>');
+                $.each(data.salePartInfo, function (idx, item) {
+                    $("#tab3").append('<tr><td>' + item.vpartCode + '</td><td>' + item.vpartName + '</td><td>' + item.npartNum + '</td></tr>');
+                });
+                //维修附加项
+                $("#container").append('<h3>维修附加项</h3><table cellpadding="0" cellspacing="0" width="100%" id="tab4"><tr>' +
+                        '<th width="25%">收费类型代码</th><th width="35%">附加项目代码</th><th width="17%">附加项目名称</th></tr></table>');
+                $.each(data.additionInfo, function (idx, item) {
+                    $("#tab4").append('<tr><td>' + item.vitemType + '</td><td>' + item.vitemCode + '</td><td>' + item.vitemName + '</td></tr>');
+                });
+            } else {
+                $("#container").append('<h3>暂未有维修详情信息</h3>');
+            }
+        },
+        error: function (xhr) {
+            $("#container").append('<h3>暂未有维修详情信息</h3>');
+        }
+
+    });
+});
+</script>
+</head>
+
+<body>
+<div class="wrap">
+    <div class="gdcxC-box" id="container">
+
+	</div>
+</div>
+</body>
+
+</html>
